@@ -16,9 +16,9 @@
                     </a>
                 </li>
             </ul>
-            <div class="well">
-                <div id="author">
-                    <h4>About Author</h4>
+            <div id="author" class="well">
+                <div>
+                    <h3>About Author</h3>
                     <p>
                         <span>name : <%= author.name %></span><br/>
                         blog: <a href="<%= author.blog %>" target="_blank"><%= author.blog %></a><br/>
@@ -28,10 +28,12 @@
                     <p><%- author.intro %></p>
                 </div>
                 <div>
-                    <h4>About this Article</h4>
+                    <h3>About this Article</h3>
                     <p>
                         <h4>Date Released:</h4>
+                        <span><%= header.published %></span>
                         <h4>Last Updated:</h4>
+                        <span><%= header.modified %></span>
                     </p>
                 </div>
             </div>
@@ -57,12 +59,12 @@
             </p>
         </div>
     </div>
-    <div class="row">
-        <div class="offset3 span9">
-            <strong>tags</strong> :
-            <% header.tags.forEach(function(tag) { %>
-            <a href="/tag/<%= tag %>"><%= tag %></a>&nbsp;
-            <% }) %>
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="offset3 span9">-->
+            <!--<strong>tags</strong> :-->
+            <!--<% header.tags.forEach(function(tag) { %>-->
+            <!--<a href="/tag/<%= tag %>"><%= tag %></a>&nbsp;-->
+            <!--<% }) %>-->
+        <!--</div>-->
+    <!--</div>-->
 </div><!-- /container -->

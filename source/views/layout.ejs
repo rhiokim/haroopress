@@ -77,10 +77,8 @@
     <script src="/js/prettify.js"></script>
     <script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>
     <script>
-        $('code').parent().forEach(function($this) {
-            $this.addClass('prettyprint linenums');
-        });
-        prettyprint();
+        $('pre > code').parent().addClass('prettyprint linenums');
+        prettyPrint();
     </script>
   </body>
 </html>

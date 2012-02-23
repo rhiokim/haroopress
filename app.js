@@ -23,6 +23,9 @@ app.configure(function() {
     app.use(express.static(__dirname +'/source/public'));
 });
 
+app.get('/', function(req, res) {
+    
+});
 app.get('/post/:title', function(req, res) {
     var post = mdb.loadArticle(req.params.title);
 

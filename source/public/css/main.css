@@ -21,7 +21,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #000;
 }
 
-#author h1,h2,h3,h4,h5 {
+#author h1,
+#author h2,
+#author h3,
+#author h4,
+#author h5 {
     color: #000;
 }
 
