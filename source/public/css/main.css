@@ -1,0 +1,31 @@
+header {
+    margin-top: 60px;
+}
+
+body {
+    background: url('/img/document-bg.jpg');
+    background-attachment: fixed;
+    color: #f4e8d3;
+}
+
+footer {
+    margin: 30px 0 20px 0;
+    color: #f4e8d3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #c3b498;
+}
+
+#author {
+    color: #000;
+}
+
+#author h1,h2,h3,h4,h5 {
+    color: #000;
+}
+
+#article {
+  /*opacity: 0.3;*/
+  /*filter: alpha(opacity=30);*/
+}

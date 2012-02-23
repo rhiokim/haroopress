@@ -1,0 +1,68 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <ul class="thumbnails">
+                <li>
+                    <a class="thumbnail">
+                        <img src="http://www.gravatar.com/avatar/0764d73c228492e36b339d8b6d7293ad?s=300&r=pg" />
+                    </a>
+                </li>
+            </ul>
+            <div class="well">
+                <div id="author">
+                    <h4>About Author</h4>
+                    <p>
+                        <span>name : <%= author.name %></span><br/>
+                        blog: <a href="<%= author.blog %>" target="_blank"><%= author.blog %></a><br/>
+                        twitter: <a href="http://twitter.com/<%= author.twitter %>" target="_blank">@<%= author.twitter %></a><br/>
+                        github: <a href="https://github.com/<%= author.twitter %>" target="_blank"><%= author.github %></a>
+                    </p>
+                    <p><%- author.intro %></p>
+                </div>
+                <div>
+                    <h4>About this Article</h4>
+                    <p>
+                        <h4>Date Released:</h4>
+                        <h4>Last Updated:</h4>
+                    </p>
+                </div>
+            </div>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li class="active"><a href="#"><i class="icon-white icon-home"></i> Home</a></li>
+                    <li><a href="#"><i class="icon-book"></i> Library</a></li>
+                    <li><a href="#"><i class="icon-pencil"></i> Applications</a></li>
+                    <li class="nav-header">Another list header</li>
+                    <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span9">
+            <div class="page-header">
+                <h1><%= header.title %> <small>by <%= author.name %></small></h1>
+            </div>
+            <p>
+                <%- body %>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset3 span9">
+            <strong>tags</strong> :
+            <% header.tags.forEach(function(tag) { %>
+            <a href="/tag/<%= tag %>"><%= tag %></a>&nbsp;
+            <% }) %>
+        </div>
+    </div>
+</div><!-- /container -->
