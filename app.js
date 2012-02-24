@@ -1,6 +1,7 @@
 var mdb = require('markdown-blog'),
     direc = require('direc'),
     fs = require('fs'),
+    moment = require('moment'),
     express = require('express'),
     config = require('./config'),
     routes = require('./source/routes');
@@ -28,6 +29,9 @@ app.configure(function() {
 app.get('/', function(req, res) {
     var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
     posts = JSON.parse(posts);
+    posts.forEach(function(post) {
+        post.header.published = moment(new Date(post.header.published)).fromNow();
+    });
 
     res.render('main', { meta: config.meta, posts : posts });
 });

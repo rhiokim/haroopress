@@ -8,8 +8,8 @@
     ],
     "acceptComment": true,
     "acceptTrackback": true,
-    "published": "Fri Dec 02 2011 00:31:36 GMT+0900 (KST)",
-    "modified": "Fri Dec 02 2011 00:32:36 GMT+0900 (KST)",
+    "published": "Fri Feb 02 2012 00:31:36 GMT+0900 (KST)",
+    "modified": "Fri Feb 02 2012 00:32:36 GMT+0900 (KST)",
     "status": "draft",
     "advanced": {}
 }
