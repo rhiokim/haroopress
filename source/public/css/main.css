@@ -15,17 +15,35 @@ footer {
 
 h1, h2, h3, h4, h5, h6 {
     color: #c3b498;
-}
+}                                d
 
 #author {
     color: #000;
 }
 
-#author h1,h2,h3,h4,h5 {
-    color: #000;
+#author h1,
+#author h2,
+#author h3,
+#author h4,
+#author h5 {
+    /*color: #000;*/
 }
 
+/***************************
+ * blog article style
+ **************************/
 #article {
   /*opacity: 0.3;*/
   /*filter: alpha(opacity=30);*/
+}
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5 {
+    margin: 30px 0 10px 0;
+}
+
+.article p {
+    line-height: 20px;
 }

@@ -9,29 +9,16 @@
 <div class="container">
     <div class="row">
         <div class="span3">
-            <ul class="thumbnails">
-                <li>
-                    <a class="thumbnail">
-                        <img src="http://www.gravatar.com/avatar/0764d73c228492e36b339d8b6d7293ad?s=300&r=pg" />
-                    </a>
-                </li>
-            </ul>
-            <div class="well">
-                <div id="author">
-                    <h4>About Author</h4>
+            <div id="author" class="">
+                <div>
+                    <h3>About This Site</h3>
                     <p>
-                        <span>name : <%= author.name %></span><br/>
-                        blog: <a href="<%= author.blog %>" target="_blank"><%= author.blog %></a><br/>
-                        twitter: <a href="http://twitter.com/<%= author.twitter %>" target="_blank">@<%= author.twitter %></a><br/>
-                        github: <a href="https://github.com/<%= author.twitter %>" target="_blank"><%= author.github %></a>
+                        이 사이트는 markdown-blog 엔진으로 구축되어진 사이트입니다.
                     </p>
-                    <p><%- author.intro %></p>
                 </div>
                 <div>
-                    <h4>About this Article</h4>
+                    <h3>Articles</h3>
                     <p>
-                        <h4>Date Released:</h4>
-                        <h4>Last Updated:</h4>
                     </p>
                 </div>
             </div>
@@ -49,19 +36,29 @@
             </div>
         </div>
         <div class="span9">
-            <div class="page-header">
-                <h1><%= header.title %> <small>by <%= author.name %></small></h1>
+            <% posts.forEach(function(article) { %>
+            <div class="row">
+                <div class="span9">
+                    <div class="page-header">
+                        <h1><a href="/post/<%= article._file%>"><%= article.header.title %></a></h1>
+                    </div>
+                    <div class="pull-right" style="padding: 0 10px 10px 10px;">
+                        <ul class="thumbnails">
+                            <li class="thumbnail">
+                                <a>
+                                    <img src="<%= article.author.gravatar %>" width="128"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="article">
+                        <%- article.body %>
+                    </div>
+                    <p>
+                        <a href="/post/<%= article._file%>" class="btn btn-primary btn-large">Read more...</a>
+                    </p>
+                </div>
             </div>
-            <p>
-                <%- body %>
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="offset3 span9">
-            <strong>tags</strong> :
-            <% header.tags.forEach(function(tag) { %>
-            <a href="/tag/<%= tag %>"><%= tag %></a>&nbsp;
             <% }) %>
         </div>
     </div>

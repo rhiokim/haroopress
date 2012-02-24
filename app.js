@@ -1,4 +1,6 @@
 var mdb = require('markdown-blog'),
+    direc = require('direc'),
+    fs = require('fs'),
     express = require('express'),
     config = require('./config'),
     routes = require('./source/routes');
@@ -23,10 +25,17 @@ app.configure(function() {
     app.use(express.static(__dirname +'/source/public'));
 });
 
+app.get('/', function(req, res) {
+    var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
+    posts = JSON.parse(posts);
+
+    res.render('main', { meta: config.meta, posts : posts });
+});
+
 app.get('/post/:title', function(req, res) {
     var post = mdb.loadArticle(req.params.title);
 
-    res.render('main', { meta: config, header: post.header, author: post.author, body: post.article });
+    res.render('article', { meta: config, header: post.header, author: post.author, body: post.article });
 });
 
 app.listen(8000);
