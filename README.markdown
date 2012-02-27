@@ -7,6 +7,6 @@ haroog 는 node.js 기반으로 작성된 static 블로그 엔진입니다.
 
 # screenshot
 
-![블로그 형태](./intro.png)
+![블로그 형태](https://github.com/rhiokim/haroog/blob/devel/intro.png)
 
 # license
