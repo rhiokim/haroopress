@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+var direc = require('direc');
+var crypto = require('crypto');
+var config = require('../config');
+var fs = require('fs');
+var md = require('robotskirt');
+
+var file, files = direc.sort('../source/articles', 'mtime');
+var tmp, summary = [];
+
+
+function gravatar(email) {
+    var md5 = crypto.createHash('md5');
+        md5.update(email);
+    return "http://www.gravatar.com/avatar/" + md5.digest('hex') +"?r=pg&s=128.jpg&d=identicon";
+}
+
+function createSummary(file) {
+    var article = fs.readFileSync(file, 'utf8');
+    var parts = article.split('\n\n');
+    var header = JSON.parse(parts.shift());
+    var body = md.toHtmlSync(parts.slice(0, 5).join('\n\n'));
+    
+    var author = fs.readFileSync('../source/authors/'+ header.author +'.markdown', 'utf8');
+    author = author.split('\n\n');
+    var authorInfo = JSON.parse(author[0]);
+    authorInfo.gravatar = gravatar(authorInfo.email);
+
+    return {
+        header: header,
+        body: body,
+        author: authorInfo
+    }
+}
+
+files.reverse();
+files.forEach(function(item) {
+    file = item._file.split('/');
+    file = file[file.length-1].replace('.markdown', '');
+    tmp = createSummary(item._file);
+    tmp._file = file;
+    summary.push(tmp);
+});
+
+fs.writeFileSync('../source/_index.json', JSON.stringify(summary), 'utf8');
