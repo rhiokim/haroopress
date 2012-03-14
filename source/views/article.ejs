@@ -9,16 +9,16 @@
 <div class="container">
     <div class="row">
         <div class="span3">
-            <ul class="thumbnails">
-                <li>
-                    <a class="thumbnail">
-                        <img src="<%= author.gravatar %>" />
-                    </a>
-                </li>
-            </ul>
-            <div id="author" class="well-black">
+            <div id="author" class="well">
                 <div>
                     <h3>About Author</h3>
+                    <ul class="thumbnails">
+                        <li>
+                            <a class="thumbnail">
+                                <img src="<%= author.gravatar %>" />
+                            </a>
+                        </li>
+                    </ul>
                     <p>
                         <strong><%= author.name %></strong><br/>
                         blog: <a href="<%= author.blog %>" target="_blank"><%= author.blog %></a><br/>
@@ -85,7 +85,7 @@
         </div>
         <div class="span9">
             <div class="row">
-                <div class="span9 well-black black35">
+                <div class="span9 well">
                     <div class="page-header">
                         <h1><%= header.title %> <small>by <%= author.name %></small></h1>
                     </div>
