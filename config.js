@@ -28,7 +28,9 @@ conf.appconf = {
         shortName: "haroo",
         showCommentCount: false
     },
-    facebook: {},
+    facebook: {
+        showLikeButton: true
+    },
     delicious: {}
 };
 

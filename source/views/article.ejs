@@ -42,15 +42,16 @@
                         <span><%= header.modified %></span>
                     </p>
                     <p>
-                        <div class="fb-like" data-send="true" data-layout="button_count" data-width="240" data-show-faces="false"></div>
-                        <div id="fb-root"></div>
-                        <script>(function(d, s, id) {
-                          var js, fjs = d.getElementsByTagName(s)[0];
-                          if (d.getElementById(id)) return;
-                          js = d.createElement(s); js.id = id;
-                          js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1";
-                          fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>
+                        <!--<div class="fb-like" data-send="true" data-layout="button_count" data-width="240" data-show-faces="false"></div>-->
+                        <!--<div id="fb-root"></div>-->
+                        <!--<script>(function(d, s, id) {-->
+                          <!--var js, fjs = d.getElementsByTagName(s)[0];-->
+                          <!--if (d.getElementById(id)) return;-->
+                          <!--js = d.createElement(s); js.id = id;-->
+                          <!--js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1";-->
+                          <!--fjs.parentNode.insertBefore(js, fjs);-->
+                        <!--}(document, 'script', 'facebook-jssdk'));</script>-->
+                        <%- partial('plugins/facebook', conf.facebook) %>
 
                         <!-- Place this tag where you want the +1 button to render -->
                         <g:plusone size="medium"></g:plusone>

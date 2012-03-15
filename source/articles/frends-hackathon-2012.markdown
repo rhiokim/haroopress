@@ -151,12 +151,10 @@
     <td>
         <p>
           <span style="font-size:1.2em;font-weight:bold;">nanhapark</span><br/>
-          <span>주제 : Web-Messenger (WM)</span><br/>
-          <span>기술 : Node.js, Twitter Bootstrap, Javascript</span><br/>
-          <span>소스 : <a href="#">예정</a></span><br/>
-          <span>설명 : socket.io 사용해서 게시된 예제들은 모두 IRC UI를 모델로 한 채팅방이었는데,
-          무료회원가입을 받고 자유롭게 초대하여 서로 대화 할 수 있는 Web-Messenger 입니다.
-          기능은 일단 기본적인 1:n 대화방 개설을 목표로 하겠습니다. ^^</span>
+          <span>주제 : 가위 바위 보</span><br/>
+          <span>기술 : Node.js, Mongodb</span><br/>
+          <span>소스 : <a href="https://github.com/nanha/kin">github</a></span><br/>
+          <span>설명 : 1:1 random 게임이며, 아이디/비번 가입후 랭킹제도로 운영합니다</span>
         </p>
     </td>
   </tr>
