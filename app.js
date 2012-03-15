@@ -43,3 +43,4 @@ app.get('/post/:title', function(req, res) {
 });
 
 app.listen(8000);
+console.log('Start at http://localhost:8000');
