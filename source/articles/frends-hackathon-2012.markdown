@@ -192,7 +192,7 @@
     </td>
     <td>
         <p>
-          <span style="font-size:1.2em;font-weight:bold;">outsider</span><br/>
+          <span style="font-size:1.2em;font-weight:bold;">kyungw00k</span><br/>
           <span>주제 : Noddler(Web-Based Fiddler)</span><br/>
           <span>기술 : Node.js, Twitter Bootstrap, JavaScript</span><br/>
           <span>소스 : <a href="#">예정</a></span><br/>

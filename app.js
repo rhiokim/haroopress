@@ -39,8 +39,8 @@ app.get('/', function(req, res) {
 app.get('/post/:title', function(req, res) {
     var post = mdb.loadArticle(req.params.title);
 
-    res.render('article', { meta: config, header: post.header, author: post.author, body: post.article });
+    res.render('article', { meta: config, conf: config.appconf, header: post.header, author: post.author, body: post.article });
 });
 
 app.listen(8000);
-console.log('Start at http://localhost:8000');
+console.log('Start at http://haroog.dev');

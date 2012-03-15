@@ -45,5 +45,5 @@ files.forEach(function(item) {
 
 fs.writeFileSync('../source/_index.json', JSON.stringify(summary), 'utf8');
 
-console.log('================================\n');
-console.log('index.json generated\n');
+console.log('================================');
+console.log('index.json generated');
