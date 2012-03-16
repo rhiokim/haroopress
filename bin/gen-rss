@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var conf = require('../config'),
+    rss = require('rss'),
+    fs = require('fs');
+
+var meta = conf.meta;
+
+var feed = new rss({
+    title: meta.defaultTitle,
+    description: meta.description,
+    feed_url: meta.siteUrl +'/rss.xml',
+    site_url: meta.siteUrl,
+    image_url: meta.siteUrl +'/public/img/icon.png'
+});
+
+fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
+    var items = JSON.parse(data);
+
+    items.forEach(function(item, idx) {
+        feed.item({
+            title: item.title,
+            description: '',
+            url: meta.siteUrl +'/post/'+ item._file,
+            author: item.author,
+            guid: item._file,
+            date: item.pulished
+        });
+    });
+
+    fs.writeFileSync(conf.sourceDir +'/public/rss.xml', feed.xml(), 'utf8');
+});

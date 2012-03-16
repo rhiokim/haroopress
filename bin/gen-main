@@ -43,7 +43,7 @@ files.forEach(function(item) {
     summary.push(tmp);
 });
 
-fs.writeFileSync('../source/_index.json', JSON.stringify(summary), 'utf8');
+fs.writeFileSync('../source/_main.json', JSON.stringify(summary), 'utf8');
 
 console.log('================================');
 console.log('index.json generated');

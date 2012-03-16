@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var conf = require('../config'),
+    direc = require('direc'),
+    fs = require('fs');
+
+var tmp, summary = [], files = direc.sort('../source/articles', 'mtime');
+
+function getHeader(file) {
+    var data = fs.readFileSync(file, 'utf8');
+    var part = data.split('\n\n');
+    var header = JSON.parse(part.shift());
+
+    return header;
+}
+
+files.forEach(function(item) {
+    file = item._file.split('/');
+    file = file[file.length-1].replace('.markdown', '');
+    tmp = getHeader(item._file);
+    tmp._file = file;
+    summary.push(tmp);
+});
+
+fs.writeFileSync('../source/_index.json', JSON.stringify(summary), 'utf8');
