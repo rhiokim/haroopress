@@ -1,14 +1,25 @@
 var conf = {
     meta: {
         version: '0.0.1',
-        defaultTitle: 'Markdown Blog'
+        defaultTitle: 'Markdown Blog',
+        description: 'Markdown Blogging engine based Node.js',
+        siteUrl: 'http://haroog.dev:8000',
+        author: 'Rhio Kim'
     },
     articles: process.cwd() +'/source/articles',
-    authors: process.cwd() +'/source/authors'
+    authors: process.cwd() +'/source/authors',
+
+    rss: {
+        contentLength: 0
+    },
+    
+    sourceDir: __dirname + '/source',
+    deployDir: __dirname + '/_deploy'
 };
 
+
 /* third party settings */
-conf.appconf = {
+conf.plugins = {
     github: {
         user: "rhiokim",
         repoCount: 0,

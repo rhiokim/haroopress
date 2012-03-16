@@ -6,7 +6,7 @@ copy:
 	cp ./lib/google-code-prettify/*.css ./source/public/css/
 
 gen:
-	cd ./bin/;./gen-main	
+	cd ./bin/;./gen-index;./gen-main;./gen-rss
 
 preview:
 	node app.js
