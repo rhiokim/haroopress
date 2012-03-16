@@ -51,7 +51,7 @@
                           <!--js.src = "//connect.facebook.net/ko_KR/all.js#xfbml=1";-->
                           <!--fjs.parentNode.insertBefore(js, fjs);-->
                         <!--}(document, 'script', 'facebook-jssdk'));</script>-->
-                        <%- partial('plugins/facebook', conf.facebook) %>
+                        <%- partial('plugins/facebook', plugins.facebook) %>
 
                         <!-- Place this tag where you want the +1 button to render -->
                         <g:plusone size="medium"></g:plusone>
@@ -97,7 +97,7 @@
             </div>
             <div class="row">
                 <div class="span9">
-                    <%- partial('plugins/disqus', conf.disqus) %>
+                    <%- partial('plugins/disqus', plugins.disqus) %>
                 </div>
             </div>
         </div>
