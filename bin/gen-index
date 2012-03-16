@@ -14,6 +14,8 @@ function getHeader(file) {
     return header;
 }
 
+console.log('start indexing');
+
 files.forEach(function(item) {
     file = item._file.split('/');
     file = file[file.length-1].replace('.markdown', '');
@@ -22,4 +24,6 @@ files.forEach(function(item) {
     summary.push(tmp);
 });
 
-fs.writeFileSync('../source/_index.json', JSON.stringify(summary), 'utf8');
+fs.writeFileSync(conf.sourceDir +'/_index.json', JSON.stringify(summary), 'utf8');
+
+console.log('export ' + conf.sourceDir +'/_index.json');
