@@ -1,5 +1,4 @@
 var mdb = require('markdown-blog'),
-    direc = require('direc'),
     fs = require('fs'),
     express = require('express'),
     config = require('./config'),
