@@ -34,6 +34,8 @@ function createSummary(file) {
     }
 }
 
+console.log('start main page indexing');
+
 files.reverse();
 files.forEach(function(item) {
     file = item._file.split('/');
@@ -43,4 +45,6 @@ files.forEach(function(item) {
     summary.push(tmp);
 });
 
-fs.writeFileSync('../source/_index.json', JSON.stringify(summary), 'utf8');
+fs.writeFileSync('../source/_main.json', JSON.stringify(summary), 'utf8');
+
+console.log('export '+ config.sourceDir +'/_main.json');

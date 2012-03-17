@@ -1,5 +1,6 @@
 var mdb = require('markdown-blog'),
     fs = require('fs'),
+    moment = require('moment'),
     express = require('express'),
     config = require('./config'),
     routes = require('./source/routes');
@@ -25,8 +26,11 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-    var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
+    var posts = fs.readFileSync(__dirname +'/source/_main.json', 'utf8');
     posts = JSON.parse(posts);
+    posts.forEach(function(post) {
+        post.header.published = moment(new Date(post.header.published)).fromNow();
+    });
 
     res.render('main', { meta: config.meta, posts : posts });
 });
@@ -34,7 +38,8 @@ app.get('/', function(req, res) {
 app.get('/post/:title', function(req, res) {
     var post = mdb.loadArticle(req.params.title);
 
-    res.render('article', { meta: config, header: post.header, author: post.author, body: post.article });
+    res.render('article', { meta: config, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
 });
 
 app.listen(8000);
+console.log('Start at http://haroog.dev');
