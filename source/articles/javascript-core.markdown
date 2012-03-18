@@ -3,6 +3,7 @@
     "author": "Andrw Kim",
     "date": "Fri Dec 02 2011 00:31:36 GMT+0900 (KST)",
     "categories": [
+    	"javascript"
     ],
     "tags": [
     ],

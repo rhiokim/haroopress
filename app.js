@@ -41,10 +41,13 @@ app.get('/post/:title', function(req, res) {
     res.render('article', { meta: config, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
 });
 
-app.get('/category/:cate', function(req, res) {
-
-    console.log(req.params);
+/* category main page */
+app.get('/category', function(req, res) {
     res.render('category', { meta: config });
+});
+
+app.get('/category/:cate', function(req, res) {
+    res.render('cate', { meta: config });
 });
 
 app.listen(8000);

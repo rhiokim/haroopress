@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    conf = require('../config');
+
+var categories = {};
+
+fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
+    var articles = JSON.parse(data);
+    var cate;
+
+    articles.forEach(function(article) {
+        cates = article.categories || [];
+
+        cates.forEach(function(cate) {
+            if(!categories.hasOwnProperty(cate)) {
+                categories[cate] = [];
+                categories[cate].push(article);
+            } else {
+                categories[cate].push(article);
+            }
+        });
+    });
+
+    fs.writeFileSync(conf.sourceDir +'/_categories.json', JSON.stringify(categories), 'utf8');
+    
+});
