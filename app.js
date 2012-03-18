@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
         post.header.published = moment(new Date(post.header.published)).fromNow();
     });
 
-    res.render('main', { meta: config.meta, posts : posts });
+    res.render('main', { meta: config.meta, posts: posts });
 });
 
 app.get('/post/:title', function(req, res) {
@@ -43,11 +43,17 @@ app.get('/post/:title', function(req, res) {
 
 /* category main page */
 app.get('/category', function(req, res) {
-    res.render('category', { meta: config });
+    var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    cates = JSON.parse(cates);
+
+    res.render('category', { meta: config, cates: cates });
 });
 
 app.get('/category/:cate', function(req, res) {
-    res.render('cate', { meta: config });
+    var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    cates = JSON.parse(cates);
+
+    res.render('cate', { meta: config, articles: cates[req.params.cate] });
 });
 
 app.listen(8000);

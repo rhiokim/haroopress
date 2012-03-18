@@ -36,72 +36,16 @@
 					<h1>iArticle Libraries</h1>
 				</div>
 				<div class="row">
+					<% for(cate in cates) { %>
 					<div class="span2">
-						<a href="/category/javascript">
+						<a href="/category/<%= cate %>">
 							<img src="/img/Pages-Brown-256.png" />
 						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
+						<h5><%= cate %> <span class="badge badge-info"><%= cates[cate].length %></span></h5>
 
 						<p>last updated : 3days ago</p>
 					</div>
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
-					<div class="span2">
-						<a href="#">
-							<img src="/img/Pages-Brown-256.png" />
-						</a>
-						<h5>JavaScript <span class="badge badge-info">8</span></h5>
-
-						<p>last updated : 3days ago</p>
-					</div>
+					<% } %>
 				</div>
 			</div>
         </div>
