@@ -56,5 +56,20 @@ app.get('/category/:cate', function(req, res) {
     res.render('cate', { meta: config, articles: cates[req.params.cate] });
 });
 
+
+app.get('/tags', function(req, res) {
+    var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
+    tags = JSON.parse(tags);
+
+    res.render('tags', { meta: config, tags: tags });
+});
+
+app.get('/tags/:tag', function(req, res) {
+    var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
+    tags = JSON.parse(tags);
+
+    res.render('tag', { meta: config, articles: tags[req.params.tag] });
+});
+
 app.listen(8000);
 console.log('Start at http://haroog.dev');
