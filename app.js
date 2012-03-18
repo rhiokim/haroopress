@@ -41,5 +41,11 @@ app.get('/post/:title', function(req, res) {
     res.render('article', { meta: config, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
 });
 
+app.get('/category/:cate', function(req, res) {
+
+    console.log(req.params);
+    res.render('category', { meta: config });
+});
+
 app.listen(8000);
 console.log('Start at http://haroog.dev');
