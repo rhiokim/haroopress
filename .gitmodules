@@ -1,3 +1,6 @@
 [submodule "lib/bootstrap"]
 	path = lib/bootstrap
 	url = https://github.com/twitter/bootstrap.git
+[submodule "node_modules/markdown-blog"]
+	path = node_modules/markdown-blog
+	url = git@github.com:rhiokim/haroog-engine.git
