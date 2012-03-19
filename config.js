@@ -1,7 +1,7 @@
 var conf = {
     meta: {
-        version: '0.0.1',
-        defaultTitle: 'Markdown Blog',
+        version: '0.2.1',
+        defaultTitle: 'Markdown Blog - HarooGul',
         description: 'Markdown Blogging engine based Node.js',
         siteUrl: 'http://haroog.dev:8000',
         author: 'Rhio Kim'

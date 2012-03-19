@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    conf = require('../config');
+
+var tagList = {};
+
+fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
+    var articles = JSON.parse(data);
+    var tags;
+
+    articles.forEach(function(article) {
+        tags = article.tags || [];
+
+        tags.forEach(function(tag) {
+            if(!tagList.hasOwnProperty(tag)) {
+                tagList[tag] = [];
+                tagList[tag].push(article);
+            } else {
+                tagList[tag].push(article);
+            }
+        });
+    });
+
+    fs.writeFileSync(conf.sourceDir +'/_tags.json', JSON.stringify(tagList), 'utf8');
+    
+});

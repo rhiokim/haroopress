@@ -5,7 +5,6 @@
     </div>
 </header>
 
-
 <div class="container">
     <div class="row">
         <div class="span3">
@@ -86,13 +85,15 @@
         </div>
         <div class="span9">
             <div class="row">
-                <div class="span9 well">
-                    <div class="page-header">
-                        <h1><%= header.title %> <small>by <%= author.name %></small></h1>
-                    </div>
-                    <div class="article">
-                        <%- body %>
-                    </div>
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><%= header.title %> <small>by <%= author.name %></small></h1>
+						</div>
+						<div class="article">
+							<%- body %>
+						</div>
+					</div>
                 </div>
             </div>
             <div class="row">
