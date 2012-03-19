@@ -32,13 +32,13 @@ app.get('/', function(req, res) {
         post.header.published = moment(new Date(post.header.published)).fromNow();
     });
 
-    res.render('main', { meta: config.meta, posts: posts });
+    res.render('main', { config: config, posts: posts });
 });
 
 app.get('/post/:title', function(req, res) {
     var post = mdb.loadArticle(req.params.title);
 
-    res.render('article', { meta: config, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
+    res.render('article', { config: config, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
 });
 
 /* category main page */
@@ -46,14 +46,14 @@ app.get('/category', function(req, res) {
     var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
     cates = JSON.parse(cates);
 
-    res.render('category', { meta: config, cates: cates });
+    res.render('category', { config: config, cates: cates });
 });
 
 app.get('/category/:cate', function(req, res) {
     var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
     cates = JSON.parse(cates);
 
-    res.render('cate', { meta: config, articles: cates[req.params.cate] });
+    res.render('cate', { config: config, articles: cates[req.params.cate] });
 });
 
 
@@ -61,14 +61,14 @@ app.get('/tags', function(req, res) {
     var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
     tags = JSON.parse(tags);
 
-    res.render('tags', { meta: config, tags: tags });
+    res.render('tags', { config: config, tags: tags });
 });
 
 app.get('/tags/:tag', function(req, res) {
     var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
     tags = JSON.parse(tags);
 
-    res.render('tag', { meta: config, articles: tags[req.params.tag] });
+    res.render('tag', { config: config, articles: tags[req.params.tag] });
 });
 
 app.listen(8000);
