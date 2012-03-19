@@ -25,6 +25,20 @@ haroog 는 정적 페이지 렌더링을 기본 구조로 하고 있기 때문�
 
 그외의 파일은 node.js 기반으로 로컬에서 운영하기 위한 파일이거나 개발에 필요한 소스들이니 수정하지 않기를 권장합니다.
 
+# setup & install
+
+```
+//jquery, require.js 서브 모듈에서 아래의 유틸을 이용해 리소스 최적화를 진행하기 때문에 npm 을 이용해 모듈을 설치해 주어야 한다.
+$ npm install uglify-js -g
+$ npm install less -g
+
+//내부 서브 모듈까지 모두 초기화한다.
+$ git clone git@github.com:rhiokim/haroog.git --recursive
+
+//모듈 및 라이브러리 초기화, 리소스 설정
+$ make init
+```
+
 # usage
 
 ```
