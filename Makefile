@@ -11,6 +11,7 @@ init:
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
 
 update:
+	git submodule update --init
 	cd ./lib/google-code-prettify/;make
 
 copy:
@@ -24,4 +25,4 @@ gen:
 preview:
 	node app.js
 
-.PHONY: update copy
+.PHONY: init update copy

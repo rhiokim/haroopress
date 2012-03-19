@@ -4,3 +4,9 @@
 [submodule "node_modules/markdown-blog"]
 	path = node_modules/markdown-blog
 	url = git@github.com:rhiokim/haroog-engine.git
+[submodule "lib/jquery"]
+	path = lib/jquery
+	url = https://github.com/jquery/jquery.git
+[submodule "lib/requirejs"]
+	path = lib/requirejs
+	url = https://github.com/jrburke/requirejs.git
