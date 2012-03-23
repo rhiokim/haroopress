@@ -2,7 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 
 init:
-	git submodule update --init
+	#git submodule update --init
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
 	cp -R ./lib/bootstrap/bootstrap/* ${SOURCE_DIR}
