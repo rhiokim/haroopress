@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    ejs = require('ejs'),
+    mkdirp = require('mkdirp'),
+    markdown = require('roboskirt'),
+    conf = require('../config'),
+    moment = require('moment');
+
+function renderArticle(file) {
+    var fstream = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
+    var article = fs.readFileSync(conf.sourceDir +'/articles/'+ file +'.markdown');
+
+    var article = ejs.render(fstream, {
+        config: conf,
+        body: '123'
+    });
+    console.log(article);
+}
+
+fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
+    var articles = JSON.parse(data);
+    var date, file;
+
+    articles.forEach(function(article) {
+        date = moment(article.published).format('YYYY/MM/DD');
+        file = article._file;
+        console.log(conf.deployDir +'/blog/'+ date +'/'+ file + '/index.html');
+        
+        mkdirp.sync(conf.deployDir +'/blog/'+ date +'/'+ file, 0775);
+        //fs.mkdirSync(conf.deployDir +'/blog/'+ date +'/'+ file, 0755);
+
+        renderArticle(file);
+    });
+});

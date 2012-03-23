@@ -1,4 +1,5 @@
 SOURCE_DIR=./source/public
+DEPLOY_DIR=./_deploy
 
 init:
 	git submodule update --init
@@ -19,6 +20,7 @@ copy:
 	cp ./lib/google-code-prettify/*.css ./source/public/css/
 
 gen:
+	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
 	cd ./bin/;./gen-index;./gen-main;./gen-rss
 	cd ./bin/;./gen-category;./gen-tag
 
