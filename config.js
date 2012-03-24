@@ -40,7 +40,7 @@ conf.plugins = {
         showCommentCount: false
     },
     facebook: {
-        showLikeButton: true
+        showLikeButton: true 
     },
     delicious: {}
 };

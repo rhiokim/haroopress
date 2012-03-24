@@ -30,4 +30,6 @@ fs.readFile(conf.sourceDir +'/_main.json', 'utf8', function(err, data) {
     var res = renderIndex(main);
 
     fs.writeFileSync(conf.deployDir +'/index.html', res, 'utf8');
+
+    console.log('static index page export completed');
 });

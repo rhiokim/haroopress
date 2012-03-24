@@ -19,10 +19,14 @@ copy:
 	cp ./lib/google-code-prettify/*.js ./source/public/js/
 	cp ./lib/google-code-prettify/*.css ./source/public/css/
 
-gen:
+dc:
+	rm -rf ${DEPLOY_DIR}/*
+
+gen: dc
 	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
 	cd ./bin/;./gen-index;./gen-main;./gen-rss
 	cd ./bin/;./gen-category;./gen-tag
+	cd ./bin/;./gen-page-index;./gen-page-category;./gen-page-article
 
 preview:
 	node app.js
