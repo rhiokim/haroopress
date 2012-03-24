@@ -26,6 +26,16 @@ app.configure(function() {
     app.use(express.static(__dirname +'/source/public'));
 });
 
+app.get('/archives', function(req, res) {
+    var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
+    posts = JSON.parse(posts);
+    posts.forEach(function(post) {
+        post.published = moment(new Date(post.published)).fromNow();
+    });
+
+    res.render('archives', { config: config, posts: posts });
+});
+
 app.get('/', function(req, res) {
     var posts = fs.readFileSync(__dirname +'/source/_main.json', 'utf8');
     posts = JSON.parse(posts);
