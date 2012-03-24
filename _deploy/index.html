@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Markdown Blog - HarooGul</title>
+    <meta name="description" content="Markdown Blogging engine based Node.js">
+    <meta name="author" content="Rhio Kim">
+    <meta name="keywords" content="Node.js, JavaScript" />
+    <meta name="generator" content="HarooGul v0.2.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/prettify.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <!--<link rel="shortcut icon" type="image/x-icon" href="assets/ico/favicon.ico">-->
+    <!--<link rel="apple-touch-icon" href="assets/ico/bootstrap-apple-57x57.png">-->
+    <!--<link rel="apple-touch-icon" sizes="72x72" href="assets/ico/bootstrap-apple-72x72.png">-->
+    <!--<link rel="apple-touch-icon" sizes="114x114" href="assets/ico/bootstrap-apple-114x114.png">-->
+</head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+    <!-- Topbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">Haroog</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="#">About</a>
+              </li>
+              <li class="">
+                <a href="#">Blog <b class="caret"></b></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+	<!--<div class="navbar navbar-fixed-top">-->
+		<!--<div class="navbar-inner">-->
+			<!--<div class="container">-->
+				<!--<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">-->
+					<!--<span class="icon-bar"></span>-->
+					<!--<span class="icon-bar"></span>-->
+					<!--<span class="icon-bar"></span>-->
+				<!--</a>-->
+				<!--<a class="brand" href="/">Haroog</a>-->
+				<!--<ul class="nav">-->
+					<!--<li class=""><a href="#/about">About</a></li>-->
+					<!--<li class="dropdown">-->
+						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>-->
+						<!--<ul class="dropdown-menu">-->
+							<!--<li>-->
+								<!--<a href="/beautify">Obfucation Code Analysis</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#/reformat">Reformat code</a>-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</li>-->
+				<!--</ul>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+	<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <div id="author" class="well">
+                <div>
+                    <h3>About This Site</h3>
+                    <p>
+                        이 사이트는 markdown-blog 엔진으로 구축되어진 사이트입니다.
+                    </p>
+                </div>
+            </div>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li class="active"><a href="/category"><i class="icon-white icon-home"></i> Home</a></li>
+                    <li><a href="/category/javascript"><i class="icon-book"></i>JavaScript</a></li>
+                    <li><a href="/category/node.js"><i class="icon-pencil"></i>Node</a></li>
+                    <li class="nav-header">Another list header</li>
+                    <li><a href="#"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span9">
+            
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/mastering-nodejs-preface">Mastering Node.js book - Preface</a></h1>
+							<span class="pull-right">Fri Dec 02 2012 00:31:36 GMT+0900 (KST)</span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="http://www.gravatar.com/avatar/9e805a7d8d36e37e15a6076c8774c2f9?r=pg&amp;s=128.jpg&amp;d=identicon" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="article">
+							<p><strong>이 기사는 <a href="http://dmitrysoshnikov.com/">Dmitry A. Soshnikov</a>에 의해 작성된 <a href="http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/">Chapter 1. Execution Context</a> 에 대한 내용을 허가를 받아 번역하였습니다.</strong></p>
+
+<h1>소개</h1>
+
+<p>이 장에서는 ECMAScript 의 실행 컨텍스트와 연관된 실행 코드의 종류에 대해 설명합니다.</p>
+
+<h1>정의</h1>
+
+<p>컨트롤이 ECMAScript 실행 코드로 이동하면 컨트롤은 항상 실행 컨텍스트로 전환합니다.
+(역주: 브라우저에서 웹 페이지가 로드될 때의 일련의 과정중 자바스크립트 수행되는 시점)</p>
+<blockquote>
+<p>실행 컨텍스트 (이하 EC) 는 ECMA-262 의 사양에서 실행 코드를 특징별로 분류하고 구분하는데 사용되는 추상적인 개념입니다 .</p>
+</blockquote>
+<p>사양은 기술적인 구현 관점에서 EC 의 종류와 구조를 정확하게 정의하는 하고 있지는 않습니다.  자세한 내용은 이 사양을 구현하는 ECMAScript 엔진에 맡겨지고 있습니다.
+(역주: 그렇기 때문에 자바스크립트 엔진에 따라 속도가 다르거나 간혹 브라우저에 따라 다르게 동작하는 경우도 발생합니다.)</p>
+
+						</div>
+						<p>
+							<a href="/post/mastering-nodejs-preface" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/javascript-core">JavaScript The Core</a></h1>
+							<span class="pull-right">Fri Feb 02 2012 00:31:36 GMT+0900 (KST)</span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="http://www.gravatar.com/avatar/16119e545a8a0947a4afd34e0125f2f9?r=pg&amp;s=128.jpg&amp;d=identicon" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="article">
+							<p><strong>이 기사는 <a href="http://dmitrysoshnikov.com/">Dmitry A. Soshnikov</a>에 의해 작성된 <a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/">JavaScript. The Core.</a> 에 대한 내용을 허가를 받아 번역하였습니다.</strong></p>
+
+<h1>The Core</h1>
+
+<p>웹 상에서는 자바스크립트에 대한 수 많은 레퍼런스와 기사들이 있으나 ECMAScript 사양에 준하여 자세히 설명하고 있는 문서는 그리 많지 않습니다.  이 문서가 자바스크립트 본연의 기술을 이해하기 위해 필히 학습을 권장합니다.   뿐만 아니라 Dmitry 블로그에는 ECMAScript 사양에 대해서 굉장히 자세히 분석하여 포스팅을 하고 있으니 관심을 갖고 보기를 권장합니다.</p>
+
+<h1>소개</h1>
+
+<p>이 메모는 <a href="http://dmitrysoshnikov.com/tag/ecma-262-3/">ECMA-262-3 in detail</a> 시리즈에서 얻은 지식을 정리한 것이며, 또한 설명도 되어 있습니다.  각각의 해당 ES3 시리즈 각 챕터에 대한 참조가 포함되어 있기 때문에, 관심이 있으면 자세한 내용은 그곳을 참조하십시오.</p>
+
+<p>이 글을 경험있는 프로그래머 혹은 전문가를 대상으로 합니다.</p>
+
+<p>그러면 서둘러, ECMAScript 의 기본이 되는 객체의 개념을 살펴보도록 하겠습니다.</p>
+
+						</div>
+						<p>
+							<a href="/post/javascript-core" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/frends-hackathon-2012">FRENDS Hackathon 2012</a></h1>
+							<span class="pull-right">Tue Mar 13 2012 22:25:59 GMT+0900 (KST)</span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="http://www.gravatar.com/avatar/0764d73c228492e36b339d8b6d7293ad?r=pg&amp;s=128.jpg&amp;d=identicon" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="article">
+							<h1>Intro</h1>
+
+<p><strong>FRENDS Hackathon 2012</strong> 은 국내 프론트 앤드 개발 문화를 만들기 위해 FRENDS 내부의 열정있는 개발자들이 모여 자발적으로 진행되고 있는 아이디어를 구현하는 행사이다.</p>
+
+<h4>취지</h4>
+
+<p>그동안 머리속에만 있던 작은 아이디어를 최신의 기술을 활용해 24시간 동안 함께 모여 개발하고 구현 과정에서 얻은 지식을 서로 공유하는데 있고
+더불어 개발자들의 세미나, 강의 방식의 지식 공유 문화를 넘어 <code>함께 모여 즐겁게 개발하는 문화</code>를 만들고자 한다.</p>
+
+<h4>오픈</h4>
+
+<p>이 행사로 얻어진 결과물들은 모두 <code>MIT 라이센스</code>의 오픈 소스로 github.com 를 통해 공개할 예정이거나 이미 공개된 상태로 프로젝트를 진행중이다.</p>
+
+<h4>진행방식</h4>
+
+<p><strong>FRENDS Hackathon</strong> 은 빠듯한 국내 야근 문화를 감안해 3월 1일부터 시작하여 3월 30일까지 진행되며 3월 30일 저녁 10시부터 24시간 동안
+함께 모여 아이디어를 구현하고 구현물에 대한 기술스펙, 코드리뷰, 아이디어를 공유한다.</p>
+
+<p><br/></p>
+
+<h1>Projects</h1>
+
+<table>
+  <tr>
+    <td width="150">
+        <ul class="thumbnails">
+          <li>
+            <a class="thumbnail" href="http://twitter.com/rhiokim" target="_blank">
+              <img src="https://twimg0-a.akamaihd.net/profile_images/1131488552/b0042375_49b78b8496a8f_copy_reasonably_small.jpg" />
+            </a>
+          </li>
+        </ul>
+  </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">Rhio Kim</span><br/>
+          <span>주제 : Node.js 기반의 Markdown 포맷의 정적 블로그 엔진</span><br/>
+          <span>기술 : Node.js, Twitter Bootstrap, jQuery, require.js</span><br/>
+          <span>소스 : <a href="https://github.com/rhiokim/haroog/tree/devel">github</a></span><br/>
+          <span>설명 : Markdown 포맷으로 작성된 문서를 블로그 서비스를 위한 정적 페이지로 생성해주는 서비스로 소셜 코딩 서비스인
+          github.com 에서 서비스가 가능하도록 구현한다. (jekyll 기반의 octopress 와 유사한 서비스라고 보심됩니다.)
+          </span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/J2P_" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1602430510/____1__reasonably_small.JPG" />
+        </a>
+      </li>
+      </ul>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">J2P</span><br/>
+          <span>주제 : 타자 연습 게임</span><br/>
+          <span>기술 : Node.js, express, Twitter Bootstrap, jQuery</span><br/>
+          <span>소스 : <a href="https://github.com/J2P/typing">github</a></span><br/>
+          <span>설명 : 한글에 있는 타자연습을 만들어 볼까 합니다. 자리연습하고, 산성비 게임 정도 해볼려고 합니다.</span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/andrwj" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1610621402/AJ-in-JEJU_reasonably_small.jpg" />
+        </a>
+      </li>
+      </ul>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">andrwj</span><br/>
+          <span>주제 : HTML5로 구현된 Brain Workshop</span><br/>
+          <span>기술 : Twitter Bootstrap, CouchDB, jQuery, KnockoutJS ..</span><br/>
+          <span>소스 : <a href="#">예정</a></span><br/>
+          <span>설명 : http://brainworkshop.sourceforge.net/ 어플리케이션의 웹 브라우저 버전 입니다.</span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/zziuni" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1620507700/tw_13161409_1320331013_reasonably_small.jpg" />
+        </a>
+      </li>
+      </ul>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">zziuni</span><br/>
+          <span>주제 : 웹 슬라이드 툴.</span><br/>
+          <span>기술 : Node.js, Twitter Bootstrap, jQuery, reveal.js…</span><br/>
+          <span>소스 : <a href="#">예정</a></span><br/>
+          <span>설명 : markdown 원고를 웹 슬라이드로 만들어주는 툴. 실제 PT때 청중이 스맛폰을 터치하면, 슬라이드내용이 맘에 든다를 슬라이드의 bg로 간단히 Visualization으로 보여주려 합니다.</span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/rhiokim" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1694794916/image_reasonably_small.jpg" />
+        </a>
+      </li>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">fallroot</span><br/>
+          <span>주제 : MyPS1 - 터미널 프롬프트 설정 공유 사이트</span><br/>
+          <span>기술 : Ruby on Rails, MongoDB, jQuery (모두 미정)</span><br/>
+          <span>소스 : <a href="#">예정</a></span><br/>
+          <span>설명 : 설정 문자열을 올리면 미리보기를 할 수 있음. 사용자 평가. 테마를 바꿔가며 볼 수 있음.</span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/nanhapark" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1668873438/54a703d0-3e6c-4cdf-8b34-012095afeb68_reasonably_small.png"  width="128" />
+        </a>
+      </li>
+      </ul>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">nanhapark</span><br/>
+          <span>주제 : 가위 바위 보</span><br/>
+          <span>기술 : Node.js, Mongodb</span><br/>
+          <span>소스 : <a href="https://github.com/nanha/kin">github</a></span><br/>
+          <span>설명 : 1:1 random 게임이며, 아이디/비번 가입후 랭킹제도로 운영합니다</span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/outsideris" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1646891342/image_reasonably_small.jpg" />
+        </a>
+      </li>
+      </ul>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">outsider</span><br/>
+          <span>주제 : Q & A 사이트</span><br/>
+          <span>기술 : Node.js, Twitter Bootstrap, MongoDB</span><br/>
+          <span>소스 : <a href="https://github.com/outsideris/curlybrace">github</a></span><br/>
+          <span>설명 : 한국판 StackOverFlow</span>
+        </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <ul class="thumbnails">
+      <li>
+        <a class="thumbnail" href="http://twitter.com/kyungw00k" target="_blank">
+          <img src="https://twimg0-a.akamaihd.net/profile_images/1587764350/image_reasonably_small.jpg" />
+        </a>
+      </li>
+      </ul>
+    </td>
+    <td>
+        <p>
+          <span style="font-size:1.2em;font-weight:bold;">kyungw00k</span><br/>
+          <span>주제 : Noddler(Web-Based Fiddler)</span><br/>
+          <span>기술 : Node.js, Twitter Bootstrap, JavaScript</span><br/>
+          <span>소스 : <a href="#">예정</a></span><br/>
+          <span>설명 : 사용자 기반의 http proxy 서버, 웹에서 모니터링할 수 있는 UI 제공, Rewrite 기능 제공, 시간나면 throttling 기능도 구현할 예정.</span>
+        </p>
+    </td>
+  </tr>
+</table>
+
+						</div>
+						<p>
+							<a href="/post/frends-hackathon-2012" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/sample">Markdown Blog</a></h1>
+							<span class="pull-right">Fri Dec 02 2011 00:31:36 GMT+0900 (KST)</span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="http://www.gravatar.com/avatar/0764d73c228492e36b339d8b6d7293ad?r=pg&amp;s=128.jpg&amp;d=identicon" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="article">
+							<h1>Intro</h1>
+
+<p>locally 는 웹 개발 시 로컬 서버를 손쉽게 생성해서 테스트 개발환경을 구축하기 위한 Node.js 기반의 미들웨어이다.  이 프로젝트는 Python 의 SimpleHTTPServer 에서 아이디어를 얻었다.</p>
+
+<p>언제, 어느 작업 디렉토리에 있던 내가 원하는 로컬 서버를 설정하기 위해서 사용된다.</p>
+<blockquote>
+<p>뿐만 아니라 최근의 웹 기술중 서버측 css인 less 를 지원한다. 그리고 향후 유용한 서버측 환경설정 프리셋을 제공하여 손쉽게 마크업 개발 환경을 만들 예정이다. <small>&lt;보류&gt;</small></p>
+</blockquote>
+<p>locally 는 connect 모듈을 기반으로 동작하는데 connect 모듈은 다양한 미들웨어를 추가해서 high class 기능등을 사용할 수 있다.  뿐만 아니라 손쉽게 로컬 웹 서버를 구축해서 마크업 환경을 설정할 수 있다.</p>
+
+<h1>Install</h1>
+
+<p>Require NPM(Node Package Manager)</p>
+
+						</div>
+						<p>
+							<a href="/post/sample" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/mastering-nodejs">Mastering Node.js book</a></h1>
+							<span class="pull-right">Fri Dec 02 2012 00:31:36 GMT+0900 (KST)</span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="http://www.gravatar.com/avatar/0764d73c228492e36b339d8b6d7293ad?r=pg&amp;s=128.jpg&amp;d=identicon" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="article">
+							<h1>Masterring Node.js</h1>
+
+<h2>Preface</h2>
+
+<h2>Overview</h2>
+
+<h3>What's Node.js?</h3>
+
+<h3>Why Google's V8?</h3>
+
+<h3>탄생배경</h3>
+
+<h4>C10k Problem</h4>
+
+<h4>Apache vs NginX</h4>
+
+<h4>Server-side JavaScript</h4>
+
+<h2>Architecture</h2>
+
+<ul>
+<li>davybrion.com/blog/2011/12/node-js-for-dummies/
+### Non-blocking I/O
+### Asyncronous(Event Loop)
+
+<ul>
+<li>Python Twisted</li>
+<li>ruby EventMachine</li>
+<li>perl Colo's AnyEvent
+### Single thread
+### Thread pool
+### Callback mechanism
+### Standard Module System</li>
+</ul></li>
+</ul>
+
+						</div>
+						<p>
+							<a href="/post/mastering-nodejs" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/getUserMedia-audio-streamming">getUserMeida 를 이용한 사용자 디바이스 데이터 스트리밍</a></h1>
+							<span class="pull-right">Mon Mar 19 2012 10:31:36 GMT+0900 (KST)</span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="http://www.gravatar.com/avatar/0764d73c228492e36b339d8b6d7293ad?r=pg&amp;s=128.jpg&amp;d=identicon" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="article">
+							<h1>Audio Streaming using by User Device</h1>
+
+<p>강의를 나가면 늘 강의장의 환경이 다르다.  핀 마이크가 있거나 없거나 스피커가 있거나 없거나 그래서 고민했던 것중에 하나가 스마트폰이 있으면 스마트폰에 마이크를 장착하고 강연을 하면 강의장의 환경에 구애받지 않고 언제든지 동일한 환경에서 강의를 할 수 있겠구나 생각을 했습니다.</p>
+
+<p>물론 수백명이 오는 강의장에서는 어렵겠지만...</p>
+
+<p>그래서 출발한 아이디어는 엔드 유저의 디바이스에 오디오 스트림을 브로드 캐스팅을 하거나 프리젠테이션을 하는 노트북으로 전송할 수만 있다면 손쉽겠구나 하는 아이디어가 떠올랐습니다.</p>
+
+<p>하지만 대부분의 디바이스는 그걸 허락하지 않았고 native 에서 ap</p>
+
+<h1>References</h1>
+
+<ul>
+<li><a href="http://francisshanahan.com/index.php/2011/stream-a-webcam-using-javascript-nodejs-android-opera-mobile-web-sockets-and-html5/">http://francisshanahan.com/index.php/2011/stream-a-webcam-using-javascript-nodejs-android-opera-mobile-web-sockets-and-html5/</a></li>
+<li><a href="http://dev.w3.org/2011/webrtc/editor/getusermedia.html">http://dev.w3.org/2011/webrtc/editor/getusermedia.html</a></li>
+</ul>
+
+						</div>
+						<p>
+							<a href="/post/getUserMedia-audio-streamming" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div><!-- /container -->
+
+    <footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span12 ">
+					<div class="well-black">
+						<p class="pull-right"><a href="#">Back to top</a></p>
+							Development by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a> in Web Platform Team of KTH<br/>
+							Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+							Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+					</div>
+				</div>
+			</div>
+		</div>
+    </footer>
+
+    <!-- Le javascript -->
+    <!--<script src="/js/lib/require.1.0.4.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>-->
+    <script>
+        $('pre > code').parent().addClass('prettyprint linenums');
+        prettyPrint();
+    </script>
+  </body>
+</html>

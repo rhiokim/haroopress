@@ -3,6 +3,7 @@
     "author": "Rhio Kim",
     "date": "Fri Dec 02 2012 00:31:36 GMT+0900 (KST)",
     "categories": [
+    	"node.js"
     ],
     "tags": [
     ],

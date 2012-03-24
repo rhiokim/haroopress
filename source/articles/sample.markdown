@@ -3,9 +3,7 @@
     "author": "Rhio Kim",
     "date": "Fri Dec 02 2011 00:31:36 GMT+0900 (KST)",
     "categories": [
-        "카테고리1",
-        "카테고리2",
-        "카테고리3"
+    	"markdown"
     ],
     "tags": [
         "태그1",

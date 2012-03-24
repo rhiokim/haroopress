@@ -2,3 +2,4 @@
 .idea
 *.iml
 .DS_Store
+atlassian-ide-plugin.xml
