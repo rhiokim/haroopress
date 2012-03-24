@@ -3,7 +3,6 @@
     "author": "Rhio Kim",
     "date": "Mon Mar 19 2012 10:31:36 GMT+0900 (KST)",
     "categories": [
-        "mobile",
         "node.js"
     ],
     "tags": [

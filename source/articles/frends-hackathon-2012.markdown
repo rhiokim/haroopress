@@ -3,14 +3,11 @@
     "author": "Rhio Kim",
     "date": "Tue Mar 13 2012 22:25:59 GMT+0900 (KST)",
     "categories": [
-        "frends",
-        "news",
-        "hackathon"
+        "frends"
     ],
     "tags": [
-        "태그1",
-        "태그2",
-        "태그3"
+        "hackathon",
+        "front-end"
     ],
     "acceptComment": true,
     "acceptTrackback": true,
