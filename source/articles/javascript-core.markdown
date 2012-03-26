@@ -6,6 +6,9 @@
     	"javascript"
     ],
     "tags": [
+    	"javascript",
+    	"scope",
+    	"closure"
     ],
     "acceptComment": true,
     "acceptTrackback": true,

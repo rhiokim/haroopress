@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    ejs = require('ejs'),
+    mkdirp = require('mkdirp'),
+    markdown = require('robotskirt'),
+    conf = require('../config'),
+    moment = require('moment');
+
+function renderIndex(data) {
+    var layout = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
+    var main = fs.readFileSync(conf.sourceDir +'/views/main.ejs', 'utf8');
+
+    var body = ejs.render(main, {
+        config: conf,
+        posts: data
+    });
+    
+    var index = ejs.render(layout, {
+        config: conf,
+        body: body
+    });
+
+    return index;
+}
+
+fs.readFile(conf.sourceDir +'/_main.json', 'utf8', function(err, data) {
+    var main = JSON.parse(data);
+
+    var res = renderIndex(main);
+
+    fs.writeFileSync(conf.deployDir +'/index.html', res, 'utf8');
+
+    console.log('static index page export completed');
+});

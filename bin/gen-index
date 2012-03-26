@@ -2,9 +2,26 @@
 
 var conf = require('../config'),
     direc = require('direc'),
-    fs = require('fs');
+    fs = require('fs'),
+    crypto = require('crypto');
 
 var tmp, summary = [], files = direc.sort('../source/articles', 'mtime');
+
+function gravatar(email) {
+    var md5 = crypto.createHash('md5');                                                                                           
+
+    md5.update(email);
+    return "http://www.gravatar.com/avatar/" + md5.digest('hex') +"?r=pg&s=128.jpg&d=identicon";
+}
+
+function author(header) {
+    var author = fs.readFileSync('../source/authors/'+ header.author +'.markdown', 'utf8');                                       
+    author = author.split('\n\n');
+    var authorInfo = JSON.parse(author[0]);
+    authorInfo.gravatar = gravatar(authorInfo.email);
+
+    return authorInfo;
+}
 
 function getHeader(file) {
     var data = fs.readFileSync(file, 'utf8');
@@ -21,6 +38,8 @@ files.forEach(function(item) {
     file = file[file.length-1].replace('.markdown', '');
     tmp = getHeader(item._file);
     tmp._file = file;
+    tmp.authorInfo = author(tmp);
+    tmp._gravatar = tmp.authorInfo.gravatar;
     summary.push(tmp);
 });
 
