@@ -7,14 +7,14 @@ var fs = require('fs'),
     conf = require('../config'),
     moment = require('moment');
 
-function renderCategory(cates, articles) {
+function renderSubCategory(cates, articles) {
     var layout = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
-    var cate = fs.readFileSync(conf.sourceDir +'/views/category.ejs', 'utf8');
+    var cate = fs.readFileSync(conf.sourceDir +'/views/cate.ejs', 'utf8');
 
     cate = ejs.render(cate, {
         config: conf,
         cates: cates,
-        articles: articles
+        articles: articles 
     });
     
     var index = ejs.render(layout, {
@@ -27,16 +27,18 @@ function renderCategory(cates, articles) {
 
 fs.readFile(conf.sourceDir +'/_categories.json', 'utf8', function(err, data) {
     var categories = JSON.parse(data);
-    var cates = [];
-    
+    var path, res, cates = [];
+
     for( cate in categories ) {
         cates.push(cate);
     }
 
-    var res = renderCategory(cates, categories);
+    for( cate in categories ) {
+        path = conf.deployDir +'/category/'+ cate;
+        mkdirp.sync(path, 0775);
+        res = renderSubCategory(cates, categories[cate]);
+        fs.writeFileSync(path +'/index.html', res, 'utf8');
+    }
     
-    mkdirp.sync(conf.deployDir +'/category', 0775);
-    fs.writeFileSync(conf.deployDir +'/category/index.html', res, 'utf8');
-
-    console.log('static category page export completed');
+    console.log('static sub category page export completed');
 });

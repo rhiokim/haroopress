@@ -44,17 +44,28 @@ app.get('/post/:title', function(req, res) {
 
 /* category main page */
 app.get('/category', function(req, res) {
-    var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    cates = JSON.parse(cates);
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [];
 
-    res.render('category', { config: config, cates: cates });
+    categories = JSON.parse(categories);
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
+    res.render('category', { config: config, cates: cates, articles: categories });
 });
 
 app.get('/category/:cate', function(req, res) {
-    var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    cates = JSON.parse(cates);
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [], articles;
 
-    res.render('cate', { config: config, articles: cates[req.params.cate] });
+    categories = JSON.parse(categories);
+    articles = categories[req.params.cate];
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
+    res.render('cate', { config: config, cates: cates, articles: articles });
 });
 
 
