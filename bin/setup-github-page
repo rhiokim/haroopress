@@ -1,0 +1,84 @@
+#!/usr/bin/env node
+
+var $p = require('procstreams'),
+    mkdirp = require('mkdirp'),
+    conf = require('../config'),
+    exec = require('child_process').exec,
+    spawn = require('child_process').spawn;
+
+var readline = require('readline');
+var rl = readline.createInterface(process.stdin, process.stdout, null);
+
+var deploy_branch = 'gh-pages';
+
+rl.question('Enter the read/write url for your repository: ', function(repo) {
+    var user = repo.match(/:([^\/]+)/)[1];
+    var branch = (repo.match(/\/\w+.github.com/) == null) ? 'gh-pages' : 'master';
+    var project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
+    var deploy = conf.deployDir;
+
+    console.log(user, branch, project);
+
+    /* delete deploy dir */
+    exec('rm -rf '+ deploy, function(err, stdout, stderr) {
+        mkdirp.sync(deploy, 0755);
+
+        /* change git directory */
+        process.chdir(deploy);
+
+        spawn('git', ['init']);
+        exec('echo " " >> index.html', function() {
+            exec('git add .', function() {
+                spawn('git', [ 'commit', '-m', '"start"']);
+            });
+        });
+        return;
+
+        exec('git init', function() {
+            console.log('git init');
+            exec('echo "" >> index.html', function() {
+                console.log('create index.html');
+                exec('git add .', function(err, stdout, stderr) {
+                    console.log('git add .', stdout);
+                    exec('git commit -m \"start blog\"',  function(err, stdout, stderr) {
+                        console.log('git commit -m', err);
+                        exec('git branch -m master gh-pages', function() {
+                            console.log('git branch -m master gh-pages') ;
+                            exec('git remote add origin '+ repo, function() {
+                                console.log('git remote add origin %s', repo);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+        
+        return; 
+        exec('git remote rename origin haroog');
+
+        exec('git remote add origin '+ repo);
+        console.log('Added remote %s as origin', repo);
+
+        exec('git config branch.master.remote origin');
+        console.log('Set origin as default remote');
+
+        exec('git branch -m master source');
+        console.log('aster branch renamed to "source" for committing your blog source files');
+
+    }); 
+
+/*
+    exec('git remote add origin '+ repo);
+    console.log('Added remote %s as origin', repo);
+    exec('git config branch.master.remote origin');
+    console.log('Set origin as default remote');
+    exec('git branch -m master source');
+    console.log('aster branch renamed to "source" for committing your blog source files');
+*/
+
+    rl.close();
+    process.stdin.destroy();
+
+
+});
+
