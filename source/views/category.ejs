@@ -21,8 +21,9 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Categories</li>
                     <li class="active"><a href="/category"><i class="icon-white icon-home"></i> Home</a></li>
-                    <li><a href="/category/javascript"><i class="icon-book"></i>JavaScript</a></li>
-                    <li><a href="/category/node.js"><i class="icon-pencil"></i>Node</a></li>
+                    <% cates.forEach(function(cate) { %>
+                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i><%= cate %></a></li>
+                    <% }); %>
                     <li class="nav-header">Another list header</li>
                     <li><a href="#"><i class="icon-user"></i> Authors</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
@@ -35,25 +36,25 @@
 				<div class="page-header">
 					<h1>Categories</h1>
 				</div>
-			<% for(cate in cates) { %>
+			<% cates.forEach(function(cate) { %>
 				<div class="row">
 					<div class="span9">
 						<h2><%= cate %></h2>
 					</div>
 				</div>
-				<% cates[cate].forEach(function(article) { %>
+				<% articles[cate].forEach(function(article) { %>
 				<div class="row">
 					<div class="span1" style="width:40px;">
 						<img class="thumbnail" width="40" src="<%= article._gravatar %>" />
 					</div>
 					<div class="span7">
 						<h3><a href="/post/<%= article._file %>"><%= article.title %></a></h3>
-						<h6>by <%= article.author %> / 2 days ago</small>
+						<small>by <%= article.author %> / 2 days ago</small>
 					</div>
 				</div>
-				<hr></hr>
+				<hr/>
 				<% }) %>
-			<% } %>
+			<% }) %>
 			</div>
         </div>
     </div>
