@@ -28,12 +28,20 @@ app.configure(function() {
 
 app.get('/', function(req, res) {
     var posts = fs.readFileSync(__dirname +'/source/_main.json', 'utf8');
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [];
+
+    categories = JSON.parse(categories);
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
     posts = JSON.parse(posts);
     posts.forEach(function(post) {
         post.header.published = moment(new Date(post.header.published)).fromNow();
     });
 
-    res.render('main', { config: config, posts: posts });
+    res.render('main', { config: config, posts: posts, cates: cates });
 });
 
 app.get('/post/:title', function(req, res) {
