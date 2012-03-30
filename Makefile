@@ -35,4 +35,7 @@ preview:
 github-page:
 	cd ./bin/;./setup-github-page
 
+deploy:
+	cd ./bin;./deploy-gh-pages
+
 .PHONY: init update copy
