@@ -4,7 +4,7 @@ var conf = {
         defaultTitle: 'Markdown Blog - HarooGul',
         description: 'Markdown Blogging engine based Node.js',
         siteUrl: 'http://haroog.dev:8000',
-        author: 'Rhio Kim'
+        author: ''   //your name
     },
     articles: process.cwd() +'/source/articles',
     authors: process.cwd() +'/source/authors',
@@ -23,13 +23,13 @@ var conf = {
 /* third party settings */
 conf.plugins = {
     github: {
-        user: "rhiokim",
+        user: "", //your github.com account
         repoCount: 0,
         profileLink: true,
         skipForks: true
     },
     twitter: {
-        user: "rhiokim",
+        user: "", //your twitter account
         tweetCount: 4,
         showReplies: false,
         followerButton: true,
@@ -38,7 +38,7 @@ conf.plugins = {
     },
     google: {},
     disqus: {
-        shortName: "haroo",
+        shortName: "", //your disqus id
         showCommentCount: false
     },
     facebook: {
