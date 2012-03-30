@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    ejs = require('ejs'),
+    mkdirp = require('mkdirp'),
+    markdown = require('robotskirt'),
+    conf = require('../config'),
+    moment = require('moment');
+
+function renderCategory(cates, articles) {
+    var layout = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
+    var cate = fs.readFileSync(conf.sourceDir +'/views/category.ejs', 'utf8');
+
+    cate = ejs.render(cate, {
+        config: conf,
+        cates: cates,
+        articles: articles
+    });
+    
+    var index = ejs.render(layout, {
+        config: conf,
+        body: cate
+    });
+
+    return index;
+}
+
+fs.readFile(conf.sourceDir +'/_categories.json', 'utf8', function(err, data) {
+    var categories = JSON.parse(data);
+    var cates = [];
+    
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
+    var res = renderCategory(cates, categories);
+    
+    mkdirp.sync(conf.deployDir +'/category', 0775);
+    fs.writeFileSync(conf.deployDir +'/category/index.html', res, 'utf8');
+
+    console.log('static category page export completed');
+});

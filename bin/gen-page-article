@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    ejs = require('ejs'),
+    mkdirp = require('mkdirp'),
+    markdown = require('robotskirt'),
+    conf = require('../config'),
+    moment = require('moment');
+
+function partial(file, option) {
+    var partial = fs.readFileSync(conf.sourceDir +'/views/'+ file +'.ejs', 'utf8');
+
+    partial = ejs.render(partial, option);
+    return partial;
+}
+
+function loadArticle(file) {
+    var post = fs.readFileSync(conf.sourceDir +'/articles/'+ file +'.markdown', 'utf8');
+    post = post.split('\n\n');
+    post.shift();
+    post = post.join('\n\n');
+
+    post = markdown.toHtmlSync(post);
+
+    return post;
+}
+
+function renderArticle(data) {
+    var layout = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
+    var article = fs.readFileSync(conf.sourceDir +'/views/article.ejs', 'utf8');
+    var post = loadArticle(data._file);
+
+    article = ejs.render(article, {
+        config: conf,
+        plugins: conf.plugins,
+        header: data,
+        author: data.authorInfo,
+        body: post,
+        partial: partial
+    });
+
+    layout = ejs.render(layout, {
+        config: conf,
+        body: article
+    });
+
+    return layout;
+}
+
+fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
+    var articles = JSON.parse(data);
+    var post, date, file, path;
+
+    articles.forEach(function(article) {
+        //date = moment(article.published).format('YYYY/MM/DD');
+        file = article._file;
+        //path = conf.deployDir + '/post/'+ date +'/'+ file;
+        path = conf.deployDir + '/post/'+ file;
+
+        mkdirp.sync(path, 0775);
+
+        post = renderArticle(article);
+        fs.writeFileSync(path +'/index.html', post, 'utf8');
+
+        console.log('exports file : %s/index.html', path);
+    });
+});

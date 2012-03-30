@@ -16,6 +16,7 @@ app.configure(function() {
     app.set('views', __dirname +'/source/views');
     app.set('view engine', 'ejs');
     
+    app.use(express.logger());
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -25,14 +26,32 @@ app.configure(function() {
     app.use(express.static(__dirname +'/source/public'));
 });
 
+app.get('/archives', function(req, res) {
+    var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
+    posts = JSON.parse(posts);
+    posts.forEach(function(post) {
+        post.published = moment(new Date(post.published)).fromNow();
+    });
+
+    res.render('archives', { config: config, posts: posts });
+});
+
 app.get('/', function(req, res) {
     var posts = fs.readFileSync(__dirname +'/source/_main.json', 'utf8');
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [];
+
+    categories = JSON.parse(categories);
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
     posts = JSON.parse(posts);
     posts.forEach(function(post) {
         post.header.published = moment(new Date(post.header.published)).fromNow();
     });
 
-    res.render('main', { config: config, posts: posts });
+    res.render('main', { config: config, posts: posts, cates: cates });
 });
 
 app.get('/post/:title', function(req, res) {
@@ -43,17 +62,28 @@ app.get('/post/:title', function(req, res) {
 
 /* category main page */
 app.get('/category', function(req, res) {
-    var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    cates = JSON.parse(cates);
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [];
 
-    res.render('category', { config: config, cates: cates });
+    categories = JSON.parse(categories);
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
+    res.render('category', { config: config, cates: cates, articles: categories });
 });
 
 app.get('/category/:cate', function(req, res) {
-    var cates = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    cates = JSON.parse(cates);
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [], articles;
 
-    res.render('cate', { config: config, articles: cates[req.params.cate] });
+    categories = JSON.parse(categories);
+    articles = categories[req.params.cate];
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
+    res.render('cate', { config: config, cates: cates, articles: articles });
 });
 
 

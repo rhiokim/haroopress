@@ -45,7 +45,7 @@ $ make init
 //new article
 $ make new 'post title'
 
-//static generating
+//static page generating
 $ make gen
 
 //preview
@@ -71,8 +71,10 @@ $ make preview
     "author": "Andrw Kim",
     "date": "Fri Dec 02 2011 00:31:36 GMT+0900 (KST)",
     "categories": [
+        //only one thing
     ],
     "tags": [
+        //support multiple thing
     ],
     "acceptComment": true,
     "acceptTrackback": true,
@@ -82,6 +84,8 @@ $ make preview
     "advanced": {}
 }
 ```
+
+# dependency 
 
 # license
 Copyright (c) 2012 Rhio Kim

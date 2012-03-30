@@ -14,7 +14,9 @@ var conf = {
     },
     
     sourceDir: __dirname + '/source',
-    deployDir: __dirname + '/_deploy'
+    deployDir: __dirname + '/_deploy',
+
+    deployBranch: 'gh-pages'
 };
 
 
@@ -40,7 +42,7 @@ conf.plugins = {
         showCommentCount: false
     },
     facebook: {
-        showLikeButton: true
+        showLikeButton: true 
     },
     delicious: {}
 };
