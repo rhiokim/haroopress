@@ -2,7 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 
 init:
-	#git submodule update --init
+	git submodule update --init --recursive
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
 	cp -R ./lib/bootstrap/bootstrap/* ${SOURCE_DIR}
@@ -10,14 +10,15 @@ init:
 	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
 	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
+	mkdir _deploy
 
 update:
 	git submodule update --init
 	cd ./lib/google-code-prettify/;make
 
 copy:
-	cp ./lib/google-code-prettify/*.js ./source/public/js/
-	cp ./lib/google-code-prettify/*.css ./source/public/css/
+	cp ./lib/google-code-prettify/*.js ${SOURCE_DIR}/js
+	cp ./lib/google-code-prettify/*.css ${SOURCE_DIR}/css
 
 dc:
 	rm -rf ${DEPLOY_DIR}/*
@@ -30,5 +31,8 @@ gen: dc
 
 preview:
 	node app.js
+
+github-page:
+	cd ./bin/;./setup-github-page
 
 .PHONY: init update copy
