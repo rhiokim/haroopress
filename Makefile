@@ -2,6 +2,8 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 
 init:
+	npm install -g less
+	npm install -g uglify-js
 	git submodule update --init --recursive
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
