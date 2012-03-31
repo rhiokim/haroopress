@@ -7,6 +7,13 @@ var fs = require('fs'),
     conf = require('../config'),
     moment = require('moment');
 
+function partial(file, option) {
+    var partial = fs.readFileSync(conf.sourceDir +'/views/'+ file +'.ejs', 'utf8');
+ 
+    partial = ejs.render(partial, option);
+    return partial;
+}
+
 function renderSubCategory(cates, articles) {
     var layout = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
     var cate = fs.readFileSync(conf.sourceDir +'/views/cate.ejs', 'utf8');
@@ -19,6 +26,8 @@ function renderSubCategory(cates, articles) {
     
     var index = ejs.render(layout, {
         config: conf,
+        plugins: conf.plugins,
+        partial: partial,
         body: cate
     });
 
