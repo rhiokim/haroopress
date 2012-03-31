@@ -10,30 +10,14 @@ process.chdir(conf.deployDir);
 //create CNAME file
 fs.writeFileSync('./CNAME', conf.CNAME, 'utf8');
 
-step(
-    function gitAdd() {
-        exec('git add .', this);
-    },
-    function gitAddU(err, stdout, stderr) {
-        console.log('git add');
-        exec('git add -u', this);
-    },
-    function copyDeployer(err, stdout, stderr) {
-        console.log('git add -u');
-        exec('cp ../bin/git-deploy .git-deploy', this);
-    },
-    function gitCommit(err, stdout, stderr) {
-        console.log('cp ../bin/git-deploy .git-deploy');
+exec('git add .', function(err, stdout, stderr) {
+    exec('git add -u', function(err, stdout, stderr) {
         var message = 'Site updated at '+ new Date();
-        exec('./git-deploy '+ message, this);
-        //exec('git commit -m '+ message, );
-    },
-    function removeDeployer(err, stdout, stderr) {
-        console.log('./git-deploy %s', new Date());
-        exec('rm -rf .git-deploy', this);
-    },
-    function gitPush(err, stdout, stderr) {
-        console.log('rm -rf .git-deploy');
-        exec('git push origin '+ conf.deployBranch +' --force', function(err, stdout, stderr) {});
-    }
-);
+        exec('git commit -m "'+ message +'"', function(err, stdout, stderr) {
+            exec('git push origin master --force', function(err, stdout, stderr) {
+                
+            });
+        });
+    });
+});
+

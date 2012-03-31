@@ -33,7 +33,7 @@ app.get('/archives', function(req, res) {
         post.published = moment(new Date(post.published)).fromNow();
     });
 
-    res.render('archives', { config: config, posts: posts });
+    res.render('archives', { config: config, plugins: config.plugins, posts: posts });
 });
 
 app.get('/', function(req, res) {
@@ -51,7 +51,7 @@ app.get('/', function(req, res) {
         post.header.published = moment(new Date(post.header.published)).fromNow();
     });
 
-    res.render('main', { config: config, posts: posts, cates: cates });
+    res.render('main', { config: config, plugins: config.plugins, posts: posts, cates: cates });
 });
 
 app.get('/post/:title', function(req, res) {
@@ -77,7 +77,7 @@ app.get('/category', function(req, res) {
         cates.push(cate);
     }
 
-    res.render('category', { config: config, cates: cates, articles: categories });
+    res.render('category', { config: config, plugins: config.plugins, cates: cates, articles: categories });
 });
 
 app.get('/category/:cate', function(req, res) {
@@ -90,7 +90,7 @@ app.get('/category/:cate', function(req, res) {
         cates.push(cate);
     }
 
-    res.render('cate', { config: config, cates: cates, articles: articles });
+    res.render('cate', { config: config, plugins: config.plugins, cates: cates, articles: articles });
 });
 
 
@@ -98,14 +98,14 @@ app.get('/tags', function(req, res) {
     var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
     tags = JSON.parse(tags);
 
-    res.render('tags', { config: config, tags: tags });
+    res.render('tags', { config: config, plugins: config.plugins, tags: tags });
 });
 
 app.get('/tags/:tag', function(req, res) {
     var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
     tags = JSON.parse(tags);
 
-    res.render('tag', { config: config, articles: tags[req.params.tag] });
+    res.render('tag', { config: config, plugins: config.plugins, articles: tags[req.params.tag] });
 });
 
 app.listen(8000);

@@ -42,6 +42,8 @@ function renderArticle(data, cates) {
 
     layout = ejs.render(layout, {
         config: conf,
+        plugins: conf.plugins,
+        partial: partial,
         body: article
     });
 

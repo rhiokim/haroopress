@@ -35,9 +35,13 @@ conf.plugins = {
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,
-        tweetButton: true
+        tweetButton: false
     },
-    google: {},
+    google: {
+	googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+	googlePlus: false,
+	googlePlusSize: 'medium'
+    },
     disqus: {
         shortName: "nodekr",
         showCommentCount: false

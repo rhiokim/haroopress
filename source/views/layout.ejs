@@ -104,7 +104,7 @@
 
     <!-- Le javascript -->
     <!--<script src="/js/lib/require.1.0.4.js"></script>-->
-    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/prettify.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <!--<script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>-->
@@ -112,5 +112,6 @@
         $('pre > code').parent().addClass('prettyprint linenums');
         prettyPrint();
     </script>
-  </body>
+	<%- partial('plugins/google-analysis', plugins.google) %>
+    </body>
 </html>
