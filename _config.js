@@ -16,7 +16,8 @@ var conf = {
     sourceDir: __dirname + '/source',
     deployDir: __dirname + '/_deploy',
 
-    deployBranch: 'gh-pages'
+    deployBranch: 'gh-pages',
+    CNAME: '' //your CNAME
 };
 
 

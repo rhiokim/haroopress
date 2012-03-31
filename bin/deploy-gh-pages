@@ -2,22 +2,38 @@
 
 var exec = require('child_process').exec,
     step = require('step'),
+    fs = require('fs'),
     conf = require('../config');
 
-process.chdir('../_deploy');
+process.chdir(conf.deployDir);
+
+//create CNAME file
+fs.writeFileSync('./CNAME', conf.CNAME, 'utf8');
 
 step(
     function gitAdd() {
-        exec('git add .', function(err, stdout, stderr) {});
+        exec('git add .', this);
     },
-    function gitAddU() {
-        exec('git add -u', function(err, stdout, stderr) {});
+    function gitAddU(err, stdout, stderr) {
+        console.log('git add');
+        exec('git add -u', this);
     },
-    function gitCommit() {
+    function copyDeployer(err, stdout, stderr) {
+        console.log('git add -u');
+        exec('cp ../bin/git-deploy .git-deploy', this);
+    },
+    function gitCommit(err, stdout, stderr) {
+        console.log('cp ../bin/git-deploy .git-deploy');
         var message = 'Site updated at '+ new Date();
-        exec('git commit -m '+ message, function(err, stdout, stderr) {});
+        exec('./git-deploy '+ message, this);
+        //exec('git commit -m '+ message, );
     },
-    function gitPush() {
+    function removeDeployer(err, stdout, stderr) {
+        console.log('./git-deploy %s', new Date());
+        exec('rm -rf .git-deploy', this);
+    },
+    function gitPush(err, stdout, stderr) {
+        console.log('rm -rf .git-deploy');
         exec('git push origin '+ conf.deployBranch +' --force', function(err, stdout, stderr) {});
     }
 );

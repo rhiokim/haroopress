@@ -16,7 +16,8 @@ var conf = {
     sourceDir: __dirname + '/source',
     deployDir: __dirname + '/_deploy',
 
-    deployBranch: 'gh-pages'
+    deployBranch: 'gh-pages',
+    CNAME: 'nodejs.kr'
 };
 
 
@@ -38,7 +39,7 @@ conf.plugins = {
     },
     google: {},
     disqus: {
-        shortName: "haroo",
+        shortName: "nodekr",
         showCommentCount: false
     },
     facebook: {

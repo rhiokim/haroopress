@@ -74,8 +74,9 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Categories</li>
                     <li class="active"><a href="#"><i class="icon-white icon-home"></i> Home</a></li>
-                    <li><a href="#"><i class="icon-book"></i> Library</a></li>
-                    <li><a href="#"><i class="icon-pencil"></i> Applications</a></li>
+                    <% cates.forEach(function(cate) { %>
+                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i><%= cate %></a></li>
+                    <% }) %>
                     <li class="nav-header">Another list header</li>
                     <li><a href="#"><i class="icon-user"></i> Profile</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
@@ -93,13 +94,16 @@
 						<div class="article">
 							<%- body %>
 						</div>
+						<hr />
+						<div class="row">
+							<div class="span8">
+								<%- partial('plugins/disqus', plugins.disqus) %>
+							</div>
+						</div>
 					</div>
                 </div>
             </div>
             <div class="row">
-                <div class="span9">
-                    <%- partial('plugins/disqus', plugins.disqus) %>
-                </div>
             </div>
         </div>
     </div>

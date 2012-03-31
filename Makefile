@@ -23,16 +23,19 @@ copy:
 dc:
 	rm -rf ${DEPLOY_DIR}/*
 
-gen: dc
+gen: 
 	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
 	cd ./bin/;./gen-index;./gen-main;./gen-rss
 	cd ./bin/;./gen-category;./gen-tag
-	cd ./bin/;./gen-page-index;./gen-page-category;./gen-page-article
+	cd ./bin/;./gen-page-index;./gen-page-category;./gen-page-article;./gen-page-sub-category
 
 preview:
 	node app.js
 
 github-page:
 	cd ./bin/;./setup-github-page
+
+deploy:
+	cd ./bin;./deploy-gh-pages
 
 .PHONY: init update copy
