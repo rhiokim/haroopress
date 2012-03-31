@@ -23,7 +23,7 @@ copy:
 dc:
 	rm -rf ${DEPLOY_DIR}/*
 
-gen: dc
+gen: 
 	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
 	cd ./bin/;./gen-index;./gen-main;./gen-rss
 	cd ./bin/;./gen-category;./gen-tag

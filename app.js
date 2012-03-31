@@ -56,8 +56,15 @@ app.get('/', function(req, res) {
 
 app.get('/post/:title', function(req, res) {
     var post = mdb.loadArticle(req.params.title);
+    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
+    var cates = [];
 
-    res.render('article', { config: config, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
+    categories = JSON.parse(categories);
+    for( cate in categories ) {
+        cates.push(cate);
+    }
+
+    res.render('article', { config: config, cates: cates, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
 });
 
 /* category main page */

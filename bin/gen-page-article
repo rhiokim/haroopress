@@ -25,7 +25,7 @@ function loadArticle(file) {
     return post;
 }
 
-function renderArticle(data) {
+function renderArticle(data, cates) {
     var layout = fs.readFileSync(conf.sourceDir +'/views/layout.ejs', 'utf8');
     var article = fs.readFileSync(conf.sourceDir +'/views/article.ejs', 'utf8');
     var post = loadArticle(data._file);
@@ -36,7 +36,8 @@ function renderArticle(data) {
         header: data,
         author: data.authorInfo,
         body: post,
-        partial: partial
+        partial: partial,
+        cates: cates
     });
 
     layout = ejs.render(layout, {
@@ -50,6 +51,14 @@ function renderArticle(data) {
 fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
     var articles = JSON.parse(data);
     var post, date, file, path;
+    var res, categories, cate, cates = [];
+
+    categories = fs.readFileSync(conf.sourceDir +'/_categories.json', 'utf8');
+
+    categories = JSON.parse(categories);
+    for( cate in categories ) {                                                                                                   
+        cates.push(cate);
+    }
 
     articles.forEach(function(article) {
         //date = moment(article.published).format('YYYY/MM/DD');
@@ -59,7 +68,7 @@ fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
 
         mkdirp.sync(path, 0775);
 
-        post = renderArticle(article);
+        post = renderArticle(article, cates);
         fs.writeFileSync(path +'/index.html', post, 'utf8');
 
         console.log('exports file : %s/index.html', path);
