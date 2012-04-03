@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+var fs = require('fs'),
+    readline = require('readline'),
+    uglify = require('uglify-js'),
+    conf = require('../config');
+
+var rl = readline.createInterface(process.stdin, process.stdout, null);
+rl.question('Enter article title : ', function(title) {
+   var file = fs.readFileSync('_template/sample.markdown', 'utf8');
+   var head = file.split('\n\n'),
+
+    head = JSON.parse(head[0]);
+    head.title = title;
+    head.author = conf.meta.author;
+
+    rl.question('Enter article category (e.g cate1, cate2, cate3 ) : ', function(categories) {
+        categories = categories || '';
+        head.categories = categories.split(',');
+
+        rl.question('Enter article tag (e.g tag1, tag2, tag3) : ', function(tags) {
+            tags = tags || '';
+            head.tags = tags.split(',');
+
+            try {
+                var stat = fs.statSync(conf.sourceDir +'/articles/'+ title +'.markdown');
+                if (stat.isFile()) {
+                    console.log('existed article');
+                }
+            } catch(e) {
+                fs.writeFileSync(conf.sourceDir +'/articles/'+ title +'.markdown', JSON.stringify(head) +'\n\n', 'utf8');
+                
+                console.log('write post -> ', conf.sourceDir +'/articles/'+ title +'.markdown');
+            } finally {
+                rl.close();
+                process.stdin.destroy();
+            }
+
+        });
+    });
+});
+
