@@ -20,12 +20,12 @@
             <div class="well">
                 <ul class="nav nav-list">
                     <li class="nav-header">Categories</li>
-                    <li class="active"><a href="/category"><i class="icon-white icon-home"></i> Home</a></li>
+                    <li><a href="/category"><i class="icon-home"></i> Home</a></li>
                     <% for(var cate in categories) { %>
                     <li><a href="/category/<%= cate %>"><i class="icon-book"></i><%= cate %></a></li>
                     <% } %>
                     <li class="nav-header">Another list header</li>
-                    <li><a href="#"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="/authors"><i class="icon-user"></i> Authors</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="icon-flag"></i> Help</a></li>
                 </ul>
@@ -39,10 +39,10 @@
 				<div class="row">
 					<div class="span9">
 						<ul>
-					<% cates.forEach(function(article) { %>
+					<% cates.forEach(function(archive) { %>
 							<li>
 								<h3>
-									<a href="/post/<%= article._file %>"><%= article.head.title %></a> <small>by <%= article.author.head.name %> / <%= article.head.published %></small>
+									<a href="/post/<%= archive._file %>"><%= archive.head.title %></a> <small>by <%= archive.author.head.name %> / <%= archive.head.published %></small>
 								</h3>
 							</li>
 					<% }) %>

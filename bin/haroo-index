@@ -3,6 +3,7 @@
 var fs = require('fs'),
     path = require('path'),
     mkdirp = require('mkdirp'),
+    RSS = require('rss'),
     haroo = require('./lib/haroo'),
     renderer = require('./lib/renderer'),
     conf = require('../config');
@@ -15,6 +16,41 @@ function write(output, res, charset) {
 
 function log(message) {
     console.log(message);
+}
+
+function rss() {
+    var data = haroo.getMainData();
+    var archives = data.archives;
+    var res, id, archive, file, output;
+
+    var feed = new RSS({
+        title: conf.meta.defaultTitle,
+        description: conf.meta.description,
+        feed_url: conf.meta.siteUrl +'/rss.xml',
+        site_url: conf.meta.siteUrl,
+        image_url: conf.meta.siteUrl +'/public/img/icon.png'
+    });
+
+    log('=============================================================');
+    log('===================== export rss.xml ========================');
+    log('=============================================================');
+
+    for(id in archives) {
+        archive = archives[id];
+
+        feed.item({
+            title: archive.head.title,
+            description: '',
+            url: conf.meta.siteUrl +'/post/'+ archive._file,
+            author: archive.author.head.name,
+            guid: archive._file,
+            date: archive.head.pulished
+        });
+    }
+
+    write(conf.deployDir +'/rss.xml', feed.xml());
+
+    log('=> '+ conf.deployDir +'/rss.xml');
 }
 
 function index() {
@@ -92,10 +128,53 @@ function cate() {
 
         log('=> '+ output +'/index.html');
     }
-
 }
 
+function authors() {
+    var data = haroo.getMainData();
+    var authors = data.authors;
+    var res, id, author, archive, file, output;
+
+    log('=============================================================');
+    log('===================== export authors ========================')
+    log('=============================================================');
+
+    output = path.resolve(conf.deployDir, 'authors');
+    mkdirp.sync(output, 0755);
+
+    res = renderer.render('authors', data);
+    write(output +'/index.html', res);
+
+    log('=> '+ output +'/index.html');
+}
+
+function author() {
+    var data = haroo.getMainData();
+    var authors = data.authors;
+    var res, id, author, archive, file, output;
+
+    log('=============================================================');
+    log('===================== export author =========================')
+    log('=============================================================');
+
+    for(id in authors) {
+        author = authors[id];
+        output = path.resolve(conf.deployDir, 'authors', id);
+
+        mkdirp.sync(output, 0755);
+        data.author = author; 
+
+        res = renderer.render('author', data);
+        write(output +'/index.html', res);
+
+        log('=> '+ output +'/index.html');
+    }
+}
+
+rss();
 index();
 archives();
 categories();
 cate();
+authors();
+author();
