@@ -31,6 +31,10 @@ gen:
 	cd ./bin/;./gen-category;./gen-tag
 	cd ./bin/;./gen-page-index;./gen-page-category;./gen-page-article;./gen-page-sub-category
 
+gen2:
+	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
+	cd ./bin;./haroo-index
+
 preview:
 	node app.js
 
