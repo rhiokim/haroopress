@@ -1,13 +1,101 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
+    path = require('path'),
+    mkdirp = require('mkdirp'),
     haroo = require('./lib/haroo'),
     renderer = require('./lib/renderer'),
     conf = require('../config');
 
 renderer.setViewDir(conf.sourceDir +'/views-new');
 
-var data = haroo.getMainData();
-    data.config = conf;
-var res = renderer.render('main', data);
-fs.writeFileSync(conf.deployDir +'/index.html', res, 'utf8');
+function write(output, res, charset) {
+    fs.writeFileSync(output, res, charset || 'utf8');
+}
+
+function log(message) {
+    console.log(message);
+}
+
+function index() {
+    var data = haroo.getMainData();
+    var res = renderer.render('main', data);
+
+    write(conf.deployDir +'/index.html', res);
+
+    log('=============================================================');
+    log('===================== export index.html =====================')
+    log('=============================================================');
+}
+
+function archives() {
+    var data = haroo.getMainData();
+    var archives = data.archives;
+    var res, id, archive, file, output;
+
+    log('=============================================================');
+    log('===================== export articles =======================')
+    log('=============================================================');
+
+    for(id in archives) {
+        archive = archives[id];
+        file = archive._file;
+        output = path.resolve(conf.deployDir, 'post', file);
+
+        mkdirp.sync(output, 0755);
+        data.archive = archive;
+        
+        res = renderer.render('archive', data);
+        write(output +'/index.html', res);
+
+        log('=> '+ output +'/index.html');
+    }
+}
+
+function categories() {
+    var data = haroo.getMainData();
+    var categories = data.categories;
+    var res, id, cate, archive, file, output;
+
+    log('=============================================================');
+    log('===================== export category =======================')
+    log('=============================================================');
+
+    output = path.resolve(conf.deployDir, 'category');
+
+    mkdirp.sync(output, 0755);
+    res = renderer.render('categories', data);
+
+    write(output +'/index.html', res);
+
+    log('=> '+ output +'/index.html');
+}
+
+function cate() {
+    var data = haroo.getMainData();
+    var categories = data.categories;
+    var res, id, cate, archive, file, output;
+
+    log('=============================================================');
+    log('===================== export category =======================')
+    log('=============================================================');
+
+    for(id in categories) {
+        cate = categories[id];
+        output = path.resolve(conf.deployDir, 'category', id);
+
+        mkdirp.sync(output, 0755);
+        data.cates = cate; 
+
+        res = renderer.render('cate', data);
+        write(output +'/index.html', res);
+
+        log('=> '+ output +'/index.html');
+    }
+
+}
+
+index();
+archives();
+categories();
+cate();

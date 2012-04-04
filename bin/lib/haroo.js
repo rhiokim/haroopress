@@ -23,24 +23,24 @@ function Haroo() {
         }
     }
 
-    function categorize(file, cates) {
+    function categorize(archive, cates) {
         cates.forEach(function(cate) {
             if(!categories.hasOwnProperty(cate)) {
                 categories[cate] = [];
-                categories[cate].push(file);
+                categories[cate].push(archive);
             } else {
-                categories[cate].push(file);
+                categories[cate].push(archive);
             }
         });
     }
 
-    function tagize(file, taglist) {
+    function tagize(archive, taglist) {
         taglist.forEach(function(tag) {
             if(!tags.hasOwnProperty(tag)) {
                 tags[tag] = [];
-                tags[tag].push(file);
+                tags[tag].push(archive);
             } else {
-                tags[tag].push(file);
+                tags[tag].push(archive);
             }
         });
     }
@@ -95,17 +95,20 @@ function Haroo() {
             file = item._file;
             author = loadAuthor(file);
             author._gravatar = getGravatar(author.head.email);
+            author.body = md.toHtmlSync(author.body);
             authors[author.head.name] = author;
         });
 
         archiveFiles.forEach(function(item) {
             id = getFileName(item._file);
+
             archive = archives[id] = loadArticle(item._file);
-            categorize(archive, archive.head.categories);
-            tagize(file, archive.head.tags);
 
             archive._file = id;
             archive.author = authors[archive.head.author];
+
+            categorize(archive, archive.head.categories);
+            tagize(file, archive.head.tags);
         });
     }
 
@@ -115,7 +118,8 @@ function Haroo() {
         getMainData: function() {
             return {
                 archives: archives,
-                categories: categories  
+                categories: categories,
+                config: conf
             }
         },
         /**
@@ -144,6 +148,10 @@ function Haroo() {
             archive = archive.join('\n\n');
 
             return md.toHtmlSync(archive);
+        },
+
+        getAuthorIntro: function(id) {
+            return md.toHtmlSync(authors[id].body);
         }
     };
 };
