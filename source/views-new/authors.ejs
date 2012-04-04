@@ -1,0 +1,92 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <div id="author" class="well">
+                <div>
+                    <h3>About Author</h3>
+                    <ul class="thumbnails">
+                        <li>
+                            <a class="thumbnail">
+                                <img src="<%= archive.author._gravatar %>" />
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+                        <strong><%= archive.author.name %></strong><br/>
+                        blog: <a href="<%= archive.author.blog %>" target="_blank"><%= archive.author.head.blog %></a><br/>
+                        twitter: <a href="http://twitter.com/<%= archive.author.twitter %>" target="_blank">@<%= archive.author.head.twitter %></a><br/>
+                        github: <a href="https://github.com/<%= archive.author.twitter %>" target="_blank"><%= archive.author.head.github %></a>
+                    </p>
+                    <p>
+                        <a href="https://twitter.com/<%= archive.author.head.twitter %>" class="twitter-follow-button" data-show-count="false">Follow @<%= archive.author.head.twitter %></a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </p>
+                    <p><%- archive.author.body %></p>
+                </div>
+                <div>
+                    <h3>About this Article</h3>
+                    <p>
+                        <h5>Date Released:</h5>
+                        <span><%= archive.head.published %></span>
+                    </p>
+                    <p>
+                        <%- partial('plugins/facebook', config.plugins.facebook) %>
+                        <%- partial('plugins/google-plus', config.plugins.google) %>
+                        <%- partial('plugins/twitter', config.plugins.twitter) %>
+
+                    </p>
+                </div>
+            </div>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li class="active"><a href="#"><i class="icon-white icon-home"></i> Home</a></li>
+                    <% for(var cate in categories) { %>
+                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i><%= cate %></a></li>
+                    <% } %>
+                    <li class="nav-header">Another list header</li>
+                    <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span9">
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><%= archive.head.title %> <small>by <%= archive.author.name %></small></h1>
+						</div>
+						<div class="article">
+							<%- archive.body %>
+						</div>
+						<hr />
+						<div class="row">
+							<div class="span8">
+								<%- partial('plugins/disqus', config.plugins.disqus) %>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="offset3 span9">-->
+            <!--<strong>tags</strong> :-->
+            <!--<% archive.head.tags.forEach(function(tag) { %>-->
+            <!--<a href="/tag/<%= tag %>"><%= tag %></a>&nbsp;-->
+            <!--<% }) %>-->
+        <!--</div>-->
+    <!--</div>-->
+</div><!-- /container -->

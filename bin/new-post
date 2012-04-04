@@ -50,8 +50,10 @@ rl.question('Enter article title : ', function(title) {
         rl.question('Enter article tag (e.g tag1, tag2, tag3) : ', function(tags) {
             tags = tags || '';
             head.tags = tags.split(',');
-            
-            var header = beautify(JSON.stringify(head));
+           
+            //TODO: double quotation!!
+            //var header = beautify(JSON.stringify(head));
+            var header = JSON.stringify(head);
             fs.writeFileSync(conf.sourceDir +'/articles/'+ title +'.markdown', header +'\n\n', 'utf8');
             
             console.log('write post -> ', conf.sourceDir +'/articles/'+ title +'.markdown');
