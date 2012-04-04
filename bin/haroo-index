@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var haroo = require('./lib/haroo'),
+    renderer = require('./lib/renderer'),
+    conf = require('../config');
+
+renderer.setViewDir(conf.sourceDir +'/views-new');
+
+var data = haroo.getMainData();
+    data.config = conf;
+var res = renderer.render('main', data);
+console.log(res);
