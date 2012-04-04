@@ -34,6 +34,10 @@ function Haroo() {
         });
     }
 
+    function authorize(archive, author) {
+        authors[author].archives.push(archive);
+    }
+
     function tagize(archive, taglist) {
         taglist.forEach(function(tag) {
             if(!tags.hasOwnProperty(tag)) {
@@ -96,6 +100,7 @@ function Haroo() {
             author = loadAuthor(file);
             author._gravatar = getGravatar(author.head.email);
             author.body = md.toHtmlSync(author.body);
+            author.archives = [];
             authors[author.head.name] = author;
         });
 
@@ -109,6 +114,7 @@ function Haroo() {
 
             categorize(archive, archive.head.categories);
             tagize(file, archive.head.tags);
+            authorize(archive, archive.head.author);
         });
     }
 
@@ -119,6 +125,7 @@ function Haroo() {
             return {
                 archives: archives,
                 categories: categories,
+                authors: authors,
                 config: conf
             }
         },

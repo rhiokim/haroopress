@@ -20,12 +20,12 @@
             <div class="well">
                 <ul class="nav nav-list">
                     <li class="nav-header">Categories</li>
-                    <li class="active"><a href="/category"><i class="icon-white icon-home"></i> Home</a></li>
+                    <li><a href="/category"><i class="icon-home"></i> Home</a></li>
                     <% for(var cate in categories) { %>
                     <li><a href="/category/<%= cate %>"><i class="icon-book"></i><%= cate %></a></li>
                     <% } %>
                     <li class="nav-header">Another list header</li>
-                    <li><a href="#"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="/authors"><i class="icon-user"></i> Authors</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="icon-flag"></i> Help</a></li>
                 </ul>

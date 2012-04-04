@@ -48,6 +48,18 @@ app.get('/category/:cate', function(req, res) {
     res.render('cate', data);
 });
 
+
+/* category main page */
+app.get('/authors', function(req, res) {
+    res.render('authors', data);
+});
+
+app.get('/authors/:name', function(req, res) {
+    data.author = data.authors[req.params.name];
+    res.render('author', data);
+});
+
+
 app.get('/archives', function(req, res) {
     var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
     posts = JSON.parse(posts);
