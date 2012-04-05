@@ -22,61 +22,57 @@ rl.question("Enter the read/write url for your repository: ", function(repo) {
     var branch = (repo.match(/\/[\w-]+.github.com/) == null) ? 'gh-pages' : 'master';
     var project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
     
-    console.log(user, branch, project);
-
     exec('git remote -v', function(err, stdout, stderr) {
         if (stdout.match(/origin.+?haroog.git/) != null) {
             step(
                 function gitInit() {
-                    console.log(1);
+                    console.log('> Start setting github pages branch');
                     exec('git init', this);
                 },
                 function gitRename(err, stdout, stderr) {
-                    console.log(2)
+                    console.log('> Completed git repository initialize')
                     exec('git remote rename origin haroog', this);
                 },
                 function isMaster(err, stdout, stderr) {
-                    console.log(3)
+                    console.log('> Repository remote\'s name origin -> haroog');
                     if (branch == 'master') {
                         exec('git remote add origin '+ repo, this);
                     }
                 },
                 function setGitConfig(err, stdout, stderr) {
-                    console.log('Added remote %s as origin', repo);
+                    console.log('> Added remote %s as origin', repo);
                     exec('git config branch.master.remote origin', this);
                 },
                 function setBranch(err, stdout, stderr) {
-                    console.log('Set origin as default remote');
+                    console.log('> Set origin as default remote');
                     exec('git branch -m master source', this);
                 },
                 function initHaroog(err, stdout, stderr) {
-                    console.log('create inex.html');
+                    console.log('> Created inex.html');
                     exec('echo "<!-- haroog init -->" > index.html', this);
                 },
                 function gitAdd(err, stdout, stderr) {
-                    console.log('git add .');
+                    console.log('> git add .');
                     exec('git add .', this);
                 },
                 function createCommitter(err, stdout, stderr) {
+                    console.log('> Copy temp commiter')
                     exec('cp ../bin/git-commit .git-commit', this);
                 },
                 function gitCommit(err, stdout, stderr) {
-                    console.log('git commit')
+                    console.log('> git commit')
                     exec('./.git-commit', this);
-                    
-                    //exec('git --git-dir=".git" --work-tree=. commit -m "haroog init"', this);
-                    //exec('~/Develop/Ninja/Project/haroogul/bin/git-commit.rb', this);
-                    //exec('./.git-commit', this);
                 },
                 function removeCommiter(err, stdout, stderr) {
+                    console.log('> Remove temp commiter')
                     exec('rm -rf .git-commit', this);
                 },
                 /*function gitBranch(err, stdout, stderr) {
-                    console.log('git branch -m gh-pages')
+                    console.log('> git branch -m gh-pages')
                     exec('git branch -m gh-pages', this);
                 },*/
                 function gitRemoteAdd(err, stdout, stderr) {
-                    console.log('git remote add origin');
+                    console.log('> git remote add origin');
                     if (branch != 'master') {
                         exec('git remote add origin '+ repo, this)
                     }

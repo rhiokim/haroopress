@@ -10,7 +10,8 @@ function Haroo() {
         authors = {},
         archives = {},
         categories = {},
-        tags = {};
+        tags = {},
+        favorites = {}; 
 
     function tokenizer(str) {
         var token = str.split('\n\n'),
@@ -83,6 +84,26 @@ function Haroo() {
         return tokenizer(text);
     }
 
+    function loadFavorite() {
+        var links = fs.readFileSync(conf.sourceDir +'/favorites.markdown', 'utf8');
+        var token;
+
+        favorites.list = [];
+        links = links.split('\n');
+
+        links.forEach(function(link) {
+            if(link) {
+                token = {};
+
+                link = link.match( /^\[([\s\S]*?)\][ \t]*\([ \t]*(\S+)(?:[ \t]+(["'])(.*?)\3)?[ \t]*\)/ );
+                token.name = link[1];
+                token.url = link[2];
+
+                favorites.list.push(token);
+            }
+        });
+    }
+
     function getFileName(file) {
         file = file.split('/');                                                                                                       
         file = file[file.length-1].replace('.markdown', '');
@@ -116,6 +137,8 @@ function Haroo() {
             tagize(file, archive.head.tags);
             authorize(archive, archive.head.author);
         });
+
+        loadFavorite();        
     }
 
     initialize();
@@ -126,6 +149,7 @@ function Haroo() {
                 archives: archives,
                 categories: categories,
                 authors: authors,
+                favorites: favorites,
                 config: conf
             }
         },
