@@ -3,6 +3,7 @@
 var fs = require('fs'),
     readline = require('readline'),
     uglify = require('uglify-js'),
+    stringEx = require('stringex'),
     conf = require('../config');
 
 function beautify(str) {
@@ -30,6 +31,10 @@ rl.question('Enter article title : ', function(title) {
     head = JSON.parse(head[0]);
     head.title = title;
     head.author = conf.meta.author;
+
+    title = stringEx.stripHtmlTags(title);
+    title = stringEx.toASCII(title);
+    title = stringEx.toUrl(title);
 
     //이미 작성된 아티클이 있는지 체크
     try {

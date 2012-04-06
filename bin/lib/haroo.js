@@ -129,6 +129,8 @@ function Haroo() {
             id = getFileName(item._file);
 
             archive = archives[id] = loadArticle(item._file);
+			archive.html = md.toHtmlSync(archive.body);
+			//TODO: short cut html for index page
 
             archive._file = id;
             archive.author = authors[archive.head.author];
