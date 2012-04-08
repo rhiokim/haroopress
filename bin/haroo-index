@@ -171,6 +171,30 @@ function author() {
     }
 }
 
+
+function pages() {
+    var data = haroo.getMainData();
+    var pages = data.pages;
+    var res, id, page, file, output;
+
+    log('=============================================================');
+    log('====================== export page ==========================')
+    log('=============================================================');
+
+    for(id in pages) {
+        output = pages[id]._dir.replace( conf.sourceDir, conf.deployDir );
+        output = output.replace('/pages', '');
+
+        console.log(output);
+        mkdirp.sync(output, 0755);
+
+        res = renderer.render('pages', data);
+        write(output +'/index.html', res);
+
+        log('=> '+ output +'/index.html');
+    }
+}
+
 rss();
 index();
 archives();
@@ -178,3 +202,4 @@ categories();
 cate();
 authors();
 author();
+pages();

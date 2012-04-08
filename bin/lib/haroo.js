@@ -160,13 +160,12 @@ function Haroo() {
                 page = loadPage(item);
                 page._file = conf.sourceDir + item;
                 page.html = md.toHtmlSync(page.body);
-               
+              
                 dir = item.split('/');
                 dir.pop();
                 page._dir = dir.join('/');
 
-                console.log(page);
-                console.log('--------------');
+                pages[page._dir] = page;
             }
         });
 
@@ -181,6 +180,7 @@ function Haroo() {
                 archives: archives,
                 categories: categories,
                 authors: authors,
+                pages: pages,
                 favorites: favorites,
                 config: conf
             }
