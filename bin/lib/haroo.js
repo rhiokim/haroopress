@@ -1,15 +1,19 @@
 var fs = require('fs'),
     conf = require('../../config'),
+    path = require('path'),
     crypto = require('crypto'),
     direc = require('direc'),
+    findit = require('findit'),
     md = require('robotskirt');
 
 function Haroo() {
     var archiveFiles = direc.sort(conf.sourceDir +'/articles', 'mtime'),
         authorFiles = direc.sort(conf.sourceDir +'/authors'),
+        pageFiles = findit.sync(conf.sourceDir +'/pages'),
         authors = {},
         archives = {},
         categories = {},
+        pages = {},
         tags = {},
         favorites = {}; 
 
@@ -74,6 +78,16 @@ function Haroo() {
     }
 
     /**
+     * @desc load pages
+     * 
+     */
+     function loadPage(file) {
+         var text = fs.readFileSync(file, 'utf8');
+
+         return tokenizer(text);
+     }
+
+    /**
      * @desc load author
      * @param String file
      * @return Object
@@ -106,16 +120,13 @@ function Haroo() {
 
     function getFileName(file) {
         file = file.split('/');                                                                                                       
-        file = file[file.length-1].replace('.markdown', '');
+        file = file[file.length - 1].replace('.markdown', '');
 
         return file;
     }
     
     function initialize() {
-        var archive,
-            author,
-            id;
-
+        var file, author;
         authorFiles.forEach(function(item) {
             file = item._file;
             author = loadAuthor(file);
@@ -125,12 +136,13 @@ function Haroo() {
             authors[author.head.name] = author;
         });
 
+        var archive, id;
         archiveFiles.forEach(function(item) {
             id = getFileName(item._file);
 
             archive = archives[id] = loadArticle(item._file);
-			archive.html = md.toHtmlSync(archive.body);
-			//TODO: short cut html for index page
+            archive.html = md.toHtmlSync(archive.body);
+            //TODO: short cut html for index page
 
             archive._file = id;
             archive.author = authors[archive.head.author];
@@ -138,6 +150,24 @@ function Haroo() {
             categorize(archive, archive.head.categories);
             tagize(file, archive.head.tags);
             authorize(archive, archive.head.author);
+        });
+
+        var page, stat, dir;
+        pageFiles.forEach(function(item) {
+            stat = fs.statSync(item);
+
+            if (stat.isFile()) {
+                page = loadPage(item);
+                page._file = conf.sourceDir + item;
+                page.html = md.toHtmlSync(page.body);
+               
+                dir = item.split('/');
+                dir.pop();
+                page._dir = dir.join('/');
+
+                console.log(page);
+                console.log('--------------');
+            }
         });
 
         loadFavorite();        

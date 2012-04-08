@@ -19,7 +19,7 @@ app.configure(function() {
     app.set('views', __dirname +'/source/views-new');
     app.set('view engine', 'ejs');
     
-    app.use(express.logger());
+//    app.use(express.logger());
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -31,6 +31,9 @@ app.configure(function() {
 
 app.get('/', function(req, res) {
     res.render('main', data);
+});
+
+app.get('/pages/:page', function(req, res) {
 });
 
 app.get('/post/:title', function(req, res) {
@@ -84,5 +87,6 @@ app.get('/tags/:tag', function(req, res) {
     res.render('tag', { config: config, plugins: config.plugins, articles: tags[req.params.tag] });
 });
 
+
 app.listen(8000);
-console.log('Start at http://haroog.dev');
+console.log('Start at http://localhost:8000');
