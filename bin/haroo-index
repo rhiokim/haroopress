@@ -175,7 +175,7 @@ function author() {
 function pages() {
     var data = haroo.getMainData();
     var pages = data.pages;
-    var res, id, page, file, output;
+    var res, id, page, file, output, layout, display;
 
     log('=============================================================');
     log('====================== export page ==========================')
@@ -183,13 +183,16 @@ function pages() {
 
     for(id in pages) {
         page = pages[id];
+        layout = page.head.advanced.layout || 'pages';
+        display = page.head.advanced.display || 'top';
+
         output = page._dir.replace( conf.sourceDir, conf.deployDir );
         output = output.replace('/pages', '');
 
         mkdirp.sync(output, 0755);
         data.page = page;
 
-        res = renderer.page(page.head.advanced.layout +'/main', data);
+        res = renderer.page(layout +'/main', data);
         write(output +'/index.html', res);
 
         log('=> '+ output +'/index.html');

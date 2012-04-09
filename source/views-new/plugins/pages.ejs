@@ -1,0 +1,6 @@
+<% for(var id in pages) {
+		var page = pages[id]; %>
+	<li>
+		<a href="<%= page._path %>"><%= page.head.title %></a>
+	</li>
+<% } %>

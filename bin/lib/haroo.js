@@ -152,20 +152,24 @@ function Haroo() {
             authorize(archive, archive.head.author);
         });
 
-        var page, stat, dir;
+        var page, stat, dir, file;
         pageFiles.forEach(function(item) {
             stat = fs.statSync(item);
 
             if (stat.isFile()) {
                 page = loadPage(item);
-                page._file = conf.sourceDir + item;
+                page._file = item;
                 page.html = md.toHtmlSync(page.body);
               
                 dir = item.split('/');
-                dir.pop();
+                file = dir.pop();
                 page._dir = dir.join('/');
 
-                pages[page._dir] = page;
+                page._path = item.replace(conf.sourceDir +'/pages', '');
+                page._path = page._path.replace('.markdown', '.html');
+                page._path = page._path.replace('index.html', '');
+
+                pages[page._path] = page;
             }
         });
 
