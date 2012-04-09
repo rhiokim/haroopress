@@ -182,13 +182,14 @@ function pages() {
     log('=============================================================');
 
     for(id in pages) {
-        output = pages[id]._dir.replace( conf.sourceDir, conf.deployDir );
+        page = pages[id];
+        output = page._dir.replace( conf.sourceDir, conf.deployDir );
         output = output.replace('/pages', '');
 
-        console.log(output);
         mkdirp.sync(output, 0755);
+        data.page = page;
 
-        res = renderer.page('main', data);
+        res = renderer.page(page.head.advanced.layout +'/main', data);
         write(output +'/index.html', res);
 
         log('=> '+ output +'/index.html');
