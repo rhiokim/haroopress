@@ -188,7 +188,7 @@ function pages() {
         console.log(output);
         mkdirp.sync(output, 0755);
 
-        res = renderer.render('pages', data);
+        res = renderer.page('main', data);
         write(output +'/index.html', res);
 
         log('=> '+ output +'/index.html');

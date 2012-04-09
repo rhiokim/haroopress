@@ -37,6 +37,17 @@ function Renderer() {
             layout = ejs.render(layout, data);
 
             return layout;
+        },
+
+        page: function(file, data) {
+            var layout = fs.readFileSync(path.resolve(dir, 'pages/layout') +'.ejs', 'utf8');
+
+            data.body = body(file, data);
+            data.partial = partial;
+
+            layout = ejs.render(layout, data);
+
+            return layout;
         }
     }
 }
