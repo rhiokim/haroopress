@@ -156,7 +156,7 @@ function Haroo() {
         pageFiles.forEach(function(item) {
             stat = fs.statSync(item);
 
-            if (stat.isFile()) {
+            if (stat.isFile() && item.indexOf('.markdown') >= 0) {
                 page = loadPage(item);
                 page._file = item;
                 page.html = md.toHtmlSync(page.body);
@@ -164,6 +164,8 @@ function Haroo() {
                 dir = item.split('/');
                 file = dir.pop();
                 page._dir = dir.join('/');
+
+                page._path = item.replace(conf.sourceDir +'/pages', '');
 
                 page._path = item.replace(conf.sourceDir +'/pages', '');
                 page._path = page._path.replace('.markdown', '.html');
