@@ -8,7 +8,7 @@ var fs = require('fs'),
     renderer = require('../lib/renderer'),
     conf = require('../config');
 
-renderer.setViewDir(conf.sourceDir +'/views-new');
+renderer.setViewDir(conf.sourceDir +'/views');
 
 function write(output, res, charset) {
     fs.writeFileSync(output, res, charset || 'utf8');

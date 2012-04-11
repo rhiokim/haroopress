@@ -20,12 +20,12 @@
             <div class="well">
                 <ul class="nav nav-list">
                     <li class="nav-header">Categories</li>
-                    <li class="active"><a href="/category"><i class="icon-white icon-home"></i> Home</a></li>
-                    <% cates.forEach(function(cate) { %>
-                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i><%= cate %></a></li>
-                    <% }); %>
+                    <li><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    <% for(var cate in categories) { %>
+                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i> <%= cate %></a></li>
+                    <% } %>
                     <li class="nav-header">Another list header</li>
-                    <li><a href="#"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="/authors"><i class="icon-user"></i> Authors</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="icon-flag"></i> Help</a></li>
                 </ul>
@@ -34,18 +34,18 @@
         <div class="span9">
 			<div class="well">
 				<div class="page-header">
-					<h1>Category : <small>JavaScript</small> <span class="badge badge-info"><%= articles.length %></span></h1>
+					<h1>Category : <small>JavaScript</small> <span class="badge badge-info"><%= cates.length %></span></h1>
 				</div>
 				<div class="row">
 					<div class="span9">
 						<ul>
-					<% articles.forEach(function(article) { %>
+					<% cates.forEach(function(archive) { %>
 							<li>
 								<h3>
-									<a href="/post/<%= article._file %>"><%= article.title %></a> <small>by <%= article.author %> / 2 days ago</small>
+									<a href="/post/<%= archive._file %>"><%= archive.head.title %></a> <small>by <%= archive.author.head.name %> / <%= archive.head.published %></small>
 								</h3>
 							</li>
-					<% }); %>
+					<% }) %>
 						</ul>
 					</div>
 				</div>

@@ -16,7 +16,7 @@ var data = haroo.getMainData();
 
 var app = express.createServer();
 app.configure(function() {
-    app.set('views', __dirname +'/source/views-new');
+    app.set('views', __dirname +'/source/views');
     app.set('view engine', 'ejs');
     
 //    app.use(express.logger());

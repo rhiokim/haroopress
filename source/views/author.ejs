@@ -13,18 +13,19 @@
                 <div>
                     <h3>About This Site</h3>
                     <p>
-                        이 사이트는 markdown-blog 엔진으로 구축되어진 사이트입니다.
+                        이 사이트는 <a href="http://github.com/rhiokim/haroog" target="_target">Haroog</a> 엔진으로 구축되어진 사>    이트입니다.
                     </p>
                 </div>
             </div>
             <div class="well">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Categories</li>
-                    <li class="active"><a href="/category"><i class="icon-white icon-home"></i> Home</a></li>
-                    <li><a href="/category/javascript"><i class="icon-book"></i>JavaScript</a></li>
-                    <li><a href="/category/node.js"><i class="icon-pencil"></i>Node</a></li>
+                    <li class="nav-header">Author List</li>
+                    <li><a href="/authors"><i class="icon-home"></i> Home</a></li>
+                    <% for(var id in authors) { %>
+                    <li><a href="/authors/<%= id %>"><i class="icon-user"></i> <%= id %></a></li>
+                    <% } %>
                     <li class="nav-header">Another list header</li>
-                    <li><a href="#"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="/category"><i class="icon-book"></i> Category</a></li>
                     <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                     <li><a href="#"><i class="icon-flag"></i> Help</a></li>
                 </ul>
@@ -33,12 +34,20 @@
         <div class="span9">
 			<div class="well">
 				<div class="page-header">
-					<h2>iArticle Libraries :: <small>JavaScript</small> <span class="badge badge-info">8</span></h2>
+					<h1>Author : <small>articles</small> <span class="badge badge-info"><%= author.archives.length %></span></h1>
 				</div>
 				<div class="row">
-					<% authors.forEach(function(author) { %>
-
-					<% }); %>
+					<div class="span9">
+						<ul>
+					<% author.archives.forEach(function(archive) { %>
+							<li>
+								<h3>
+									<a href="/post/<%= archive._file %>"><%= archive.head.title %></a> <small>by <%= archive.author.head.name %> / <%= archive.head.published %></small>
+								</h3>
+							</li>
+					<% }) %>
+						</ul>
+					</div>
 				</div>
 			</div>
         </div>
