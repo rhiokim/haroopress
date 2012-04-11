@@ -3,6 +3,10 @@
     "blog": "http://ajaxian.kr",
     "twitter": "andrwj",
     "github": "andrwj",
+    "vimeo": "andrwj",
+    "youtube": "",
+    "facebook": "andrwj",
+    "linkedin": "andrwj",
     "email": "andrwj@gmail.com"
 }
 

@@ -3,6 +3,10 @@
     "blog": "http://xxx.kr",
     "twitter": "fallroot",
     "github": "fallroot",
+    "vimeo": "fallroot",
+    "youtube": "",
+    "facebook": "fallroot",
+    "linkedin": "fallroot",
     "email": "fallroot@gmail.com"
 }
 
