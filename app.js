@@ -2,7 +2,7 @@ var mdb = require('markdown-blog'),
     fs = require('fs'),
     moment = require('moment'),
     express = require('express'),
-    haroo = require('./bin/lib/haroo'),
+    haroo = require('./lib/haroo'),
     config = require('./config'),
     routes = require('./source/routes');
 

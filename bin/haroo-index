@@ -4,8 +4,8 @@ var fs = require('fs'),
     path = require('path'),
     mkdirp = require('mkdirp'),
     RSS = require('rss'),
-    haroo = require('./lib/haroo'),
-    renderer = require('./lib/renderer'),
+    haroo = require('../lib/haroo'),
+    renderer = require('../lib/renderer'),
     conf = require('../config');
 
 renderer.setViewDir(conf.sourceDir +'/views-new');
