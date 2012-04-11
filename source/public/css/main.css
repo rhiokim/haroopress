@@ -86,8 +86,13 @@ h1, h2, h3, h4, h5, h6 {
 /***************************
  * markdown style
  **************************/
-.markdown h1,
-.markdown h2,
+.markdown h1 {
+    margin: 40px 0 10px 0;
+}
+
+.markdown h2 {
+    margin: 30px 0 10px 0;
+}
 .markdown h3,
 .markdown h4,
 .markdown h5 {

@@ -12,6 +12,7 @@ init:
 	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
 	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
+	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
 	mkdir _deploy
 
 update:
