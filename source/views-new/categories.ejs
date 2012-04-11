@@ -1,0 +1,61 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <div id="author" class="well">
+                <div>
+                    <h3>About This Site</h3>
+                    <p>
+                        이 사이트는 <a href="http://github.com/rhiokim/haroog" target="_target">Haroog</a> 엔진으로 구축되어진 사>    이트입니다.
+                    </p>
+                </div>
+            </div>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    <% for(var cate in categories) { %>
+                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i> <%= cate %></a></li>
+                    <% } %>
+                    <li class="nav-header">Another list header</li>
+                    <li><a href="/authors"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span9">
+			<div class="well">
+				<div class="page-header">
+					<h1>Categories</h1>
+				</div>
+			<% for(var cate in categories) { %>
+				<div class="row">
+					<div class="span9">
+						<h2><%= cate %></h2>
+					</div>
+				</div>
+				<% categories[cate].forEach(function(archive) { %>
+				<div class="row">
+					<div class="span1" style="width:40px;">
+						<img class="thumbnail" width="40" src="<%= archive.author._gravatar %>" />
+					</div>
+					<div class="span7">
+						<h3><a href="/post/<%= archive._file %>"><%= archive.head.title %></a></h3>
+						<small>by <%= archive.author.head.name %> / <%= archive.head.published %></small>
+					</div>
+				</div>
+				<hr/>
+				<% }) %>
+			<% } %>
+			</div>
+        </div>
+    </div>
+</div><!-- /container -->

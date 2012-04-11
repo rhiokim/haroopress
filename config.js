@@ -4,7 +4,8 @@ var conf = {
         defaultTitle: 'Markdown Blog - HarooGul',
         description: 'Markdown Blogging engine based Node.js',
         siteUrl: 'http://haroog.dev:8000',
-        author: 'Rhio Kim'
+        author: 'Rhio Kim',
+		keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     articles: process.cwd() +'/source/articles',
     authors: process.cwd() +'/source/authors',

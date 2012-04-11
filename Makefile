@@ -2,6 +2,8 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 
 init:
+	npm install -g less
+	npm install -g uglify-js
 	git submodule update --init --recursive
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
@@ -10,6 +12,7 @@ init:
 	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
 	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
+	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
 	mkdir _deploy
 
 update:
@@ -23,11 +26,9 @@ copy:
 dc:
 	rm -rf ${DEPLOY_DIR}/*
 
-gen: 
+gen:
 	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
-	cd ./bin/;./gen-index;./gen-main;./gen-rss
-	cd ./bin/;./gen-category;./gen-tag
-	cd ./bin/;./gen-page-index;./gen-page-category;./gen-page-article;./gen-page-sub-category
+	cd ./bin;./haroo-index
 
 preview:
 	node app.js
@@ -37,5 +38,11 @@ github-page:
 
 deploy:
 	cd ./bin;./deploy-gh-pages
+
+new_post:
+	cd ./bin;./new-post
+
+new_page:
+	cd ./bin;./new-page
 
 .PHONY: init update copy

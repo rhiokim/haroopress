@@ -5,6 +5,7 @@ var fs = require('fs'),
 
 var categories = {};
 
+console.log('creating category indexing for articles');
 fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
     var articles = JSON.parse(data);
     var cate;
@@ -23,5 +24,5 @@ fs.readFile(conf.sourceDir +'/_index.json', 'utf8', function(err, data) {
     });
 
     fs.writeFileSync(conf.sourceDir +'/_categories.json', JSON.stringify(categories), 'utf8');
-    
+    console.log('> category index file created');
 });

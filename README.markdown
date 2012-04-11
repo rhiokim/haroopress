@@ -42,23 +42,29 @@ $ make init
 # usage
 
 ```
+//github repository
+$ make github-page
+
 //new article
-$ make new 'post title'
+$ make new_post 'post title'
 
 //static page generating
 $ make gen
 
 //preview
 $ make preview
+
+//new page
+$ make new_page 'page title'
 ```
 
 # plugins
 
-* google analysis
-* disquss
+* **google analysis**
+* **disquss**
 * github
 * twitter timeline
-* social buttons
+* **social buttons**
     - twitter
     - google plus
     - facebook like
@@ -86,6 +92,14 @@ $ make preview
 ```
 
 # dependency 
+* direc
+* ejs
+* markdown-blog
+* mkdirp
+* moment
+* roboskirt
+* rss
+* step
 
 # license
 Copyright (c) 2012 Rhio Kim

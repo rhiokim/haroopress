@@ -2,6 +2,7 @@ var mdb = require('markdown-blog'),
     fs = require('fs'),
     moment = require('moment'),
     express = require('express'),
+    haroo = require('./bin/lib/haroo'),
     config = require('./config'),
     routes = require('./source/routes');
 
@@ -11,12 +12,14 @@ var mdb = require('markdown-blog'),
 mdb.setConfig('articles', config.articles);
 mdb.setConfig('authors', config.authors);
 
+var data = haroo.getMainData();
+
 var app = express.createServer();
 app.configure(function() {
-    app.set('views', __dirname +'/source/views');
+    app.set('views', __dirname +'/source/views-new');
     app.set('view engine', 'ejs');
     
-    app.use(express.logger());
+//    app.use(express.logger());
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -25,6 +28,40 @@ app.configure(function() {
     app.use(app.router);
     app.use(express.static(__dirname +'/source/public'));
 });
+
+app.get('/', function(req, res) {
+    res.render('main', data);
+});
+
+app.get('/pages/:page', function(req, res) {
+});
+
+app.get('/post/:title', function(req, res) {
+    data.archive = data.archives[req.params.title];
+    res.render('archive', data);
+});
+
+/* category main page */
+app.get('/category', function(req, res) {
+    res.render('categories', data);
+});
+
+app.get('/category/:cate', function(req, res) {
+    data.cates = data.categories[req.params.cate];
+    res.render('cate', data);
+});
+
+
+/* category main page */
+app.get('/authors', function(req, res) {
+    res.render('authors', data);
+});
+
+app.get('/authors/:name', function(req, res) {
+    data.author = data.authors[req.params.name];
+    res.render('author', data);
+});
+
 
 app.get('/archives', function(req, res) {
     var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
@@ -35,64 +72,6 @@ app.get('/archives', function(req, res) {
 
     res.render('archives', { config: config, plugins: config.plugins, posts: posts });
 });
-
-app.get('/', function(req, res) {
-    var posts = fs.readFileSync(__dirname +'/source/_main.json', 'utf8');
-    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    var cates = [];
-
-    categories = JSON.parse(categories);
-    for( cate in categories ) {
-        cates.push(cate);
-    }
-
-    posts = JSON.parse(posts);
-    posts.forEach(function(post) {
-        post.header.published = moment(new Date(post.header.published)).fromNow();
-    });
-
-    res.render('main', { config: config, plugins: config.plugins, posts: posts, cates: cates });
-});
-
-app.get('/post/:title', function(req, res) {
-    var post = mdb.loadArticle(req.params.title);
-    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    var cates = [];
-
-    categories = JSON.parse(categories);
-    for( cate in categories ) {
-        cates.push(cate);
-    }
-
-    res.render('article', { config: config, cates: cates, plugins: config.plugins, header: post.header, author: post.author, body: post.article });
-});
-
-/* category main page */
-app.get('/category', function(req, res) {
-    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    var cates = [];
-
-    categories = JSON.parse(categories);
-    for( cate in categories ) {
-        cates.push(cate);
-    }
-
-    res.render('category', { config: config, plugins: config.plugins, cates: cates, articles: categories });
-});
-
-app.get('/category/:cate', function(req, res) {
-    var categories = fs.readFileSync(__dirname +'/source/_categories.json', 'utf8');
-    var cates = [], articles;
-
-    categories = JSON.parse(categories);
-    articles = categories[req.params.cate];
-    for( cate in categories ) {
-        cates.push(cate);
-    }
-
-    res.render('cate', { config: config, plugins: config.plugins, cates: cates, articles: articles });
-});
-
 
 app.get('/tags', function(req, res) {
     var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
@@ -108,5 +87,6 @@ app.get('/tags/:tag', function(req, res) {
     res.render('tag', { config: config, plugins: config.plugins, articles: tags[req.params.tag] });
 });
 
+
 app.listen(8000);
-console.log('Start at http://haroog.dev');
+console.log('Start at http://localhost:8000');

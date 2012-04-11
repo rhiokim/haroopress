@@ -1,0 +1,14 @@
+<div class="well">
+	<ul class="nav nav-list">
+		<li class="nav-header">Recent Articles</li>
+	<% for(var prop in archives) {
+		  archive = archives[prop];
+	%>
+		<li>
+			<a href="/post/<%= archive._file %>" target="_blank"><%= archive.head.title %>
+			<span class="label"><%= archive.author.head.name %></span></a>
+
+		</li>
+	<% } %>
+	</ul>
+</div>

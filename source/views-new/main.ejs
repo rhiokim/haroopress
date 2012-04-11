@@ -1,0 +1,75 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <div id="author" class="well">
+                <div>
+                    <h3>About This Site</h3>
+                    <p>
+                        이 사이트는 <a href="http://github.com/rhiokim/haroog" target="_target">Haroog</a> 엔진으로 구축되어진 사이트입니다.
+                    </p>
+					<p>
+						<img src="/img/social/facebook_32.png" />
+						<img src="/img/social/twitter_32.png" />
+						<img src="/img/social/google_32.png" />
+						<img src="/img/social/github_32.png" />
+						<img src="/img/social/yahoo_32.png" />
+						<img src="/img/social/linkedin_32.png" />
+					</p>
+                </div>
+            </div>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Categories</li>
+                    <li><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    <% for(var cate in categories) { %>
+                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i> <%= cate %></a></li>
+                    <% } %>
+                    <li class="nav-header">Another list header</li>
+                    <li><a href="/authors"><i class="icon-user"></i> Authors</a></li>
+                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+                </ul>
+            </div>
+			<%- partial('plugins/favorites', favorites) %>
+        </div>
+        <div class="span9">
+            <% for(var prop in archives) {
+                  archive = archives[prop];
+            %>
+            <div class="row">
+                <div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1><a href="/post/<%= archive._file %>"><%= archive.head.title %></a></h1>
+							<span class="pull-right"><%= archive.head.published %></span>
+						</div>
+						<div class="pull-right" style="padding: 0 10px 10px 10px;">
+							<ul class="thumbnails">
+								<li class="thumbnail">
+									<a>
+										<img src="<%= archive.author._gravatar %>" width="128"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="markdown">
+							<%- archive.html %>
+						</div>
+						<p>
+							<a href="/post/<%= archive._file%>" class="btn btn-primary btn-large">Read more...</a>
+						</p>
+					</div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div><!-- /container -->
