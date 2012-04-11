@@ -4,6 +4,7 @@ DEPLOY_DIR=./_deploy
 init:
 	npm install -g less
 	npm install -g uglify-js
+	npm install -g locally
 	git submodule update --init --recursive
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
@@ -26,12 +27,13 @@ copy:
 dc:
 	rm -rf ${DEPLOY_DIR}/*
 
-gen:
+gen: dc
 	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
 	cd ./bin;./haroo-index
 
 preview:
-	node app.js
+	locally -w ./_deploy -p 8000
+	open http://localhost:8000
 
 github-page:
 	cd ./bin/;./setup-github-page
