@@ -21,6 +21,33 @@ var conf = {
     CNAME: 'nodejs.kr'
 };
 
+conf.social = {
+	facebook: {
+		id: 'rhiokim',
+		site: 'http://facebook.com/'
+	},
+	google: {
+		id: '107034185858524700350',
+		site: 'https://plus.google.com/u/0/'
+	},
+	twitter: {
+		id: 'rhiokim',
+		site: 'https://twitter.com/#!/'
+	},
+	yahoo: {
+		id: '',
+		site: ''
+	},
+	linkedin: {
+		id: 'rhiokim',
+		site: 'http://www.linkedin.com/in/'
+	},
+	vimeo: {
+		id: 'rhio',
+		site: 'http://vimeo.com/'
+	}
+};
+
 
 /* third party settings */
 conf.plugins = {
@@ -39,9 +66,9 @@ conf.plugins = {
         tweetButton: false
     },
     google: {
-	googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
-	googlePlus: false,
-	googlePlusSize: 'medium'
+		googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+		googlePlus: false,
+		googlePlusSize: 'medium'
     },
     disqus: {
         shortName: "nodekr",

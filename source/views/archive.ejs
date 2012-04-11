@@ -46,15 +46,8 @@
             </div>
             <div class="well">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Categories</li>
-                    <li><a href="#"><i class="icon-home"></i> Home</a></li>
-                    <% for(var cate in categories) { %>
-                    <li><a href="/category/<%= cate %>"><i class="icon-book"></i> <%= cate %></a></li>
-                    <% } %>
-                    <li class="nav-header">Another list header</li>
-                    <li><a href="#"><i class="icon-user"></i> Profile</a></li>
-                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+					<%- partial('plugins/category-menu', { categories: categories }) %>
+					<%- partial('plugins/side-menu', { }) %>
                 </ul>
             </div>
 

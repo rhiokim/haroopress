@@ -9,25 +9,11 @@
 <div class="container">
     <div class="row">
         <div class="span3">
-            <div id="author" class="well">
-                <div>
-                    <h3>About This Site</h3>
-                    <p>
-                        이 사이트는 <a href="http://github.com/rhiokim/haroog" target="_target">Haroog</a> 엔진으로 구축되어진 사>    이트입니다.
-                    </p>
-                </div>
-            </div>
+			<%- partial('plugins/intro', config) %>
             <div class="well">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Author List</li>
-                    <li><a href="/authors"><i class="icon-home"></i> Home</a></li>
-                    <% for(var id in authors) { %>
-                    <li><a href="/authors/<%= id %>"><i class="icon-user"></i> <%= id %></a></li>
-                    <% } %>
-                    <li class="nav-header">Another list header</li>
-                    <li><a href="/category"><i class="icon-book"></i> Category</a></li>
-                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+					<%- partial('plugins/author-menu', { authors: authors }) %>
+					<%- partial('plugins/side-menu', { }) %>
                 </ul>
             </div>
         </div>
