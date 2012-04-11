@@ -3,16 +3,7 @@
                 <div>
                     <h3>About This Site</h3>
                     <p>
-                        이 사이트는 <a href="http://github.com/rhiokim/haroog" target="_target">Haroog</a> 엔진으로 구축되어진 사이트입니다.
+                        이 사이트는 <a href="http://github.com/rhiokim/haroog" target="_target">haroopress</a> 엔진으로 구축되어진 사이트입니다.
                     </p>
-					<p>
-						<a href="/rss.xml"><img src="/img/social/rss_active.png" /></a>
-						<% for(var id in social) {
-							var user = social[id];
-						    if (!user.id) { continue; }
-						%>
-						<a href="<%= user.site %><%= user.id %>" target="_blank"><img src="/img/social/<%= id %>_active.png" /></a>
-						<% } %>
-					</p>
                 </div>
             </div>

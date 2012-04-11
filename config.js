@@ -21,33 +21,6 @@ var conf = {
     CNAME: 'nodejs.kr'
 };
 
-conf.social = {
-	facebook: {
-		id: 'rhiokim',
-		site: 'http://facebook.com/'
-	},
-	google: {
-		id: '107034185858524700350',
-		site: 'https://plus.google.com/u/0/'
-	},
-	twitter: {
-		id: 'rhiokim',
-		site: 'https://twitter.com/#!/'
-	},
-	yahoo: {
-		id: '',
-		site: ''
-	},
-	linkedin: {
-		id: 'rhiokim',
-		site: 'http://www.linkedin.com/in/'
-	},
-	vimeo: {
-		id: 'rhio',
-		site: 'http://vimeo.com/'
-	}
-};
-
 
 /* third party settings */
 conf.plugins = {
