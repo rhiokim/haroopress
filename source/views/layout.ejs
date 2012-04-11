@@ -5,8 +5,8 @@
     <title><%= config.meta.defaultTitle %></title>
     <meta name="description" content="<%= config.meta.description %>">
     <meta name="author" content="<%= config.meta.author %>">
-    <meta name="keywords" content="<%= config.meta.keywords.join(',') %>" />
-    <meta name="generator" content="haroopress v<%= config.meta.version %>" />
+    <meta name="keywords" content="Node.js, JavaScript" />
+    <meta name="generator" content="HarooGul v<%= config.meta.version %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -26,9 +26,8 @@
     <link href="/css/prettify.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <!--<link rel="apple-touch-icon" href="assets/ico/bootstrap-apple-57x57.png">-->
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon.png">
+    <!--<link rel="apple-touch-icon" sizes="72x72" href="assets/ico/bootstrap-apple-72x72.png">-->
     <!--<link rel="apple-touch-icon" sizes="114x114" href="assets/ico/bootstrap-apple-114x114.png">-->
 </head>
 
@@ -44,13 +43,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Haroog</a>
+          <a class="brand" href="/">haroopress</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li>
-                <a href="/">Home</a>
+              <li class="active">
+                <a href="#">About</a>
               </li>
-				<%- partial('plugins/pages', { pages: pages }) %>
+              <li class="">
+                <a href="#">Blog <b class="caret"></b></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -60,18 +61,18 @@
 	<%- body %>
 
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="span12 ">
-                    <div class="well-black">
-                        <p class="pull-right"><a href="#">Back to top</a></p>
-                            Development by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a><br/>
-                            Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
-                            Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="container">
+			<div class="row">
+				<div class="span12 ">
+					<div class="well-black">
+						<p class="pull-right"><a href="#">Back to top</a></p>
+							Development by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a> in FRENDS & KTH<br/>
+							Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+							Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+					</div>
+				</div>
+			</div>
+		</div>
     </footer>
 
     <!-- Le javascript -->

@@ -63,11 +63,11 @@ conf.plugins = {
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,
-        tweetButton: false
+        tweetButton: true
     },
     google: {
 		googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
-		googlePlus: false,
+		googlePlus: true,
 		googlePlusSize: 'medium'
     },
     disqus: {

@@ -19,28 +19,24 @@
                         </li>
                     </ul>
                     <p>
-                        <strong><%= archive.author.name %></strong><br/>
+                        <strong><%= archive.author.head.name %></strong><br/>
                         blog: <a href="<%= archive.author.blog %>" target="_blank"><%= archive.author.head.blog %></a><br/>
                         twitter: <a href="http://twitter.com/<%= archive.author.twitter %>" target="_blank">@<%= archive.author.head.twitter %></a><br/>
                         github: <a href="https://github.com/<%= archive.author.twitter %>" target="_blank"><%= archive.author.head.github %></a>
                     </p>
                     <p>
-                        <a href="https://twitter.com/<%= archive.author.head.twitter %>" class="twitter-follow-button" data-show-count="false">Follow @<%= archive.author.head.twitter %></a>
+                        <a href="https://twitter.com/<%= archive.author.head.twitter %>" class="twitter-follow-button" data-show-count="true">Follow @<%= archive.author.head.twitter %></a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                     </p>
-                    <p><%- archive.author.body %></p>
+                    <p>
+						<%- archive.author.body %>
+					</p>
                 </div>
                 <div>
                     <h3>About this Article</h3>
                     <p>
                         <h5>Date Released:</h5>
                         <span><%= archive.head.published %></span>
-                    </p>
-                    <p>
-                        <%- partial('plugins/facebook', config.plugins.facebook) %>
-                        <%- partial('plugins/google-plus', config.plugins.google) %>
-                        <%- partial('plugins/twitter', config.plugins.twitter) %>
-
                     </p>
                 </div>
             </div>
@@ -60,6 +56,7 @@
 						<div class="page-header">
 							<h1><%= archive.head.title %></h1>
 						</div>
+
 						<div class="markdown">
 							<%- archive.html %>
 						</div>
