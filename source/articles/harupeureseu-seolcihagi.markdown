@@ -1,4 +1,4 @@
-{"title":"하루프레스 설치하기","author":"Rhio Kim","date":"Fri Dec 02 2011 00:31:36 GMT+0900 (KST)","categories":["haroopress"," tutorial"],"tags":[""],"acceptComment":true,"acceptTrackback":true,"published":"Fri Dec 02 2011 00:31:36 GMT+0900 (KST)","status":"draft","advanced":{}}
+{"title":"하루프레스 설치하기","author":"Rhio Kim","date":"Fri Dec 02 2011 00:31:36 GMT+0900 (KST)","categories":["haroopress","tutorial"],"tags":[""],"acceptComment":true,"acceptTrackback":true,"published":"Fri Dec 02 2011 00:31:36 GMT+0900 (KST)","status":"draft","advanced":{}}
 
 ### 하루프레스란?
 하루 프레스는 한굴의 **하루** 라는 단어와 영어의 **프레스** 라는 단어의 조합으로 만들어진 해커들을 위한 정적 페이지 블로그 엔진이다.  루비로 만들어진 옥토프레스와 그 쓰임새가 유사하지만 좀더 가볍고 유연하게 동작하며 Github.com 을 통해 정적 페이지 퍼블리싱을 손쉽게 제공한다.

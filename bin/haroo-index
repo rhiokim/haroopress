@@ -175,7 +175,7 @@ function author() {
 function pages() {
     var data = haroo.getMainData();
     var pages = data.pages;
-    var res, id, page, file, output, layout, display;
+    var res, id, page, file, output, layout, display, status;
 
     log('=============================================================');
     log('====================== export page ==========================')
@@ -183,6 +183,14 @@ function pages() {
 
     for(id in pages) {
         page = pages[id];
+
+        status = page.head.status;
+
+        //문서 상태가 draft 인 경우는 퍼블리싱 하지 않는다.
+        if(status == 'draft') {
+            continue;
+        }
+
         layout = page.head.advanced.layout || 'pages';
         display = page.head.advanced.display || 'top';
 
@@ -195,7 +203,7 @@ function pages() {
         res = renderer.page(layout +'/main', data);
         write(output +'/index.html', res);
 
-        log('=> '+ output +'/index.html');
+        log('=> '+ conf.deployDir + id);
     }
 }
 
