@@ -21,7 +21,7 @@
                     <li class="nav-header">Author List</li>
                     <li><a href="/authors"><i class="icon-home"></i> Home</a></li>
                     <% for(var author in authors) { %>
-                    <li><a href="/authors/<%= author %>"><i class="icon-user"></i><%= author %></a></li>
+                    <li><a href="/authors/<%= author %>"><i class="icon-user"></i> <%= author %></a></li>
                     <% } %>
                     <li class="nav-header">Another list header</li>
                     <li><a href="/category"><i class="icon-book"></i> Category</a></li>
@@ -37,7 +37,7 @@
                         <div class="page-header">
                             <h1>Authors</h1>
                         </div>
-                        <div class="article">
+                        <div class="markdown">
                             <ul class="thumbnails">
                                 <% for(var author in authors) { %>
                                 <li class="thumbnail">

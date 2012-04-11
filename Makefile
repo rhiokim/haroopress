@@ -12,6 +12,7 @@ init:
 	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
 	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
+	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
 	mkdir _deploy
 
 update:
@@ -25,13 +26,7 @@ copy:
 dc:
 	rm -rf ${DEPLOY_DIR}/*
 
-gen: 
-	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
-	cd ./bin/;./gen-index;./gen-main;./gen-rss
-	cd ./bin/;./gen-category;./gen-tag
-	cd ./bin/;./gen-page-index;./gen-page-category;./gen-page-article;./gen-page-sub-category
-
-gen2:
+gen:
 	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
 	cd ./bin;./haroo-index
 

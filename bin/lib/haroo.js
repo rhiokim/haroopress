@@ -124,6 +124,33 @@ function Haroo() {
 
         return file;
     }
+
+    function getTOC(text) {
+        var tokens = text.split('\n');
+        var i, m, len = tokens.length, line, level;
+        var toc = {};
+
+        for(i = 0; i < len; i++) {
+            line = tokens[i];
+            m = line.match( /^(#{1,6})\s*(.*?)\s*#*\s*(?:\n|$)/ );
+
+            //header 가 아닌 경우
+            if ( !m ) {
+                continue;
+            }
+            
+            level = m[1].length;
+
+            //toc 에 level 속성이 없는 경우
+            if (!toc.hasOwnProperty(level)) {
+               toc[level] = []; 
+            }
+
+            toc[level].push(line.replace(/#/g, '').trim());
+        }
+
+        return toc;
+    }
     
     function initialize() {
         var file, author;
@@ -156,7 +183,7 @@ function Haroo() {
         pageFiles.forEach(function(item) {
             stat = fs.statSync(item);
 
-            if (stat.isFile()) {
+            if (stat.isFile() && item.indexOf('.markdown') >= 0) {
                 page = loadPage(item);
                 page._file = item;
                 page.html = md.toHtmlSync(page.body);
@@ -166,10 +193,14 @@ function Haroo() {
                 page._dir = dir.join('/');
 
                 page._path = item.replace(conf.sourceDir +'/pages', '');
+
+                page._path = item.replace(conf.sourceDir +'/pages', '');
                 page._path = page._path.replace('.markdown', '.html');
                 page._path = page._path.replace('index.html', '');
 
+                page.toc = getTOC(page.body);
                 pages[page._path] = page;
+
             }
         });
 
