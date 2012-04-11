@@ -13,6 +13,7 @@ mdb.setConfig('articles', config.articles);
 mdb.setConfig('authors', config.authors);
 
 var data = haroo.getMainData();
+var pageTitle = data.config.meta.pageTitle = '';
 
 var app = express.createServer();
 app.configure(function() {
@@ -33,11 +34,9 @@ app.get('/', function(req, res) {
     res.render('main', data);
 });
 
-app.get('/pages/:page', function(req, res) {
-});
-
 app.get('/post/:title', function(req, res) {
     data.archive = data.archives[req.params.title];
+	pageTitle = data.archive.head.title +' | ';
     res.render('archive', data);
 });
 
@@ -59,6 +58,7 @@ app.get('/authors', function(req, res) {
 
 app.get('/authors/:name', function(req, res) {
     data.author = data.authors[req.params.name];
+	pageTitle = data.author.head.name +'\'s articles | ';
     res.render('author', data);
 });
 
