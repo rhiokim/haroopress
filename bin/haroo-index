@@ -53,17 +53,30 @@ function rss() {
     log('=> '+ conf.deployDir +'/rss.xml');
 }
 
+function page404() {
+    var res, data = haroo.getMainData();
+
+    data.config.meta.pageTitle = '';
+
+    log('=============================================================');
+    log('======================= export 404.html =====================')
+    log('=============================================================');
+
+    res = renderer.render('404', data);
+    write(conf.deployDir +'/404.html', res);
+}
+
 function index() {
     var res, data = haroo.getMainData();
 
     data.config.meta.pageTitle = '';
 
-    res = renderer.render('main', data);
-    write(conf.deployDir +'/index.html', res);
-
     log('=============================================================');
     log('===================== export index.html =====================')
     log('=============================================================');
+
+    res = renderer.render('main', data);
+    write(conf.deployDir +'/index.html', res);
 }
 
 function archives() {
@@ -218,6 +231,7 @@ function pages() {
 }
 
 rss();
+page404();
 index();
 archives();
 categories();
