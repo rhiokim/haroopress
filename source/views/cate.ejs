@@ -9,33 +9,33 @@
 <div class="container">
     <div class="row">
         <div class="span3">
-			<%- partial('plugins/intro', config) %>
+            <%- partial('plugins/intro', config) %>
             <div class="well">
                 <ul class="nav nav-list">
-					<%- partial('plugins/category-menu', { categories: categories }) %>
-					<%- partial('plugins/side-menu', { }) %>
+                    <%- partial('plugins/category-menu', { categories: categories }) %>
+                    <%- partial('plugins/side-menu', { }) %>
                 </ul>
             </div>
         </div>
         <div class="span9">
-			<div class="well">
-				<div class="page-header">
-					<h1>Category : <small>JavaScript</small> <span class="badge badge-info"><%= cates.length %></span></h1>
-				</div>
-				<div class="row">
-					<div class="span9">
-						<ul>
-					<% cates.forEach(function(article) { %>
-							<li>
-								<h3>
-									<a href="/post/<%= article._file %>"><%= article.head.title %></a> <small>by <%= article.head.author %> / <%= article.head.published %></small>
-								</h3>
-							</li>
-					<% }); %>
-						</ul>
-					</div>
-				</div>
-			</div>
+            <div class="well">
+                <div class="page-header">
+                    <h1>Category : <small>JavaScript</small> <span class="badge badge-info"><%= cates.length %></span></h1>
+                </div>
+                <div class="row">
+                    <div class="span9">
+                        <ul>
+                    <% cates.forEach(function(article) { %>
+                            <li>
+                                <h3>
+                                    <a href="/post/<%= article._file %>"><%= article.head.title %></a> <small>by <%= article.head.author %> / <%= article.head.published %></small>
+                                </h3>
+                            </li>
+                    <% }); %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div><!-- /container -->

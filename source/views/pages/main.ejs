@@ -7,31 +7,31 @@
 
 
 <div class="container">
-	<div class="row">
-		<div class="offset1 span10">
-			<div class="subnav">
-				<ul class="nav nav-pills">
-				</ul>
-			</div>
-		</div>
-	</div>
     <div class="row">
-		<div class="offset1 span10">
-			<div class="well markdown">
-				<div class="pull-right">
-					<%- partial('plugins/facebook', config.plugins.facebook) %>
-				</div>
+        <div class="offset1 span10">
+            <div class="subnav">
+                <ul class="nav nav-pills">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset1 span10">
+            <div class="well markdown">
+                <div class="pull-right">
+                    <%- partial('plugins/facebook', config.plugins.facebook) %>
+                </div>
 
-				<div class="pull-right">
-					<%- partial('plugins/google-plus', config.plugins.google) %>
-				</div>
+                <div class="pull-right">
+                    <%- partial('plugins/google-plus', config.plugins.google) %>
+                </div>
 
-				<div class="pull-right">
-					<%- partial('plugins/twitter', config.plugins.twitter) %>
-				</div>
-				<%- page.html %>
-			</div>
-		</div>
+                <div class="pull-right">
+                    <%- partial('plugins/twitter', config.plugins.twitter) %>
+                </div>
+                <%- page.html %>
+            </div>
+        </div>
     </div>
 </div><!-- /container -->
 
