@@ -7,6 +7,7 @@ var conf = {
         author: 'Rhio Kim',
 		keywords: [ 'node.js', 'javascript', 'html5' ]
     },
+    lang: 'en',
     articles: process.cwd() +'/source/articles',
     authors: process.cwd() +'/source/authors',
 
