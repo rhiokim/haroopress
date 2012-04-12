@@ -25,7 +25,7 @@ function beautify(str) {
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
 rl.question('Enter article title : ', function(title) {
-   var file = fs.readFileSync('_template/sample.markdown', 'utf8');
+   var file = fs.readFileSync('_template/sample-post.markdown', 'utf8');
    var head = file.split('\n\n'),
 
     head = JSON.parse(head[0]);
@@ -57,7 +57,7 @@ rl.question('Enter article title : ', function(title) {
             head.tags = tags.split(',');
            
             //TODO: double quotation!!
-            //var header = beautify(JSON.stringify(head));
+            //var header = beautify(JSON.stringify(head), null, 4);
             var header = JSON.stringify(head);
             fs.writeFileSync(conf.sourceDir +'/articles/'+ title +'.markdown', header +'\n\n', 'utf8');
             
