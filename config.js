@@ -25,13 +25,13 @@ var conf = {
 /* third party settings */
 conf.plugins = {
     github: {
-        user: "rhiokim",
+        user: 'rhiokim',
         repoCount: 0,
         profileLink: true,
         skipForks: true
     },
     twitter: {
-        user: "rhiokim",
+        user: 'rhiokim',
         tweetCount: 4,
         showReplies: false,
         followerButton: true,
@@ -44,13 +44,16 @@ conf.plugins = {
 		googlePlusSize: 'medium'
     },
     disqus: {
-        shortName: "nodekr",
+        shortName: 'nodekr',
         showCommentCount: false
     },
     facebook: {
         showLikeButton: true 
     },
-    delicious: {}
+    delicious: {},
+    contributors: {
+        display: true
+    }
 };
 
 module.exports = conf;
