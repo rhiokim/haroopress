@@ -54,6 +54,11 @@ conf.plugins = {
     delicious: {},
     contributors: {
         display: true
+    },
+    weather: {
+        display: true,
+        delay: 8000,
+        zipcode: 'KSXX0037'
     }
 };
 
