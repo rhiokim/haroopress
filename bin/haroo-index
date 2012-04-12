@@ -48,9 +48,9 @@ function rss() {
         });
     }
 
-    write(conf.deployDir +'/rss.xml', feed.xml());
+    write(conf.publicDir +'/rss.xml', feed.xml());
 
-    log('=> '+ conf.deployDir +'/rss.xml');
+    log('=> '+ conf.publicDir +'/rss.xml');
 }
 
 function index() {
@@ -59,7 +59,7 @@ function index() {
     data.config.meta.pageTitle = '';
 
     res = renderer.render('main', data);
-    write(conf.deployDir +'/index.html', res);
+    write(conf.publicDir +'/index.html', res);
 
     log('=============================================================');
     log('===================== export index.html =====================')
@@ -78,7 +78,7 @@ function archives() {
     for(id in archives) {
         archive = archives[id];
         file = archive._file;
-        output = path.resolve(conf.deployDir, 'post', file);
+        output = path.resolve(conf.publicDir, 'post', file);
 
         mkdirp.sync(output, 0755);
         data.archive = archive;
@@ -102,7 +102,7 @@ function categories() {
     log('===================== export category =======================')
     log('=============================================================');
 
-    output = path.resolve(conf.deployDir, 'category');
+    output = path.resolve(conf.publicDir, 'category');
 
     mkdirp.sync(output, 0755);
     res = renderer.render('categories', data);
@@ -123,7 +123,7 @@ function cate() {
 
     for(id in categories) {
         cate = categories[id];
-        output = path.resolve(conf.deployDir, 'category', id);
+        output = path.resolve(conf.publicDir, 'category', id);
 
         mkdirp.sync(output, 0755);
         data.cates = cate;
@@ -147,7 +147,7 @@ function authors() {
     log('===================== export authors ========================')
     log('=============================================================');
 
-    output = path.resolve(conf.deployDir, 'authors');
+    output = path.resolve(conf.publicDir, 'authors');
     mkdirp.sync(output, 0755);
 
     res = renderer.render('authors', data);
@@ -167,7 +167,7 @@ function author() {
 
     for(id in authors) {
         author = authors[id];
-        output = path.resolve(conf.deployDir, 'authors', id);
+        output = path.resolve(conf.publicDir, 'authors', id);
 
         mkdirp.sync(output, 0755);
         data.author = author;
@@ -203,7 +203,7 @@ function pages() {
         layout = page.head.advanced.layout || 'pages';
         display = page.head.advanced.display || 'top';
 
-        output = page._dir.replace( conf.sourceDir, conf.deployDir );
+        output = page._dir.replace( conf.sourceDir, conf.publicDir );
         output = output.replace('/pages', '');
 
         mkdirp.sync(output, 0755);
@@ -213,7 +213,7 @@ function pages() {
         res = renderer.page(layout +'/main', data);
         write(output +'/index.html', res);
 
-        log('=> '+ conf.deployDir + id);
+        log('=> '+ conf.publicDir + id);
     }
 }
 

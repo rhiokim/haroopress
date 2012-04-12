@@ -16,6 +16,7 @@ var conf = {
     },
     
     sourceDir: __dirname + '/source',
+    publicDir: __dirname + '/public',
     deployDir: __dirname + '/_deploy',
 
     deployBranch: 'gh-pages',
