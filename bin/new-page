@@ -32,14 +32,19 @@ rl.question('Enter page title : ', function(title) {
     }
 
     rl.question('Enter page category (e.g cate1, cate2, cate3 ) : ', function(categories) {
-        categories = categories || '';
-        head.categories = categories.split(',');
-
+        if(categories.length) {
+            head.categories = categories.split(',');
+        }
+        
         rl.question('Enter page tag (e.g tag1, tag2, tag3) : ', function(tags) {
             var path = conf.sourceDir +'/pages/'+ title;
 
-            tags = tags || '';
+            if(tags.length) {
+                 tags = tags || '';
+            }
             head.tags = tags.split(',');
+            head.date = new Date();
+            head.published = head.date;
            
             //TODO: double quotation!!
             var header = JSON.stringify(head, null, 4);

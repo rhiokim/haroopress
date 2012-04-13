@@ -41,10 +41,10 @@ github-page:
 deploy:
 	cd ./bin;./deploy-gh-pages
 
-new_post:
+new-post:
 	cd ./bin;./new-post
 
-new_page:
+new-page:
 	cd ./bin;./new-page
 
 .PHONY: init update copy
