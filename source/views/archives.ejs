@@ -1,0 +1,59 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+		<div class="span12">
+			<div class="row">
+				<div class="span3">
+					<div class="well">
+						<ul class="nav nav-list">
+							<%- partial('plugins/category-menu', { categories: categories }) %>
+							<%- partial('plugins/side-menu', { }) %>
+						</ul>
+					</div>
+				</div>
+				<div class="span9">
+					<div class="well">
+						<div class="page-header">
+							<h1>Blog Archives</h1>
+						</div>
+						<div class="row">
+							<% for(var y in dates) { %>
+							<div class="span8" style="padding-left:20px;">
+								<h2><%= y %></h2>
+								<ul class="">
+									<% for(var m in dates[y]) { %>
+									<li>
+										<h3>
+											<%= m %>
+										</h3>
+										<ul class="">
+											<% for(var d in dates[y][m]) {
+												var archives = dates[y][m][d];
+
+												archives.forEach(function(archive) {
+											%>
+											<li>
+												<h4>
+													<a href="/post/<%= archive._file %>"><%= archive.head.title %></a>
+												</h4>
+											</li>
+											<% })} %>
+										</ul>
+									</li>
+									<% } %>
+								</ul>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div><!-- /container -->

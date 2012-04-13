@@ -308,3 +308,30 @@ h1, h2, h3, h4, h5, h6 {
   }
 
 }
+
+/* contributor */
+.contributors {
+}
+.contributors h6 {
+    margin-bottom: 5px;
+}
+.contributors strong {
+    font-size: 1.4em;
+}
+.contributors hr {
+    margin: 6px 0;
+}
+.contributors p {
+    margin: 6px 0 0 6px;
+    display: inline-block;
+}
+.contributors span {
+    font-size: 1em;
+}
+.contributors img {
+    width: 48px;
+    height: 48px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
