@@ -40,13 +40,7 @@
                     </p>
                 </div>
             </div>
-            <div class="well">
-                <ul class="nav nav-list">
-                    <%- partial('plugins/category-menu', { categories: categories }) %>
-                    <%- partial('plugins/side-menu', { }) %>
-                </ul>
-            </div>
-
+			<%- partial('plugins/category-menu', { categories: categories }) %>
             <%- partial('plugins/recents', { archives: archives }) %>
         </div>
         <div class="span9">

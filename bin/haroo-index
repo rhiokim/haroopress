@@ -67,6 +67,21 @@ function index() {
 }
 
 function archives() {
+    var res, data = haroo.getMainData();
+
+    log('=============================================================');
+    log('==================== export archive list ====================')
+    log('=============================================================');
+
+    data.config.meta.pageTitle = 'Blog Archives | ';
+    
+    mkdirp.sync(conf.deployDir +'/archives', 0755);
+
+    res = renderer.render('archives', data);
+    write(conf.deployDir +'/archives/index.html', res);
+}
+
+function archive() {
     var data = haroo.getMainData();
     var archives = data.archives;
     var res, id, archive, file, output;
