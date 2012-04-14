@@ -1,0 +1,11 @@
+        <script>
+            var html = '<div class="well _github_repo"><div class="pull-right"><i class="icon-info-sign"></i></div><h6>github.com repositories</h6></div>';
+            $(html).appendTo('._side');
+
+            github.showRepos({
+                user: 'rhiokim',
+                count: 0,
+                skip_forks: true,
+                target: '._github_repo'
+            });
+        </script>

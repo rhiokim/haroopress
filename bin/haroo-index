@@ -235,6 +235,7 @@ function pages() {
 rss();
 index();
 archives();
+archive();
 categories();
 cate();
 authors();
