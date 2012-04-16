@@ -15,6 +15,7 @@ init:
 	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
 	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
+	cp ./lib/jquery-jsonp/src/jquery.jsonp.js ${SOURCE_DIR}/js
 	mkdir _deploy
 	mkdir public
 

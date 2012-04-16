@@ -12,6 +12,8 @@
             <%- partial('plugins/intro', config) %>
             <%- partial('plugins/category-menu', { categories: categories }) %>
             <%- partial('plugins/contributors', { contributors: config.plugins.contributors, authors: authors }) %>
+            <%- partial('plugins/github-repo', config.plugins.github) %>
+            <%- partial('plugins/tweet-list', config.plugins.twitter) %>
         </div>
         <div class="span9">
             <% for(var id in archives) {
