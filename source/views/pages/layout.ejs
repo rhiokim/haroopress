@@ -60,6 +60,9 @@
               <li>
                 <a href="/">Home</a>
               </li>
+              <li>
+                <a href="/archives">Archives</a>
+              </li>
                 <%- partial('plugins/pages', { pages: pages }) %>
             </ul>
           </div>
@@ -71,6 +74,12 @@
 
     <%- partial('plugins/footer', config) %>
 
+    <!-- Le javascript -->
+    <!--<script src="/js/lib/require.1.0.4.js"></script>-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/apps/toc.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script>
         $('pre > code').parent().addClass('prettyprint linenums');
         prettyPrint();

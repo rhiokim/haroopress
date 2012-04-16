@@ -64,13 +64,7 @@ app.get('/authors/:name', function(req, res) {
 
 
 app.get('/archives', function(req, res) {
-    var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
-    posts = JSON.parse(posts);
-    posts.forEach(function(post) {
-        post.published = moment(new Date(post.published)).fromNow();
-    });
-
-    res.render('archives', { config: config, plugins: config.plugins, posts: posts });
+    res.render('archives', data);
 });
 
 app.get('/tags', function(req, res) {

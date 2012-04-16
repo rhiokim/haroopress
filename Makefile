@@ -44,10 +44,10 @@ deploy:
 	cp -R ${PUBLIC_DIR}/* ${DEPLOY_DIR}
 	cd ./bin;./deploy-gh-pages
 
-new_post:
+new-post:
 	cd ./bin;./new-post
 
-new_page:
+new-page:
 	cd ./bin;./new-page
 
 .PHONY: init update copy clear

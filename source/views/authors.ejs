@@ -8,16 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="span3">
-            <%- partial('plugins/intro', config) %>
-            <div class="well">
-                <ul class="nav nav-list">
-                    <%- partial('plugins/author-menu', { authors: authors }) %>
-                    <li class="nav-header">Another list header</li>
-                    <li><a href="/category"><i class="icon-book"></i> Category</a></li>
-                    <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="icon-flag"></i> Help</a></li>
-                </ul>
-            </div>
+			<%- partial('plugins/category-menu', { categories: categories }) %>
         </div>
         <div class="span9">
             <div class="row">
