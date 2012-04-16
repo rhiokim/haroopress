@@ -13,3 +13,6 @@
 [submodule "lib/generated_toc"]
 	path = lib/generated_toc
 	url = https://github.com/nanotube/generated_toc.git
+[submodule "lib/jquery-jsonp"]
+	path = lib/jquery-jsonp
+	url = https://github.com/jaubourg/jquery-jsonp

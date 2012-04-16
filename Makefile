@@ -15,6 +15,7 @@ init:
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
 	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
 	mkdir _deploy
+	mkdir public
 
 update:
 	git submodule update --init
