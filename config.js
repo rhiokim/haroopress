@@ -36,7 +36,7 @@ conf.plugins = {
     twitter: {
         display: true,
         user: 'rhiokim',
-        tweetCount: 20,
+        tweetCount: 10,
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,

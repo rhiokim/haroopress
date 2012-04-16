@@ -61,8 +61,8 @@ function showTwitterFeed(tweets, twitter_user) {
   var content = '';
 
   for (var t in tweets) {
-      console.log(tweets[t]);
-    content += '<li>'+'<p>'+'<a href="http://twitter.com/'+twitter_user+'/status/'+tweets[t].id_str+'" rel="popover" data-content="And here\'s some amazing content. It\'s very engaging. right?" data-original-title="A Title">'+prettyDate(tweets[t].created_at)+'</a>'+linkifyTweet(tweets[t].text.replace(/\n/g, '<br>'), tweets[t].entities.urls)+'</p>'+'</li>';
+    content += '<p>'+'<a href="http://twitter.com/'+twitter_user+'/status/'+tweets[t].id_str+'" class="pull-right">'+prettyDate(tweets[t].created_at)+'</a>'+linkifyTweet(tweets[t].text.replace(/\n/g, '<br>'), tweets[t].entities.urls)+'</p>';
+    content += '<hr/>'
   }
     $(content).appendTo('._tweets');
 }

@@ -2,10 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./public
 
-init:
-	npm install -g less
-	npm install -g uglify-js
-	npm install -g locally
+init: npm
 	git submodule update --init --recursive
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
@@ -16,11 +13,27 @@ init:
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
 	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
 	cp ./lib/jquery-jsonp/src/jquery.jsonp.js ${SOURCE_DIR}/js
+	rm -rf _deploy
+	rm -rf public
 	mkdir _deploy
 	mkdir public
 
+npm:
+	npm install -g less
+	npm install -g uglify-js
+	npm install -g locally
+
 update:
-	git submodule update --init
+	git submodule update --init --recursive
+	rm -rf ./lib/bootstrap/bootstrap/
+	cd ./lib/bootstrap/;make bootstrap
+	cp -R ./lib/bootstrap/bootstrap/* ${SOURCE_DIR}
+	cd ./lib/jquery/;make
+	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
+	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
+	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
+	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
+	cp ./lib/jquery-jsonp/src/jquery.jsonp.js ${SOURCE_DIR}/js
 	cd ./lib/google-code-prettify/;make
 
 copy:
