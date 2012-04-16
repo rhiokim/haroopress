@@ -4,15 +4,12 @@ var github = (function(){
     var i = 0, fragment = '';
 
     for(i = 0; i < repos.length; i++) {
-      fragment += '<li><a href="'+ repos[i].url +'" rel="popover" data-content="'+ repos[i].description +' " data-original-title="'+repos[i].name +'">'+repos[i].name+'</a></li>';
+      fragment += '<li><a href="'+ repos[i].url +'" rel="popover" data-content="'+ repos[i].description +' " data-original-title="'+repos[i].name +'" target="_blank">'+repos[i].name+'</a></li>';
     }
     $(fragment).appendTo(target);
 
         $("a[rel=popover]")
-            .popover()
-            .click(function(e) {
-            e.preventDefault()
-            });
+            .popover();
   }
   return {
     showRepos: function(options){
