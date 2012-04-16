@@ -16,3 +16,6 @@
 [submodule "lib/weather"]
 	path = lib/weather
 	url = https://github.com/monkeecreate/jquery.simpleWeather.git
+[submodule "lib/jquery-jsonp"]
+	path = lib/jquery-jsonp
+	url = https://github.com/jaubourg/jquery-jsonp.git
