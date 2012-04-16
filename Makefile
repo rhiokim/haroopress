@@ -35,9 +35,9 @@ gen: clear
 	cd ./bin;./haroo-index
 
 preview:
+	./bin/open-browser
 	locally -w ./public -p 8000
-	open http://localhost:8000
-
+	
 github-page:
 	cd ./bin/;./setup-github-page
 
