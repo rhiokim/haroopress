@@ -2,4 +2,11 @@
 
 var spawn = require('child_process').spawn;
 
-spawn('open', ['http://localhost:8000']);
+switch(process.platform) {
+    case 'darwin' :
+        spawn('open', ['http://localhost:8000']);
+    break;
+    case 'win32' :
+    break;
+}
+

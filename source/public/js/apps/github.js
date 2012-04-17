@@ -1,15 +1,28 @@
 function github(options){
     var url = "http://github.com/api/v2/json/repos/show/"+ options.user +"?callback=?";
+    var data = {
+        repos: [],
+        link: function() {
+            return '<a href="'+ this.url +'" rel="popover" data-content="">'+ this.name +'</a>';
+        },
+        fcnt: function() {
+            return '<span class=\'label\'>forks '+ this.forks +'</span>';
+        },
+        wcnt: function() {
+            return '<span class=\'label\'>watched '+ this.watchers +'</span>';
+        },
+        icnt: function() {
+            return '<span class=\'label label-warning\'>issues '+ this.open_issues +'</span>';
+        },
+        body: function() {
+            return this.description;
+        }
+    };
+    var view = '{{#repos}}<li><a href="{{url}}" rel="popover" data-content="<p>{{fcnt}} {{wcnt}} {{icnt}}</p> {{body}}" data-original-title="{{name}}" target="_blank">{{name}}</a></li>{{/repos}}';
 
     function render(target, repos){
-        var i = 0, fragment = '';
-
-        for(i = 0; i < repos.length; i++) {
-            console.log(repos[i])
-            fragment += '<li><a href="'+ repos[i].url +'" rel="popover" data-content="fork: <span class=\'badge badge-info\'>'+ repos[i].forks +'</span> watched: <span class=\'badge badge-info\'>'+ repos[i].watchers +'</span> issues: <span class=\'badge badge-warning\'>'+ repos[i].open_issues +'</span><br/>'+ repos[i].description +'" data-original-title="'+repos[i].name +'" target="_blank">'+repos[i].name+'</a></li>';
-        }
-
-        $(fragment).appendTo(target);
+        data.repos = repos;
+        $(Mustache.render(view, data)).appendTo(target);
     }
 
     /* sort by pushed date */
@@ -55,12 +68,17 @@ function github(options){
 
         /* repo link popover */
         $("a[rel=popover]").popover();
+
+        $(options.target +' .bar').width('100%');
+        $(options.target +' .progress').hide();
     }
 
     /* error callback */
     function errorHandler(err) {
         $(options.target).addClass('error').text("Error loading feed");
     }
+
+    $(options.target + ' .bar').animate({width: '100%'});
 
     $.jsonp({
         url: url,

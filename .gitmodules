@@ -16,3 +16,6 @@
 [submodule "lib/bootstrap"]
 	path = lib/bootstrap
 	url = https://github.com/twitter/bootstrap.git
+[submodule "lib/mustache"]
+	path = lib/mustache
+	url = https://github.com/janl/mustache.js.git
