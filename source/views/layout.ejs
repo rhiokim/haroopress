@@ -43,34 +43,7 @@
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
 
-    <!-- Topbar
-    ================================================== -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-
-          <a class="pull-right" href="/rss.xml"><img src="/img/buttons/rss.png" /></a>
-          <a class="pull-right" href="http://twitter.com/haroopress" target="_blank"><img src="/img/buttons/twitter.png" /></a>
-
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/archives">Archives</a>
-              </li>
-                <%- partial('plugins/pages', { pages: pages }) %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%- partial('plugins/header', { pages: pages}) %>
 
     <%- body %>
 

@@ -1,8 +1,0 @@
-<% for(var id in pages) {
-    var page = pages[id];
-    if(page.head.status == 'draft') { continue; }
-%>
-    <li>
-        <a href="<%= page._path %>"><%= page.head.title %></a>
-    </li>
-<% } %>
