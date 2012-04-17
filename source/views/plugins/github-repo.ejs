@@ -6,10 +6,10 @@
             <h6>github.com repositories</h6>
         </div>
         <script>
-            github.showRepos({
+            github({
                 user: '<%= user %>',
                 count: <%= repoCount %>,
-                skip_forks: <%= skipForks %>,
+                skipForks: <%= skipForks %>,
                 target: '._github_repo'
             });
         </script>

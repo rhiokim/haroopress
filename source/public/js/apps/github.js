@@ -1,4 +1,5 @@
-var github = (function(){
+function github(options){
+    var url = "http://github.com/api/v2/json/repos/show/"+ options.user +"?callback=?";
 
     function render(target, repos){
         var i = 0, fragment = '';
@@ -9,35 +10,61 @@ var github = (function(){
         }
 
         $(fragment).appendTo(target);
-
-        $("a[rel=popover]")
-            .popover();
     }
 
-    return {
-        showRepos: function(options){
-      $.jsonp({
-          url: "http://github.com/api/v2/json/repos/show/"+options.user+"?callback=?"
-        , error: function (err) { $(options.target).addClass('error').text("Error loading feed"); }
-        , success: function(data) {
-          var repos = [];
-          if (!data || !data.repositories) { return; }
-          for (var i = 0; i < data.repositories.length; i++) {
-            if (options.skip_forks && data.repositories[i].fork) { continue; }
-            repos.push(data.repositories[i]);
-          }
-          repos.sort(function(a, b) {
+    /* sort by pushed date */
+    function sort(repos) {
+        repos.sort(function(a, b) {
+
             var aDate = new Date(a.pushed_at).valueOf(),
                 bDate = new Date(b.pushed_at).valueOf();
 
-            if (aDate === bDate) { return 0; }
+            if (aDate === bDate) {
+                return 0;
+            }
             return aDate > bDate ? -1 : 1;
-          });
+        });
 
-          if (options.count) { repos.splice(options.count); }
-          render(options.target, repos);
-        }
-      });
+        return repos;
     }
-  };
-})();
+
+    /* success callback */
+    function successHandler(data) {
+        var i, repo, repos = [];
+
+        /* none repository */
+        if (!data || !data.repositories) {
+            return;
+        }
+
+        for (i = 0; i < data.repositories.length; i++) {
+            repo = data.repositories[i];
+            if (options.skipForks && repo.fork) {
+                continue;
+            }
+            repos.push(repo);
+        }
+
+        repos = sort(repos);
+
+        if (options.count) {
+            repos.splice(options.count);
+        }
+
+        render(options.target, repos);
+
+        /* repo link popover */
+        $("a[rel=popover]").popover();
+    }
+
+    /* error callback */
+    function errorHandler(err) {
+        $(options.target).addClass('error').text("Error loading feed");
+    }
+
+    $.jsonp({
+        url: url,
+        error: errorHandler,
+        success: successHandler
+    });
+}
