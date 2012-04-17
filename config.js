@@ -27,14 +27,16 @@ var conf = {
 /* third party settings */
 conf.plugins = {
     github: {
+        display: true,
         user: 'rhiokim',
-        repoCount: 0,
+        repoCount: 10,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
+        display: true,
         user: 'rhiokim',
-        tweetCount: 4,
+        tweetCount: 10,
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,

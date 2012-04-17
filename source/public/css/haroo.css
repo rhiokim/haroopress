@@ -335,3 +335,17 @@ h1, h2, h3, h4, h5, h6 {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+
+/* twitter plugin */
+._tweets {
+}
+._tweets h6 {
+    margin-bottom: 5px;
+}
+._tweets strong {
+    font-size: 1.4em;
+}
+._tweets hr {
+    margin: 3px 0;
+}

@@ -2,11 +2,21 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./public
 
-init:
+init: npm update build
+	rm -rf _deploy
+	rm -rf public
+	mkdir _deploy
+	mkdir public
+
+npm:
 	npm install -g less
 	npm install -g uglify-js
 	npm install -g locally
+
+update:
 	git submodule update --init --recursive
+
+build:
 	rm -rf ./lib/bootstrap/bootstrap/
 	cd ./lib/bootstrap/;make bootstrap
 	cp -R ./lib/bootstrap/bootstrap/* ${SOURCE_DIR}
@@ -15,12 +25,9 @@ init:
 	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
 	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
 	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
-	mkdir _deploy
-	mkdir public
-
-update:
-	git submodule update --init
+	cp ./lib/jquery-jsonp/src/jquery.jsonp.js ${SOURCE_DIR}/js
 	cd ./lib/google-code-prettify/;make
+	cp ./lib/mustache/mustache.js ${SOURCE_DIR}/js
 
 copy:
 	cp ./lib/google-code-prettify/*.js ${SOURCE_DIR}/js
@@ -51,4 +58,4 @@ new-post:
 new-page:
 	cd ./bin;./new-page
 
-.PHONY: init update copy clear
+.PHONY: init update build copy clear

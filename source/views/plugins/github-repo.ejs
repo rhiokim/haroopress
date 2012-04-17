@@ -1,11 +1,19 @@
+    <% if(display) { %>
+        <div class="well _github_repo">
+            <div class="pull-right">
+                <a href="/github"><i class="icon-info-sign"></i></a>
+            </div>
+            <h6>github.com repositories</h6>
+            <div class="progress progress-info progress-striped active">
+                <div class="bar" style="width: 10%;"></div>
+            </div>
+        </div>
         <script>
-            var html = '<div class="well _github_repo"><div class="pull-right"><i class="icon-info-sign"></i></div><h6>github.com repositories</h6></div>';
-            $(html).appendTo('._side');
-
-            github.showRepos({
-                user: 'rhiokim',
-                count: 0,
-                skip_forks: true,
+            github({
+                user: '<%= user %>',
+                count: <%= repoCount %>,
+                skipForks: <%= skipForks %>,
                 target: '._github_repo'
             });
         </script>
+    <% } %>

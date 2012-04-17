@@ -1,8 +1,13 @@
-<ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-//    $.domReady(function(){
-//      getTwitterFeed("rhiokim", 4, false);
-//    });
-  </script>
+    <% if(display) { %>
+        <div class="well _tweets">
+            <div class="pull-right">
+                <a href="/tweets"><i class="icon-info-sign"></i></a>
+            </div>
+            <h6>tweets</h6>
+        </div>
+        <script>
+            $(document.body).ready(function(){
+              getTwitterFeed("<%= user %>", <%= tweetCount %>, false);
+            });
+        </script>
+    <% } %>
