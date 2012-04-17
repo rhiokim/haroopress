@@ -53,6 +53,19 @@ function rss() {
     log('=> '+ conf.publicDir +'/rss.xml');
 }
 
+function page404() {
+    var res, data = haroo.getMainData();
+
+    data.config.meta.pageTitle = '404 page not found | ';
+
+    log('=============================================================');
+    log('======================= export 404.html =====================')
+    log('=============================================================');
+
+    res = renderer.http('404', data);
+    write(conf.publicDir +'/404.html', res);
+}
+
 function index() {
     var res, data = haroo.getMainData();
 
@@ -64,6 +77,9 @@ function index() {
     log('=============================================================');
     log('===================== export index.html =====================')
     log('=============================================================');
+
+    res = renderer.render('main', data);
+    write(conf.deployDir +'/index.html', res);
 }
 
 function archives() {
@@ -233,6 +249,7 @@ function pages() {
 }
 
 rss();
+page404();
 index();
 archives();
 archive();
