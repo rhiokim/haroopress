@@ -1,0 +1,19 @@
+    <% if(display) { %>
+        <div class="well _github_repo">
+            <div class="pull-right">
+                <a href="/github"><i class="icon-info-sign"></i></a>
+            </div>
+            <h6>github.com repositories</h6>
+            <div class="progress progress-info progress-striped active">
+                <div class="bar" style="width: 10%;"></div>
+            </div>
+        </div>
+        <script>
+            github({
+                user: '<%= user %>',
+                count: <%= repoCount %>,
+                skipForks: <%= skipForks %>,
+                target: '._github_repo'
+            });
+        </script>
+    <% } %>

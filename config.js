@@ -16,6 +16,7 @@ var conf = {
     },
     
     sourceDir: __dirname + '/source',
+    publicDir: __dirname + '/public',
     deployDir: __dirname + '/_deploy',
 
     deployBranch: 'gh-pages',
@@ -26,14 +27,16 @@ var conf = {
 /* third party settings */
 conf.plugins = {
     github: {
+        display: true,
         user: 'rhiokim',
-        repoCount: 0,
+        repoCount: 10,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
+        display: true,
         user: 'rhiokim',
-        tweetCount: 4,
+        tweetCount: 10,
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,
@@ -54,6 +57,11 @@ conf.plugins = {
     delicious: {},
     contributors: {
         display: true
+    },
+    weather: {
+        display: true,
+        delay: 8000,
+        zipcode: 'KSXX0037'
     }
 };
 

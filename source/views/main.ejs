@@ -8,15 +8,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="span3">
+        <div class="span3 _side">
             <%- partial('plugins/intro', config) %>
-            <div class="well">
-                <ul class="nav nav-list">
-                    <%- partial('plugins/category-menu', { categories: categories }) %>
-                    <%- partial('plugins/side-menu', { }) %>
-                </ul>
-            </div>
+            <%- partial('plugins/category-menu', { categories: categories }) %>
             <%- partial('plugins/contributors', { contributors: config.plugins.contributors, authors: authors }) %>
+            <%- partial('plugins/github-repo', config.plugins.github) %>
         </div>
         <div class="span9">
             <% for(var id in archives) {
@@ -51,3 +47,5 @@
         </div>
     </div>
 </div><!-- /container -->
+
+<%- partial('plugins/weather', config.plugins) %>

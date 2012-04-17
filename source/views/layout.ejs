@@ -21,7 +21,7 @@
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/haroo.css" rel="stylesheet">
     <link href="/css/prettify.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
@@ -29,6 +29,16 @@
     <!--<link rel="apple-touch-icon" href="assets/ico/bootstrap-apple-57x57.png">-->
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
     <!--<link rel="apple-touch-icon" sizes="114x114" href="assets/ico/bootstrap-apple-114x114.png">-->
+
+    <!-- Le javascript -->
+    <!--<script src="/js/lib/require.1.0.4.js"></script>-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.jsonp.js"></script>
+    <script src="/js/mustache.js"></script>
+    <script src="/js/apps/github.js"></script>
+    <script src="/js/apps/twitter.js"></script>
 </head>
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -52,6 +62,9 @@
               <li>
                 <a href="/">Home</a>
               </li>
+              <li>
+                <a href="/archives">Archives</a>
+              </li>
                 <%- partial('plugins/pages', { pages: pages }) %>
             </ul>
           </div>
@@ -63,11 +76,6 @@
 
     <%- partial('plugins/footer', config) %>
 
-    <!-- Le javascript -->
-    <!--<script src="/js/lib/require.1.0.4.js"></script>-->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/prettify.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
     <script>
         $('pre > code').parent().addClass('prettyprint linenums');
         prettyPrint();

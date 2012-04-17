@@ -99,6 +99,12 @@
             <li class="thumbnail span4">
                 <img src="/img/pages/about/haroopress.021.jpg" />
             </li>
+            <li class="thumbnail span4">
+                <img src="/img/pages/about/haroopress.022.jpg" />
+            </li>
+            <li class="thumbnail span4">
+                <img src="/img/pages/about/haroopress.023.jpg" />
+            </li>
         </ul>
     </div>
 </div>

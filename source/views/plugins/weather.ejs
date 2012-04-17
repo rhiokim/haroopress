@@ -1,0 +1,22 @@
+<% if (weather.display) { %>
+    <div id="__weather" class="pull-right"></div>
+
+    <script src="/js/jquery.simpleWeather-2.0.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.simpleWeather({
+                zipcode: '<%= weather.zipcode %>',
+                unit: 'f',
+                success: function(weather) {
+                    $("#__weather").html('<img src="'+ weather.image +'">');
+                },
+                error: function(error) {
+                        $("#__weather").html("<p>"+error+"</p>");
+                }
+            });
+
+            $('#__weather').css({ position: 'absolute', marginTop:-30, left: 30 }).stop().fadeIn().animate({ opacity: 0 }, <%= weather.delay %>);
+
+        });
+    </script>
+<% } %>
