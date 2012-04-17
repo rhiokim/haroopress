@@ -56,14 +56,14 @@ function rss() {
 function page404() {
     var res, data = haroo.getMainData();
 
-    data.config.meta.pageTitle = '';
+    data.config.meta.pageTitle = '404 page not found | ';
 
     log('=============================================================');
     log('======================= export 404.html =====================')
     log('=============================================================');
 
-    res = renderer.render('404', data);
-    write(conf.deployDir +'/404.html', res);
+    res = renderer.http('404', data);
+    write(conf.publicDir +'/404.html', res);
 }
 
 function index() {
