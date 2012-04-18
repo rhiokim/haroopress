@@ -1,0 +1,51 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="row">
+                <div class="span3">
+                    <%- partial('plugins/category-menu', { categories: categories }) %>
+                    <%- partial('plugins/contributors', { contributors: config.plugins.contributors, authors: authors }) %>
+                </div>
+                <div class="span9">
+                    <div class="well">
+                        <div class="page-header">
+                            <h1>Blog Archives</h1>
+                        </div>
+                        <% for(var y in dates) { %>
+                        <h2><%= y %></h2>
+                        <section class="comments">
+                            <% for(var m in dates[y]) { %>
+                                <% for(var d in dates[y][m]) {
+                                    var archives = dates[y][m][d];
+
+                                    archives.forEach(function(archive) {
+                                %>
+                            <article class="comment">
+                                <a class="comment-img" href="/authors/<%= archive.author.head.name %>">
+                                    <img src="<%= archive.author._gravatar %>" alt="" width="50" height="50">
+                                </a>
+                                <div class="comment-body">
+                                    <div class="text">
+                                        <p><%= archive.head.title %>... <a href="/post/<%= archive._file %>">read</a></p>
+                                    </div>
+                                    <p class="attribution">by <a href="/authors/<%= archive.author.head.name %>" ><%= archive.author.head.name %></a>, <%= d %> <%= m %></p>
+                                </div>
+                            </article>
+                                <% })} %>
+                            <% } %>
+                        </section>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+​
