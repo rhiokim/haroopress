@@ -9,7 +9,11 @@
           </a>
 
           <a class="pull-right" href="/rss.xml"><img src="/img/buttons/rss.png" /></a>
-          <a class="pull-right" href="http://twitter.com/haroopress" target="_blank"><img src="/img/buttons/twitter.png" /></a>
+          <%
+            var twitter = config.plugins.twitter;
+            if(twitter.display && twitter.user) { %>
+            <a class="pull-right" href="http://twitter.com/<%= config.plugins.twitter.user %>" target="_blank"><img src="/img/buttons/twitter.png" /></a>
+          <% } %>
 
           <div class="nav-collapse">
             <ul class="nav">
