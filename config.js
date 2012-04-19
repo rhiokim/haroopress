@@ -43,13 +43,14 @@ conf.plugins = {
         tweetButton: true
     },
     google: {
-		googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
-		googlePlus: true,
-		googlePlusSize: 'medium'
+        googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+        googlePlus: true,
+        googlePlusSize: 'medium'
     },
     disqus: {
+        display: true,
         shortName: 'nodekr',
-        showCommentCount: false
+        showCommentCount: true
     },
     facebook: {
         showLikeButton: true 

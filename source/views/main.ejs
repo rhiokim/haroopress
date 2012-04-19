@@ -37,8 +37,10 @@
                         <div class="markdown">
                             <%- article.html %>
                         </div>
+                        <hr/>
+                        <a class="pull-right" href="/post/<%= article._file %>#disqus_thread" data-disqus-identifier="<%= id %>"></a>
                         <p>
-                            <a href="/post/<%= article._file %>" class="btn btn-primary btn-large">Read more...</a>
+                            <a href="/post/<%= article._file %>" class="btn btn-info">Read more...</a>
                         </p>
                     </div>
                 </div>
@@ -48,4 +50,5 @@
     </div>
 </div><!-- /container -->
 
+<%- partial('plugins/disqus-comment-count', config.plugins.disqus) %>
 <%- partial('plugins/weather', config.plugins) %>
