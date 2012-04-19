@@ -40,13 +40,14 @@
                     </p>
                 </div>
             </div>
-			<%- partial('plugins/category-menu', { categories: categories }) %>
+            <%- partial('plugins/category-menu', { categories: categories }) %>
             <%- partial('plugins/recents', { archives: archives }) %>
         </div>
         <div class="span9">
             <div class="row">
                 <div class="span9">
                     <div class="well">
+                        <% if(archive.head.important) { %><div class="pull-right bookmark"></div><% } %>
                         <div class="page-header">
                             <h1><%= archive.head.title %></h1>
                         </div>
