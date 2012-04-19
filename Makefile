@@ -1,6 +1,6 @@
 SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
-PUBLIC_DIR=./public
+PUBLIC_DIR=./_public
 
 init: npm update build
 	rm -rf _deploy
@@ -43,7 +43,7 @@ gen: clear
 
 preview:
 	./bin/open-browser
-	locally -w ./public -p 8000
+	locally -w ${PUBLIC_DIR} -p 8000
 	
 github-page:
 	cd ./bin/;./setup-github-page
