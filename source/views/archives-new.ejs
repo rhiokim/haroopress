@@ -18,7 +18,18 @@
                         <div class="page-header">
                             <h1>Blog Archives</h1>
                         </div>
-                        <h2>2011</h2>
+                    <%
+                        var y, m, year, month;
+                        dates.index.forEach(function(item) {
+                            y = item[0];
+                            year = item[1];
+                    %>
+                        <h2><%= y %></h2>
+                        <%
+                            year.forEach(function(item) {
+                                m = item[0];
+                                month = item[1];
+                        %>
                         <section class="comments">
                             <article class="comment">
                                 <a class="comment-img" href="/authors/#">
@@ -32,6 +43,7 @@
                                 </div>
                             </article>
                         </section>
+                        <% }) %>
                     </div>
                 </div>
             </div>
