@@ -18,38 +18,47 @@
                         <div class="page-header">
                             <h1>Blog Archives</h1>
                         </div>
-                        <div class="row">
-                            <% for(var y in dates) { %>
-                            <div class="span8" style="padding-left:20px;">
-                                <h2><%= y %></h2>
-                                <ul class="">
-                                    <% for(var m in dates[y]) { %>
-                                    <li>
-                                        <h3>
-                                            <%= m %>
-                                        </h3>
-                                        <ul class="">
-                                            <% for(var d in dates[y][m]) {
-                                                var archives = dates[y][m][d];
-
-                                                archives.forEach(function(archive) {
-                                            %>
-                                            <li>
-                                                <h4>
-                                                    <a href="/post/<%= archive._file %>"><%= archive.head.title %></a>
-                                                </h4>
-                                            </li>
-                                            <% })} %>
-                                        </ul>
-                                    </li>
-                                    <% } %>
-                                </ul>
-                            </div>
-                            <% } %>
-                        </div>
+                    <%
+                        var y, m, d, year, month, day;
+                        dates.index.forEach(function(item) {
+                            y = item[0];
+                            year = item[1];
+                    %>
+                        <%
+                            year.forEach(function(item) {
+                                m = item[0];
+                                month = item[1];
+                        %>
+                        <h2><%= y %>-<%= m %></h2>
+                        <%
+                            month.forEach(function(item) {
+                                d = item[0];
+                                day = item[1];
+                        %>
+                        <%
+                            day.forEach(function(archive) {
+                        %>
+                        <section class="comments">
+                            <article class="comment">
+                                <a class="comment-img" href="/authors/<%= archive.author.head.name %>">
+                                    <img src="<%= archive.author._gravatar %>" alt="" width="50" height="50">
+                                </a>
+                                <div class="comment-body">
+                                    <div class="text">
+                                        <p><%= archive.head.title %>... <a href="/post/<%= archive.head.title %>">read</a></p>
+                                    </div>
+                                    <p class="attribution">by <a href="/authors/<%= archive.author.head.name %>" ><%= archive.author.head.name %></a> at <%= archive._printDate %></p>
+                                </div>
+                            </article>
+                        </section>
+                        <% }) %>
+                        <% }) %>
+                    <% }) %>
+                <% }) %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div><!-- /container -->
+​

@@ -64,7 +64,7 @@ app.get('/authors/:name', function(req, res) {
 
 
 app.get('/archives', function(req, res) {
-    res.render('archives-new', data);
+    res.render('archives', data);
 });
 
 app.get('/tags', function(req, res) {
