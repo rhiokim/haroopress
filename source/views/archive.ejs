@@ -40,27 +40,21 @@
                     </p>
                 </div>
             </div>
-			<%- partial('plugins/category-menu', { categories: categories }) %>
+            <%- partial('plugins/category-menu', { categories: categories }) %>
             <%- partial('plugins/recents', { archives: archives }) %>
         </div>
         <div class="span9">
             <div class="row">
                 <div class="span9">
-                    <div class="well">
+                    <div class="well bg">
+                        <% if(archive.head.important) { %><div class="pull-right bookmark"></div><% } %>
                         <div class="page-header">
                             <h1><%= archive.head.title %></h1>
                         </div>
-                        <div class="pull-right">
-                            <%- partial('plugins/facebook', config.plugins.facebook) %>
-                        </div>
 
-                        <div class="pull-right">
-                            <%- partial('plugins/google-plus', config.plugins.google) %>
-                        </div>
-
-                        <div class="pull-right">
-                            <%- partial('plugins/twitter', config.plugins.twitter) %>
-                        </div>
+                        <%- partial('plugins/facebook', config.plugins.facebook) %>
+                        <%- partial('plugins/google-plus', config.plugins.google) %>
+                        <%- partial('plugins/twitter', config.plugins.twitter) %>
 
                         <div class="markdown">
                             <%- archive.html %>

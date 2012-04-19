@@ -12,6 +12,7 @@ renderer.setViewDir(conf.sourceDir +'/views');
 
 function write(output, res, charset) {
     fs.writeFileSync(output, res, charset || 'utf8');
+    log("----> "+output);
 }
 
 function log(message) {
@@ -49,8 +50,6 @@ function rss() {
     }
 
     write(conf.publicDir +'/rss.xml', feed.xml());
-
-    log('=> '+ conf.publicDir +'/rss.xml');
 }
 
 function page404() {
@@ -79,7 +78,7 @@ function index() {
     log('=============================================================');
 
     res = renderer.render('main', data);
-    write(conf.deployDir +'/index.html', res);
+    write(conf.publicDir +'/index.html', res);
 }
 
 function archives() {
@@ -91,10 +90,10 @@ function archives() {
 
     data.config.meta.pageTitle = 'Blog Archives | ';
     
-    mkdirp.sync(conf.deployDir +'/archives', 0755);
+    mkdirp.sync(conf.publicDir +'/archives', 0755);
 
     res = renderer.render('archives', data);
-    write(conf.deployDir +'/archives/index.html', res);
+    write(conf.publicDir +'/archives/index.html', res);
 }
 
 function archive() {
@@ -117,8 +116,6 @@ function archive() {
         
         res = renderer.render('archive', data);
         write(output +'/index.html', res);
-
-        log('=> '+ output +'/index.html');
     }
 }
 
@@ -139,8 +136,6 @@ function categories() {
     res = renderer.render('categories', data);
 
     write(output +'/index.html', res);
-
-    log('=> '+ output +'/index.html');
 }
 
 function cate() {
@@ -158,12 +153,10 @@ function cate() {
 
         mkdirp.sync(output, 0755);
         data.cates = cate;
-		data.config.meta.pageTitle = 'Kinds of '+ id +' | ';
+        data.config.meta.pageTitle = 'Kinds of '+ id +' | ';
 
         res = renderer.render('cate', data);
         write(output +'/index.html', res);
-
-        log('=> '+ output +'/index.html');
     }
 }
 
@@ -183,8 +176,6 @@ function authors() {
 
     res = renderer.render('authors', data);
     write(output +'/index.html', res);
-
-    log('=> '+ output +'/index.html');
 }
 
 function author() {
@@ -206,8 +197,6 @@ function author() {
 
         res = renderer.render('author', data);
         write(output +'/index.html', res);
-
-        log('=> '+ output +'/index.html');
     }
 }
 
@@ -239,12 +228,10 @@ function pages() {
 
         mkdirp.sync(output, 0755);
         data.page = page;
-		data.config.meta.pageTitle = page.head.title;
+        data.config.meta.pageTitle = page.head.title;
 
         res = renderer.page(layout +'/main', data);
         write(output +'/index.html', res);
-
-        log('=> '+ conf.publicDir + id);
     }
 }
 

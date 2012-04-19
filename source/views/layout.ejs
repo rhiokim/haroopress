@@ -23,6 +23,7 @@
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/css/haroo.css" rel="stylesheet">
     <link href="/css/prettify.css" rel="stylesheet">
+    <link href="/css/archives.css" rel="stylesheet">
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
@@ -43,38 +44,11 @@
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
 
-    <!-- Topbar
-    ================================================== -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-
-          <a class="pull-right" href="/rss.xml"><img src="/img/buttons/rss.png" /></a>
-          <a class="pull-right" href="http://twitter.com/haroopress" target="_blank"><img src="/img/buttons/twitter.png" /></a>
-
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/archives">Archives</a>
-              </li>
-                <%- partial('plugins/pages', { pages: pages }) %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%- partial('layout/header', { config: config, pages: pages }) %>
 
     <%- body %>
 
-    <%- partial('plugins/footer', config) %>
+    <%- partial('layout/footer', config) %>
 
     <script>
         $('pre > code').parent().addClass('prettyprint linenums');
