@@ -1,36 +1,11 @@
-header {
-    /*margin-top: 80px;*/
-}
-
 body {
     background: url('/img/document-bg.jpg');
     background-attachment: fixed;
-    /*color: #f4e8d3;*/
 }
 
 footer {
     margin: 30px 0 20px 0;
-    /*color: #f4e8d3;*/
 }
-
-h1, h2, h3, h4, h5, h6 {
-}
-
-/*****************
- *
- *****************/
-/*.navbar-inner {*/
-    /*height: 50px;*/
-    /*background-image: url('/img/opacity-bg-black50.png');*/
-    /*background-color: transparent;*/
-/*}*/
-
-/*.navbar .brand {*/
-    /*padding: 13px 20px 12px;*/
-/*}*/
-/*.navbar .nav {*/
-    /*padding: 5px 20px 12px;*/
-/*}*/
 
 .navbar-fixed-top .brand {
   padding-right: 0;

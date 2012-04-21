@@ -4,7 +4,7 @@
     "date": "2012-04-19T11:25:21.654Z",
     "categories": [
         "haroopress",
-        " tutorial"
+        "tutorial"
     ],
     "tags": [],
     "acceptComment": true,
