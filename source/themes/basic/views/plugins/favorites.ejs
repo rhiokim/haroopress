@@ -1,0 +1,12 @@
+<% if (list.length) { %>
+<div class="well">
+    <ul class="nav nav-list">
+        <li class="nav-header">Favorites</li>
+        <% list.forEach(function(favorite) { %>
+        <li>
+            <a href="<%= favorite.url %>" target="_blank"><%= favorite.name %></a>
+        </li>
+        <% }) %>
+    </ul>
+</div>
+<% } %>

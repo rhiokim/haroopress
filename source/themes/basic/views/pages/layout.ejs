@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><%= config.meta.pageTitle %> <%= config.meta.defaultTitle %></title>
+    <meta name="description" content="<%= config.meta.description %>">
+    <meta name="author" content="<%= config.meta.author %>">
+    <meta name="keywords" content="<%= config.meta.keywords.join(',') %>" />
+    <meta name="generator" content="haroopress v<%= config.meta.version %>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/rss.xml" rel="alternate" title="<%= config.meta.defaultTitle %>" type="application/rss+xml">
+
+    <!-- Le styles -->
+    <link rel="canonical" href="<%= config.meta.siteUrl %>">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/haroo.css" rel="stylesheet">
+    <link href="/css/prettify.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <!--<link rel="apple-touch-icon" href="assets/ico/bootstrap-apple-57x57.png">-->
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
+    <!--<link rel="apple-touch-icon" sizes="114x114" href="assets/ico/bootstrap-apple-114x114.png">-->
+
+    <!-- Le javascript -->
+    <!--<script src="/js/lib/require.1.0.4.js"></script>-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/toc.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+    <%- partial('layout/header', { config: config, pages: pages }) %>
+
+    <%- body %>
+
+    <%- partial('layout/footer', config) %>
+
+    <!-- Le javascript -->
+    <!--<script src="/js/lib/require.1.0.4.js"></script>-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/prettify.js"></script>
+    <script src="/js/apps/toc.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        $('pre > code').parent().addClass('prettyprint linenums');
+        prettyPrint();
+
+        // fix sub nav on scroll
+        var $win = $(window)
+          , $nav = $('.subnav')
+          , navTop = $('.subnav').length && $('.subnav').offset().top - 40
+          , isFixed = 0
+
+        processScroll()
+
+        $win.on('scroll', processScroll)
+
+        function processScroll() {
+          var i, scrollTop = $win.scrollTop()
+          if (scrollTop >= navTop && !isFixed) {
+            isFixed = 1
+            $nav.addClass('subnav-fixed')
+          } else if (scrollTop <= navTop && isFixed) {
+            isFixed = 0
+            $nav.removeClass('subnav-fixed')
+          }
+        }
+
+
+    </script>
+    <%- partial('plugins/google-analysis', config.plugins.google) %>
+    </body>
+</html>

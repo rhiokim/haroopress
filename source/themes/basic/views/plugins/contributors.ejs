@@ -1,0 +1,20 @@
+    <% if(contributors.display) { %>
+    <div class="well contributors">
+		<div class="pull-right">
+			<a href="/authors"><i class=" icon-info-sign"></i></a>
+		</div>
+        <h6>contributors</h6>
+        <% for(var id in authors) {
+            var author = authors[id];
+        %>
+        <div class="row-fluid">
+            <a class="pull-left" href="/authors/<%= author.head.name %>" title=""><img src="<%= author._gravatar %>" /></a>
+            <p>
+                <strong><%= author.head.name %></strong><br/>
+                <span>@<%= author.head.twitter %></span>
+            </p>
+        </div>
+        <hr>
+        <% } %>
+    </div>
+    <% } %>

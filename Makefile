@@ -3,10 +3,10 @@ DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
 init: npm update build
-	rm -rf _deploy
-	rm -rf public
-	mkdir _deploy
-	mkdir public
+	rm -rf ${DEPLOY_DIR}
+	rm -rf ${PUBLIC_DIR}
+	mkdir ${DEPLOY_DIR}
+	mkdir ${PUBLIC_DIR}
 
 npm:
 	npm install -g less
@@ -38,8 +38,7 @@ clear:
 	rm -rf ${PUBLIC_DIR}/*
 
 gen: clear 
-	cp -R ${SOURCE_DIR}/* ${PUBLIC_DIR}
-	cd ./bin;./haroo-index
+	./bin/gen
 
 preview:
 	./bin/open-browser

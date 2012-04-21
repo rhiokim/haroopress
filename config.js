@@ -14,15 +14,19 @@ var conf = {
     rss: {
         contentLength: 0
     },
-    
+
     sourceDir: __dirname + '/source',
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
+    themeDir: __dirname + '/source/themes',
 
     deployBranch: 'gh-pages',
     CNAME: 'nodejs.kr'
 };
 
+conf.theme = {
+    name: 'basic'
+};
 
 /* third party settings */
 conf.plugins = {

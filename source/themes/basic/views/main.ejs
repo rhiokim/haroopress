@@ -1,0 +1,54 @@
+<!-- Masthead (blueprinty thing)
+================================================== -->
+<header class="jumbotron masthead" id="overview">
+    <div class="inner">
+    </div>
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="span3 _side">
+            <%- partial('plugins/intro', config) %>
+            <%- partial('plugins/category-menu', { categories: categories }) %>
+            <%- partial('plugins/contributors', { contributors: config.plugins.contributors, authors: authors }) %>
+            <%- partial('plugins/github-repo', config.plugins.github) %>
+        </div>
+        <div class="span9">
+            <% for(var id in archives) {
+                var article = archives[id];
+            %>
+            <div class="row">
+                <div class="span9">
+                    <div class="well bg">
+                        <div class="page-header">
+                            <h1><a href="/post/<%= article._file %>"><%= article.head.title %></a></h1>
+                            <span class="pull-right"><%= article.head.published %></span>
+                        </div>
+                        <div class="pull-right" style="padding: 0 10px 10px 10px;">
+                            <ul class="thumbnails">
+                                <li class="thumbnail">
+                                    <a>
+                                        <img src="<%= article.author._gravatar %>" width="128"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="markdown">
+                            <%- article.html %>
+                        </div>
+                        <hr/>
+                        <a class="pull-right" href="/post/<%= article._file %>#disqus_thread" data-disqus-identifier="<%= id %>"></a>
+                        <p>
+                            <a href="/post/<%= article._file %>" class="btn btn-info">Read more...</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div><!-- /container -->
+
+<%- partial('plugins/disqus-comment-count', config.plugins.disqus) %>
+<%- partial('plugins/weather', config.plugins) %>

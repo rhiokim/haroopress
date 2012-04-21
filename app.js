@@ -4,7 +4,8 @@ var mdb = require('markdown-blog'),
     express = require('express'),
     haroo = require('./lib/haroo'),
     config = require('./config'),
-    routes = require('./source/routes');
+    routes = require('./source/routes'),
+    path = require('path');
 
 /**
  * markdown blog configure
@@ -12,22 +13,27 @@ var mdb = require('markdown-blog'),
 mdb.setConfig('articles', config.articles);
 mdb.setConfig('authors', config.authors);
 
+var theme = path.resolve(config.themeDir, config.theme.name );
+
 var data = haroo.getMainData();
 data.config.meta.pageTitle  = '';
 
 var app = express.createServer();
 app.configure(function() {
-    app.set('views', __dirname +'/source/views');
+    app.set('views', theme +'/views');
     app.set('view engine', 'ejs');
-    
-//    app.use(express.logger());
+
+    app.use(express.static(theme +'/public'));
+   
+    //app.use(express.logger());
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.session({ secret: 'haroog' }));
-
+    //app.use(express.session({ secret: 'haroopress' }));
     app.use(app.router);
-    app.use(express.static(__dirname +'/source/public'));
+
+    //app.use(pass.initialize());
+    //app.use(pass.session());
 });
 
 app.get('/', function(req, res) {
