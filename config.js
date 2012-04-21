@@ -3,7 +3,7 @@ var conf = {
         version: '0.7.0',
         defaultTitle: 'haroopress',
         description: 'Static Page Blog engine based Node.js',
-        siteUrl: 'http://hroopress.github.com',
+        siteUrl: 'http://haroopress.github.com',
         author: 'Rhio Kim',
 		keywords: [ 'node.js', 'javascript', 'html5' ]
     },
@@ -11,9 +11,7 @@ var conf = {
     articles: process.cwd() +'/source/articles',
     authors: process.cwd() +'/source/authors',
 
-    rss: {
-        contentLength: 0
-    },
+    contentLength: 6, //\n\n
 
     sourceDir: __dirname + '/source',
     publicDir: __dirname + '/_public',

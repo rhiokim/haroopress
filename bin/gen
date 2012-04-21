@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-
-
 var fs = require('fs'),
     path = require('path'),
     mkdirp = require('mkdirp'),
@@ -30,14 +28,14 @@ function log(message) {
 function rss() {
     var data = haroo.getMainData();
     var archives = data.archives;
-    var res, id, archive, file, output;
+    var res, id, archive, author, arvatar, file, output;
 
     var feed = new RSS({
         title: conf.meta.defaultTitle,
         description: conf.meta.description,
         feed_url: conf.meta.siteUrl +'/rss.xml',
         site_url: conf.meta.siteUrl,
-        image_url: conf.meta.siteUrl +'/public/img/icon.png'
+        image_url: conf.meta.siteUrl +'/public/img/favorite.png'
     });
 
     log('=============================================================');
@@ -46,12 +44,15 @@ function rss() {
 
     for(id in archives) {
         archive = archives[id];
+        author = archive.author.head;
+        arvatar = '<img src="'+ archive.author._gravatar.replace('128.jpg','48.jpg') +'"><br/>';
+        author = '<a href="'+ author.twitter +'" target="_blank">'+ author.name +'</a>';
 
         feed.item({
             title: archive.head.title,
-            description: '',
+            description: arvatar + archive.cuthtml,
             url: conf.meta.siteUrl +'/post/'+ archive._file,
-            author: archive.author.head.name,
+            author: author,
             guid: archive._file,
             date: archive.head.pulished
         });
