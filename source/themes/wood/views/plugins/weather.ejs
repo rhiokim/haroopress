@@ -1,0 +1,28 @@
+<% if (weather.display) { %>
+    <div id="__weather" class="well">
+        <h6>weather in </h6>
+    </div>
+
+    <script src="/js/jquery.simpleWeather-2.0.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.simpleWeather({
+                zipcode: '<%= weather.zipcode %>',
+                unit: 'f',
+                success: function(weather) {
+                    $('<img src="'+ weather.image +'">').appendTo("#__weather");
+                    $('#__weather h6').html('Weather in ' + weather.city +' in '+ weather.country);
+                },
+                error: function(error) {
+                        $("<p>"+error+"</p>").appendTo("#__weather");
+                }
+            });
+
+            $('#__weather').stop().fadeIn();
+            if(<%= weather.delay %> != 0) {
+                $('#__weather').animate({ opacity: 0 }, <%= weather.delay %>);
+            }
+
+        });
+    </script>
+<% } %>

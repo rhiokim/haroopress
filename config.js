@@ -21,25 +21,25 @@ var conf = {
     themeDir: __dirname + '/source/themes',
 
     deployBranch: 'gh-pages',
-    CNAME: 'nodejs.kr'
+    CNAME: ''
 };
 
 conf.theme = {
-    name: 'basic'
+    name: 'wood'
 };
 
 /* third party settings */
 conf.plugins = {
     github: {
         display: true,
-        user: 'rhiokim',
+        user: 'haroopress',
         repoCount: 10,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
         display: true,
-        user: 'rhiokim',
+        user: 'haroopress',
         tweetCount: 10,
         showReplies: false,
         followerButton: true,
@@ -49,15 +49,21 @@ conf.plugins = {
     google: {
         googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
         googlePlus: true,
-        googlePlusSize: 'medium'
+        googlePlusSize: 'medium',
+        gplus: {
+            display: false,
+            user: '107034185858524700350'
+        }
     },
     disqus: {
         display: true,
-        shortName: 'nodekr',
+        shortName: 'haroopress',
         showCommentCount: true
     },
     facebook: {
-        showLikeButton: true 
+        user: 'haroopress',
+        showSiteLink: true,
+        showLikeButton: true
     },
     delicious: {},
     contributors: {
@@ -65,7 +71,7 @@ conf.plugins = {
     },
     weather: {
         display: true,
-        delay: 8000,
+        delay: 0,
         zipcode: 'KSXX0037'
     }
 };

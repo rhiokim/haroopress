@@ -1,0 +1,67 @@
+body {
+    font-family: 'Magra', AppleSDGothicNeo, sans-serif;
+    font-size: 12px;
+	line-height: 17px;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.45);
+	color: #4b3925;
+	background: url(/img/document-bg.jpg) no-repeat fixed top center #fff;
+}
+
+header {
+    /*margin-top: 80px;*/
+}
+
+.navbar .nav > li > a {
+    font-size: 14px;
+}
+.navbar-inner {
+    background-color: transparent;
+    padding: 10px;
+}
+
+.page-header {
+    border-bottom: 1px solid #e3cfb4;
+}
+
+body {
+    background: url('/img/document-bg.jpg');
+    background-attachment: fixed;
+    /*color: #f4e8d3;*/
+}
+
+footer {
+    margin: 30px 0 20px 0;
+}
+
+h1, h2, h3, h4, h5, h6, .nav .nav-header {
+    color: #67523a;
+}
+.well{
+    background:  url(/img/well-bg.png);
+    border: 1px solid #e3cfb4;
+    /*border: 1px solid rgba(0, 0, 0, 0.05);*/
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.well.bg {
+    background: url(/img/article-bg-white.png);
+}
+
+.well {
+    background: url(/img/article-bg-black.png);
+}
+
+hr {
+    border-top: 1px solid #c8ab83;
+    border-bottom: 1px solid #e3cfb4;
+}
+
+.markdown {
+	color: #2a1f13;
+    font-family: AppleSDGothicNeo;
+}
