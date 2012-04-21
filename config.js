@@ -3,7 +3,7 @@ var conf = {
         version: '0.7.0',
         defaultTitle: 'haroopress',
         description: 'Static Page Blog engine based Node.js',
-        siteUrl: 'http://haroog.dev:8000',
+        siteUrl: 'http://hroopress.github.com',
         author: 'Rhio Kim',
 		keywords: [ 'node.js', 'javascript', 'html5' ]
     },

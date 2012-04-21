@@ -18,6 +18,12 @@ header {
     background-color: transparent;
     padding: 10px;
 }
+/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
+@media (min-width: 980px) {
+  .subnav-fixed {
+    top: 0;
+  }
+}
 
 .page-header {
     border-bottom: 1px solid #e3cfb4;
@@ -64,4 +70,25 @@ hr {
 .markdown {
 	color: #2a1f13;
     font-family: AppleSDGothicNeo;
+}
+
+.left30 {
+    margin-left: 30px;
+}
+
+ul.share li {
+    width: 157px;
+    height: 40px;
+    padding: 66px 0 0 14px;
+    margin: 10px 0 0 0;
+}
+
+ul.share li.twitter {
+    background: url(/img/pages/share-twitter.png);
+}
+ul.share li.facebook {
+    background: url(/img/pages/share-facebook.png);
+}
+ul.share li.google {
+    background: url(/img/pages/share-googleplus.png);
 }
