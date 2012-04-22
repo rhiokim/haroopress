@@ -19,3 +19,6 @@
 [submodule "lib/mustache"]
 	path = lib/mustache
 	url = https://github.com/janl/mustache.js.git
+[submodule "source/themes"]
+	path = source/themes
+	url = git@github.com:haroopress/haroopress-themes.git
