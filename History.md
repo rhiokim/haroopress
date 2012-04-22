@@ -1,4 +1,124 @@
 
+n.n.n / 2012-04-22 
+==================
+
+  * modify _config.js
+  * fixed css
+  * update rss template
+  * update wood theme css
+  * #105 google search plugin
+  * adjust theme to page
+  * #104 made wood-theme
+  * worked theme structure
+  * fixed public dir
+  * fixed public dir
+  * fixed public dir
+  * Merge branch 'feature/redesign-archive-list' into devel
+  * #96 redesign archives page
+  * object sorting test
+  * fixed conflict
+  * #93 disqus coment count is completed
+  * #97 is completed
+  * Merge branch 'devel' into feature/redesign-archive-list
+  * update js
+  * generated_toc remove
+  * add bg classname in well css
+  * worked basic markup & completed function
+  * worked twitter button link
+  * .
+  * enhancement header area
+  * Merge branch 'feature/404-page' into devel
+  * worked Issue #17
+  * merge from devel
+  * issue drop! gone to backlog
+  * Merge branch 'feature/plugin-github' into devel
+  * adjust mustache & worked github plugin, progress bar effect
+  * refactoring
+  * worked display repo detail info
+  * unregister repo click handler
+  * worked github & twitter base markup, function
+  * remove unused module
+  * worked make preview open browser
+  * fixed conflict
+  * Merge branch 'master' of github.com:rhiokim/haroopress into feature/404-page
+  * fixed confilict
+  * add to make init script mkdir public folder
+  * main.css -> haroo.css
+  * worked prev-next link
+  * working github repo plugin
+  * worked archive list
+  * Merge branch 'feature/archive-list' into devel
+  * worked all archives
+  * worked base markup
+  * remove public files & add gitnore pattern
+  * build step gen -> cp to public -> deploy from _deploy dir
+  * worked yahoo weather plugin
+  * bump
+  * worked 404 page markup
+  * worked new-page shell script
+  * update tab -> space
+  * update moment module & fixed date notation
+  * Merge branch 'feature/plugin-contributors' into devel
+  * update author articles information
+  * support contributors plugin
+  * .
+  * update changelog
+  * fixed page title at app.js
+  * add social button on content
+  * add social button on content
+  * update rss, twitter link
+  * page title, add author social info
+  * footer plugin
+  * add social icon, update config
+  * .
+  * remove garbege ejs views
+  * remove garbege cli
+  * update make script
+  * change repository name haroog -> haroopress
+  * Merge branch 'release/v0.7.0'
+  * Merge branch 'feature/page-generator' into devel
+  * worked status func for page
+  * worked sub navigation
+  * sub navgation structure test
+  * remove garbege image & update make gen & page structure
+  * page bump
+  * worked page generator & sample page
+  * bump
+  * shell script
+  * add findit module && create object model for shell script
+  * add findit module && create object model for shell script
+  * add stringEx module, add social icons, tutorial for haroopress
+  * remove old rss.xml & add favicon
+  * fixed #65 article link
+  * worked #35 support recent article plugin
+  * clear project & worked favorit-plugin
+  * Merge branch 'feature/author-list-page' into devel
+  * completed feature
+  * create author page & rss generating script
+  * worked author page markup & express app
+  * Merge branch 'feature/refactoring-cli' into devel
+  * app.js refactoring
+  * make gen2 test - success
+  * refactoring data control
+  * Merge branch 'feature/new-post-and-page' into devel
+  * delete template file
+  * #38 article generate cli script
+  * write new-post shell script
+  * del sample articles
+  * site info update
+  * move markdown template file & update footer
+  * dependency npm module add to make script
+  * update change log
+  * Merge branch 'release/v0.6.0'
+  * fixed git commit error
+  * delete comment
+  * twitter plugin & google plus plugin
+  * complete google analytics plugin
+  * Merge branch 'release/v0.5.1'
+  * fixed category at article page
+  * deploy test, disqus plugin activated
+  * add deploy make script
+
 n.n.n / 2012-04-12 
 ==================
 
