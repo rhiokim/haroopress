@@ -60,6 +60,7 @@ conf.plugins = {
         showCommentCount: true
     },
     facebook: {
+        display: true,
         user: 'haroopress',
         showSiteLink: true,
         showLikeButton: true

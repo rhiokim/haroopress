@@ -30,14 +30,14 @@ conf.theme = {
 conf.plugins = {
     github: {
         display: false,
-        user: '[user github.com account]',
+        user: '[your github.com account]',
         repoCount: 0,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
         display: false,
-        user: '[user twitter account',
+        user: '[your twitter account',
         tweetCount: 10,
         showReplies: false,
         followerButton: true,
@@ -51,16 +51,17 @@ conf.plugins = {
         googlePlusSize: 'medium',
         gplus: {
             display: false,
-            user: '107034185858524700350'
+            user: '[your google plus account'
         }
     },
     disqus: {
-        display: true,
-        shortName: 'haroopress',
+        display: false,
+        shortName: '[disqus short name]',
         showCommentCount: true
     },
     facebook: {
-        user: 'haroopress',
+        display: false,
+        user: '[your facebook account]',
         showSiteLink: true,
         showLikeButton: true
     },
@@ -69,7 +70,7 @@ conf.plugins = {
         display: true
     },
     weather: {
-        display: true,
+        display: false,
         delay: 0,
         zipcode: 'KSXX0037'
     }
