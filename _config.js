@@ -1,51 +1,78 @@
 var conf = {
     meta: {
-        version: '0.2.1',
-        defaultTitle: 'Markdown Blog - HarooGul',
-        description: 'Markdown Blogging engine based Node.js',
-        siteUrl: 'http://haroog.dev:8000',
-        author: ''   //your name
+        version: '0.8.0',
+        defaultTitle: 'haroopress',
+        description: 'Static Page Blog engine based Node.js',
+        siteUrl: 'http://haroopress.github.com',
+        author: 'Rhio Kim',
+		keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     articles: process.cwd() +'/source/articles',
     authors: process.cwd() +'/source/authors',
 
-    rss: {
-        contentLength: 0
-    },
-    
     sourceDir: __dirname + '/source',
+    publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
+    themeDir: __dirname + '/source/themes',
 
+    lang: 'en',
+    contentLength: 6,
     deployBranch: 'gh-pages',
-    CNAME: '' //your CNAME
+    CNAME: ''
 };
 
+/* theme */
+conf.theme = {
+    name: 'basic'
+};
 
 /* third party settings */
 conf.plugins = {
     github: {
-        user: "", //your github.com account
-        repoCount: 0,
+        display: false,
+        user: '[user github.com account]',
+        repoCount: 0,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
-        user: "", //your twitter account
-        tweetCount: 4,
+        display: false,
+        user: '[user twitter account',
+        tweetCount: 10,
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,
         tweetButton: true
     },
-    google: {},
+    google: {
+        display: false,
+        googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+        googlePlus: true,
+        googlePlusSize: 'medium',
+        gplus: {
+            display: false,
+            user: '107034185858524700350'
+        }
+    },
     disqus: {
-        shortName: "", //your disqus id
-        showCommentCount: false
+        display: true,
+        shortName: 'haroopress',
+        showCommentCount: true
     },
     facebook: {
-        showLikeButton: true 
+        user: 'haroopress',
+        showSiteLink: true,
+        showLikeButton: true
     },
-    delicious: {}
+    delicious: {},
+    contributors: {
+        display: true
+    },
+    weather: {
+        display: true,
+        delay: 0,
+        zipcode: 'KSXX0037'
+    }
 };
 
 module.exports = conf;

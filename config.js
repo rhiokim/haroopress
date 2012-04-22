@@ -23,7 +23,7 @@ var conf = {
 };
 
 conf.theme = {
-    name: 'wood'
+    name: 'basic'
 };
 
 /* third party settings */
@@ -45,6 +45,7 @@ conf.plugins = {
         tweetButton: true
     },
     google: {
+        display: false,
         googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
         googlePlus: true,
         googlePlusSize: 'medium',

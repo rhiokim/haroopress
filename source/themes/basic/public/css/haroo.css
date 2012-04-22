@@ -1,37 +1,22 @@
-header {
-    margin-top: 80px;
+body {
+    font-family: 'Magra', AppleSDGothicNeo, sans-serif;
+    font-size: 12px;
+    background: url(/img/document-bg.jpg);
+    background-attachment: fixed;
 }
 
-body {
-    background: url('/img/document-bg.jpg');
-    background-attachment: fixed;
-    /*color: #f4e8d3;*/
+p, h1, h2, h3, h4, h5, h6, ul, li {
+    font-family: 'Magra', AppleSDGothicNeo, sans-serif;
+}
+
+header {
+    margin: 70px 0 20px 0;
 }
 
 footer {
     margin: 30px 0 20px 0;
     color: #f4e8d3;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    /*color: #c3b498;*/
-}
-
-/*****************
- *
- *****************/
-/*.navbar-inner {*/
-    /*height: 50px;*/
-    /*background-image: url('/img/opacity-bg-black50.png');*/
-    /*background-color: transparent;*/
-/*}*/
-
-/*.navbar .brand {*/
-    /*padding: 13px 20px 12px;*/
-/*}*/
-/*.navbar .nav {*/
-    /*padding: 5px 20px 12px;*/
-/*}*/
 
 .navbar-fixed-top .brand {
   padding-right: 0;
@@ -67,22 +52,6 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-/*****************
- *
- *****************/
-
-#author {
-    color: #000;
-}
-
-#author h1,
-#author h2,
-#author h3,
-#author h4,
-#author h5 {
-    /*color: #000;*/
-}
-
 /***************************
  * markdown style
  **************************/
@@ -106,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 .bookmark {
     width: 38px;
     height: 68px;
-    margin-top: -24px;
+    margin-top: -23px;
     background-image: url(/img/bookmark-ribbon-iPad.png);
 }
 
@@ -141,6 +110,10 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.well.bg {
+    background-image: url('/img/well-bg.jpg')
 }
 
 .black35 {
@@ -341,8 +314,10 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
-
 
 /* twitter plugin */
 ._tweets {
