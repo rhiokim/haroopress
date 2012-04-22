@@ -4,6 +4,7 @@ var fs = require('fs'),
     readline = require('readline'),
     uglify = require('uglify-js'),
     stringEx = require('stringex'),
+    mkdirp = require('mkdirp'),
     conf = require('../config');
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
@@ -45,9 +46,12 @@ rl.question('Enter article title : ', function(title) {
            
             //TODO: double quotation!!
             var header = JSON.stringify(head, null, 4);
-            fs.writeFileSync(conf.sourceDir +'/articles/'+ title +'.markdown', header +'\n\nwrite here!', 'utf8');
+            var path = conf.sourceDir +'/articles/'+ title;
+            mkdirp.sync(path, 0755);
+            mkdirp.sync(path +'/img', 0755);
+            fs.writeFileSync(path +'/index.markdown', header +'\n\nwrite here!', 'utf8');
             
-            console.log('write post -> ', conf.sourceDir +'/articles/'+ title +'.markdown');
+            console.log('write post -> ', path +'/index.markdown');
 
             rl.close();
             process.stdin.destroy();

@@ -108,7 +108,7 @@ function archives() {
 function archive() {
     var data = haroo.getMainData();
     var archives = data.archives;
-    var res, id, archive, file, output;
+    var res, id, archive, file, resources, output;
 
     log('=============================================================');
     log('===================== export articles =======================')
@@ -118,10 +118,13 @@ function archive() {
         archive = archives[id];
         file = archive._file;
         output = path.resolve(conf.publicDir, 'post', file);
+        resources = path.resolve(conf.sourceDir, 'articles', file, 'img');
 
         mkdirp.sync(output, 0755);
+        exec('cp -R '+ resources +' '+ output +'/img');
+
         data.archive = archive;
-		data.config.meta.pageTitle = archive.head.title +' | ';
+        data.config.meta.pageTitle = archive.head.title +' | ';
 
         res = renderer.render('archive', data);
         write(output +'/index.html', res);
@@ -244,7 +247,7 @@ function pages() {
     }
 }
 
-exec('cp -R '+ sorc +' '+ dest, function(err, stdout, stdin) {
+exec(cmmd, function(err, stdout, stdin) {
     if(!err) {
         console.log(cmmd);
 
