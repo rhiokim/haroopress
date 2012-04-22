@@ -1,17 +1,10 @@
-var mdb = require('markdown-blog'),
-    fs = require('fs'),
+var fs = require('fs'),
     moment = require('moment'),
     express = require('express'),
     haroo = require('./lib/haroo'),
     config = require('./config'),
     routes = require('./source/routes'),
     path = require('path');
-
-/**
- * markdown blog configure
- */
-mdb.setConfig('articles', config.articles);
-mdb.setConfig('authors', config.authors);
 
 var theme = path.resolve(config.themeDir, config.theme.name );
 

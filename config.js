@@ -8,18 +8,14 @@ var conf = {
 		keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     lang: 'en',
-    articles: process.cwd() +'/source/articles',
-    authors: process.cwd() +'/source/authors',
-
     contentLength: 6, //\n\n
+    deployBranch: 'gh-pages',
+    CNAME: '',
 
-    sourceDir: __dirname + '/source',
+    sourceDir: __dirname + '/source/data',
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
-    themeDir: __dirname + '/source/themes',
-
-    deployBranch: 'gh-pages',
-    CNAME: ''
+    themeDir: __dirname + '/source/themes'
 };
 
 conf.theme = {
