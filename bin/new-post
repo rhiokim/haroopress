@@ -2,7 +2,6 @@
 
 var fs = require('fs'),
     readline = require('readline'),
-    uglify = require('uglify-js'),
     stringEx = require('stringex'),
     mkdirp = require('mkdirp'),
     conf = require('../config');
