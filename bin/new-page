@@ -62,7 +62,7 @@ rl.question('Enter page title : ', function(title) {
             //TODO: double quotation!!
             var header = JSON.stringify(head, null, 4);
             mkdirp.sync(path, 0755);
-            mkdirp.sync(path +'/img', 0755);
+            mkdirp.sync(path +'/@img', 0755);
             fs.writeFileSync(path +'/index.markdown', header +'\n\ncontent here!', 'utf8');
             
             console.log('write page -> ', path +'/index.markdown');

@@ -118,10 +118,10 @@ function archive() {
         archive = archives[id];
         file = archive._file;
         output = path.resolve(conf.publicDir, 'post', file);
-        resources = path.resolve(conf.sourceDir, 'articles', file, 'img');
+        resources = path.resolve(conf.sourceDir, 'articles', file, '@img');
 
         mkdirp.sync(output, 0755);
-        exec('cp -R '+ resources +' '+ output +'/img');
+        exec('cp -R '+ resources +' '+ output +'/@img');
 
         data.archive = archive;
         data.config.meta.pageTitle = archive.head.title +' | ';
@@ -216,7 +216,7 @@ function author() {
 function pages() {
     var data = haroo.getMainData();
     var pages = data.pages;
-    var res, id, page, file, output, layout, display, status;
+    var res, id, page, file, output, layout, resources, display, status;
 
     log('=============================================================');
     log('====================== export page ==========================')
@@ -237,8 +237,11 @@ function pages() {
 
         output = page._dir.replace( conf.sourceDir, conf.publicDir );
         output = output.replace('/pages', '');
+        resources = path.resolve(page._dir, '@img');
 
         mkdirp.sync(output, 0755);
+        exec('cp -R '+ resources +' '+ output +'/@img');
+
         data.page = page;
         data.config.meta.pageTitle = page.head.title;
 
