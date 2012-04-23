@@ -23,7 +23,7 @@ rl.question("Enter the read/write url for your repository: ", function(repo) {
     var project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
     
     exec('git remote -v', function(err, stdout, stderr) {
-        if (stdout.match(/origin.+?haroog.git/) != null) {
+        if (stdout.match(/origin.+?haroopress.git/) != null) {
             step(
                 function gitInit() {
                     console.log('> Start setting github pages branch');

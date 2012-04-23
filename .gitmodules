@@ -1,15 +1,21 @@
-[submodule "lib/bootstrap"]
-	path = lib/bootstrap
-	url = https://github.com/twitter/bootstrap.git
 [submodule "lib/jquery"]
 	path = lib/jquery
 	url = https://github.com/jquery/jquery.git
 [submodule "lib/requirejs"]
 	path = lib/requirejs
 	url = https://github.com/jrburke/requirejs.git
-[submodule "node_modules/markdown-blog"]
-	path = node_modules/markdown-blog
-	url = git@github.com:rhiokim/haroog-engine.git
-[submodule "lib/generated_toc"]
-	path = lib/generated_toc
-	url = https://github.com/nanotube/generated_toc.git
+[submodule "lib/weather"]
+	path = lib/weather
+	url = https://github.com/monkeecreate/jquery.simpleWeather.git
+[submodule "lib/jquery-jsonp"]
+	path = lib/jquery-jsonp
+	url = https://github.com/jaubourg/jquery-jsonp.git
+[submodule "lib/bootstrap"]
+	path = lib/bootstrap
+	url = https://github.com/twitter/bootstrap.git
+[submodule "lib/mustache"]
+	path = lib/mustache
+	url = https://github.com/janl/mustache.js.git
+[submodule "source/themes"]
+	path = source/themes
+	url = git@github.com:haroopress/haroopress-themes.git

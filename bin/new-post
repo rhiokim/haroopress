@@ -2,31 +2,15 @@
 
 var fs = require('fs'),
     readline = require('readline'),
-    uglify = require('uglify-js'),
     stringEx = require('stringex'),
+    mkdirp = require('mkdirp'),
     conf = require('../config');
-
-function beautify(str) {
-    //uglify 의 javascript evaluating 으로 인한 parse 오류 방지를 위한 코드
-    json = '('+ str +')';
-
-    var jsp = uglify.parser;
-    var pro = uglify.uglify;
-     
-    var ast = jsp.parse(json);
-        ast = pro.ast_mangle(ast);
-        ast = pro.ast_squeeze(ast);
-    var gen = pro.gen_code(ast, { beautify: true });
-    gen = gen.replace('(', '');
-    gen = gen.replace(');', '');
-
-    return gen +'\n\nwrite here!';
-}
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
 rl.question('Enter article title : ', function(title) {
-   var file = fs.readFileSync('_template/sample.markdown', 'utf8');
-   var head = file.split('\n\n'),
+    var file = fs.readFileSync('_template/sample-post.markdown', 'utf8');
+    var head = file.split('\n\n'),
+    title = title && title.trim();
 
     head = JSON.parse(head[0]);
     head.title = title;
@@ -49,19 +33,35 @@ rl.question('Enter article title : ', function(title) {
     }
 
     rl.question('Enter article category (e.g cate1, cate2, cate3 ) : ', function(categories) {
-        categories = categories || '';
-        head.categories = categories.split(',');
+        if(categories.length) {
+            categories = categories.split(',');
+            categories = categories.map(function(category) {
+                return category.trim();
+            });
 
+            head.categories = categories;
+        }
+        
         rl.question('Enter article tag (e.g tag1, tag2, tag3) : ', function(tags) {
-            tags = tags || '';
-            head.tags = tags.split(',');
+            if(tags.length) {
+                tags = tags.split(',');
+                tags = tags.map(function(tag) {
+                    return tag.trim();
+                });
+
+                head.tags = tags;
+            }
+            head.date = new Date();
+            head.published = head.date;
            
             //TODO: double quotation!!
-            //var header = beautify(JSON.stringify(head));
-            var header = JSON.stringify(head);
-            fs.writeFileSync(conf.sourceDir +'/articles/'+ title +'.markdown', header +'\n\n', 'utf8');
+            var header = JSON.stringify(head, null, 4);
+            var path = conf.sourceDir +'/articles/'+ title;
+            mkdirp.sync(path, 0755);
+            mkdirp.sync(path +'/@img', 0755);
+            fs.writeFileSync(path +'/index.markdown', header +'\n\nwrite here!', 'utf8');
             
-            console.log('write post -> ', conf.sourceDir +'/articles/'+ title +'.markdown');
+            console.log('write post -> ', path +'/index.markdown');
 
             rl.close();
             process.stdin.destroy();

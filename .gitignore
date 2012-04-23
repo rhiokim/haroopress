@@ -1,6 +1,10 @@
 *.swp
 .idea
 *.iml
+npm-debug.log
 .DS_Store
 atlassian-ide-plugin.xml
 _deploy
+_public
+source/themes
+source/data

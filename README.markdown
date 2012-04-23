@@ -31,6 +31,7 @@ haroopress 는 정적 페이지 렌더링을 기본 구조로 하고 있기 때�
 //jquery, require.js 서브 모듈에서 아래의 유틸을 이용해 리소스 최적화를 진행하기 때문에 npm 을 이용해 모듈을 설치해 주어야 한다.
 $ npm install uglify-js -g
 $ npm install less -g
+$ npm install locally -g
 
 //내부 서브 모듈까지 모두 초기화한다.
 $ git clone git@github.com:rhiokim/haroopress.git --recursive
@@ -53,6 +54,9 @@ $ make gen
 
 //preview
 $ make preview
+
+//deploy
+$ make deploy
 
 //new page
 $ make new_page 'page title'

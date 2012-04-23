@@ -1,56 +1,75 @@
 var conf = {
     meta: {
-        version: '0.2.1',
-        defaultTitle: 'Markdown Blog - HarooGul',
-        description: 'Markdown Blogging engine based Node.js',
-        siteUrl: 'http://haroog.dev:8000',
+        version: '0.7.0',
+        defaultTitle: 'haroopress',
+        description: 'Static Page Blog engine based Node.js',
+        siteUrl: 'http://haroopress.github.com',
         author: 'Rhio Kim',
 		keywords: [ 'node.js', 'javascript', 'html5' ]
     },
-    articles: process.cwd() +'/source/articles',
-    authors: process.cwd() +'/source/authors',
-
-    rss: {
-        contentLength: 0
-    },
-    
-    sourceDir: __dirname + '/source',
-    deployDir: __dirname + '/_deploy',
-
+    lang: 'en',
+    contentLength: 6, //\n\n
     deployBranch: 'gh-pages',
-    CNAME: 'nodejs.kr'
+    CNAME: '',
+
+    sourceDir: __dirname + '/source/data',
+    publicDir: __dirname + '/_public',
+    deployDir: __dirname + '/_deploy',
+    themeDir: __dirname + '/source/themes'
 };
 
+conf.theme = {
+    name: 'wood'
+};
 
 /* third party settings */
 conf.plugins = {
     github: {
-        user: "rhiokim",
-        repoCount: 0,
+        display: true,
+        user: 'haroopress',
+        repoCount: 10,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
-        user: "rhiokim",
-        tweetCount: 4,
+        display: true,
+        user: 'haroopress',
+        tweetCount: 10,
         showReplies: false,
         followerButton: true,
         showFollowerCount: false,
-        tweetButton: false
+        tweetButton: true
     },
     google: {
-	googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
-	googlePlus: false,
-	googlePlusSize: 'medium'
+        display: false,
+        googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+        googlePlus: true,
+        googlePlusSize: 'medium',
+        gplus: {
+            display: false,
+            user: '107034185858524700350'
+        }
     },
     disqus: {
-        shortName: "nodekr",
-        showCommentCount: false
+        display: true,
+        shortName: 'haroopress',
+        showCommentCount: true
     },
     facebook: {
-        showLikeButton: true 
+        display: true,
+        user: 'haroopress',
+        showSiteLink: true,
+        showLikeButton: true
     },
-    delicious: {}
+    delicious: {},
+    contributors: {
+        display: true
+    },
+    weather: {
+        display: true,
+        delay: 0,
+        zipcode: 'KSXX0037'
+    }
 };
 
 module.exports = conf;

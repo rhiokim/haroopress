@@ -1,43 +1,41 @@
-var mdb = require('markdown-blog'),
-    fs = require('fs'),
+var fs = require('fs'),
     moment = require('moment'),
     express = require('express'),
-    haroo = require('./bin/lib/haroo'),
+    haroo = require('./lib/haroo'),
     config = require('./config'),
-    routes = require('./source/routes');
+    routes = require('./source/routes'),
+    path = require('path');
 
-/**
- * markdown blog configure
- */
-mdb.setConfig('articles', config.articles);
-mdb.setConfig('authors', config.authors);
+var theme = path.resolve(config.themeDir, config.theme.name );
 
 var data = haroo.getMainData();
+data.config.meta.pageTitle  = '';
 
 var app = express.createServer();
 app.configure(function() {
-    app.set('views', __dirname +'/source/views-new');
+    app.set('views', theme +'/views');
     app.set('view engine', 'ejs');
-    
-//    app.use(express.logger());
+
+    app.use(express.static(theme +'/public'));
+   
+    //app.use(express.logger());
     app.use(express.cookieParser());
     app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(express.session({ secret: 'haroog' }));
 
+    app.use(express.methodOverride());
     app.use(app.router);
-    app.use(express.static(__dirname +'/source/public'));
+
+    //app.use(pass.initialize());
+    //app.use(pass.session());
 });
 
 app.get('/', function(req, res) {
     res.render('main', data);
 });
 
-app.get('/pages/:page', function(req, res) {
-});
-
 app.get('/post/:title', function(req, res) {
     data.archive = data.archives[req.params.title];
+	data.config.meta.pageTitle = data.archive.head.title +' | ';
     res.render('archive', data);
 });
 
@@ -59,18 +57,13 @@ app.get('/authors', function(req, res) {
 
 app.get('/authors/:name', function(req, res) {
     data.author = data.authors[req.params.name];
+	data.config.meta.pageTitle = data.author.head.name +'\'s articles | ';
     res.render('author', data);
 });
 
 
 app.get('/archives', function(req, res) {
-    var posts = fs.readFileSync(__dirname +'/source/_index.json', 'utf8');
-    posts = JSON.parse(posts);
-    posts.forEach(function(post) {
-        post.published = moment(new Date(post.published)).fromNow();
-    });
-
-    res.render('archives', { config: config, plugins: config.plugins, posts: posts });
+    res.render('archives', data);
 });
 
 app.get('/tags', function(req, res) {
