@@ -4,9 +4,6 @@
 [submodule "lib/requirejs"]
 	path = lib/requirejs
 	url = https://github.com/jrburke/requirejs.git
-[submodule "node_modules/markdown-blog"]
-	path = node_modules/markdown-blog
-	url = git@github.com:rhiokim/haroog-engine.git
 [submodule "lib/weather"]
 	path = lib/weather
 	url = https://github.com/monkeecreate/jquery.simpleWeather.git
