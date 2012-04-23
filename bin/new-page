@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs'),
+    S = require('string'),
     readline = require('readline'),
     stringEx = require('stringex'),
     mkdirp = require('mkdirp'),
@@ -8,8 +9,10 @@ var fs = require('fs'),
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
 rl.question('Enter page title : ', function(title) {
-   var file = fs.readFileSync('_template/sample-page.markdown', 'utf8');
-   var head = file.split('\n\n'),
+    var file = fs.readFileSync('_template/sample-page.markdown', 'utf8');
+    var head = file.split('\n\n'),
+
+    title = title && title.trim();
 
     head = JSON.parse(head[0]);
     head.title = title;
@@ -33,16 +36,26 @@ rl.question('Enter page title : ', function(title) {
 
     rl.question('Enter page category (e.g cate1, cate2, cate3 ) : ', function(categories) {
         if(categories.length) {
-            head.categories = categories.split(',');
+            categories = categories.split(',');
+            categories = categories.map(function(category) {
+                return category.trim(); 
+            });
+
+            head.categories = categories;
         }
         
         rl.question('Enter page tag (e.g tag1, tag2, tag3) : ', function(tags) {
             var path = conf.sourceDir +'/pages/'+ title;
 
             if(tags.length) {
-                 tags = tags || '';
-            }
-            head.tags = tags.split(',');
+                tags = tags.split(',');
+                tags = tags.map(function(tag) {
+                    return tag.trim();
+                });
+
+                head.tags = tags;
+           }
+
             head.date = new Date();
             head.published = head.date;
            
