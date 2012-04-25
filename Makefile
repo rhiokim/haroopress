@@ -3,10 +3,7 @@ DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
 init: npm update build
-	rm -rf ${DEPLOY_DIR}
-	rm -rf ${PUBLIC_DIR}
-	mkdir ${DEPLOY_DIR}
-	mkdir ${PUBLIC_DIR}
+	./bin/init.js
 
 npm:
 	npm install -g less
@@ -28,8 +25,6 @@ build:
 	cp ./lib/jquery-jsonp/src/jquery.jsonp.js ${SOURCE_DIR}/js
 	cd ./lib/google-code-prettify/;make
 	cp ./lib/mustache/mustache.js ${SOURCE_DIR}/js
-
-copy:
 	cp ./lib/google-code-prettify/*.js ${SOURCE_DIR}/js
 	cp ./lib/google-code-prettify/*.css ${SOURCE_DIR}/css
 
@@ -57,4 +52,4 @@ new-post:
 new-page:
 	cd ./bin;./new-page
 
-.PHONY: init update build copy clear
+.PHONY: init update build clear
