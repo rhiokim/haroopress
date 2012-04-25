@@ -3,7 +3,6 @@ DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
 init: npm update build
-	./bin/init.js
 
 npm:
 	npm install -g less
@@ -14,23 +13,10 @@ update:
 	git submodule update --init --recursive
 
 build:
-	rm -rf ./lib/bootstrap/bootstrap/
-	cd ./lib/bootstrap/;make bootstrap
-	cp -R ./lib/bootstrap/bootstrap/* ${SOURCE_DIR}
-	cd ./lib/jquery/;make
-	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
-	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
-	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
-	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
-	cp ./lib/jquery-jsonp/src/jquery.jsonp.js ${SOURCE_DIR}/js
-	cd ./lib/google-code-prettify/;make
-	cp ./lib/mustache/mustache.js ${SOURCE_DIR}/js
-	cp ./lib/google-code-prettify/*.js ${SOURCE_DIR}/js
-	cp ./lib/google-code-prettify/*.css ${SOURCE_DIR}/css
-
-clear:
-	rm -rf ${DEPLOY_DIR}/*
-	rm -rf ${PUBLIC_DIR}/*
+	cd ./bin/;./build.js
+	
+clear: 
+	./bin/clear.js
 
 gen: clear 
 	./bin/gen
