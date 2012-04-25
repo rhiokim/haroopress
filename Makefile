@@ -29,7 +29,6 @@ github-page:
 	cd ./bin/;./setup-github-page
 
 deploy:
-	cp -R ${PUBLIC_DIR}/* ${DEPLOY_DIR}
 	cd ./bin;./deploy-gh-pages
 
 new-post:
