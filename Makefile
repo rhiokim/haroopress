@@ -22,8 +22,8 @@ gen: clear
 	./bin/gen
 
 preview:
-	./bin/open-browser
-	locally -w ${PUBLIC_DIR} -p 8000
+	./bin/preview.js
+	#locally -w ${PUBLIC_DIR} -p 8000
 	
 github-page:
 	cd ./bin/;./setup-github-page
