@@ -19,7 +19,7 @@ var conf = {
 };
 
 conf.theme = {
-    name: 'basic'
+    name: 'wood'
 };
 
 /* third party settings */

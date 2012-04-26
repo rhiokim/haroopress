@@ -12,19 +12,19 @@ fs.writeFileSync('./CNAME', conf.CNAME, 'utf8');
 
 console.log('Resources copy to Deploy directory'.yellow);
 
-exec('cp -R '+ conf.publicDir +' '+ conf.deployDir, function(err, stdout, stdin) {
+exec('cp -R '+ conf.publicDir +'/* '+ conf.deployDir, function(code, stdout, stderr) {
     console.log('git add .¶'.yellow);
-    exec('git add .', function(err, stdout, stderr) {
+    exec('git add .', function(code, stdout, stderr) {
         console.log(stdout.white);
         console.log('git add -u¶'.yellow);
-        exec('git add -u', function(err, stdout, stderr) {
+        exec('git add -u', function(code, stdout, stderr) {
             console.log(stdout.white);
             console.log('git commit -m ¶'.yellow);
             var message = 'Site updated at '+ new Date();
-            exec('git commit -m "'+ message +'"', function(err, stdout, stderr) {
+            exec('git commit -m "'+ message +'"', function(code, stdout, stderr) {
                 console.log(stdout.white);
                 console.log('git push origin master --force¶'.yellow);
-                exec('git push origin master --force', function(err, stdout, stderr) {
+                exec('git push origin master --force', function(code, stdout, stderr) {
                     console.log(stdout.white);   
                     console.log('Deploy completed'.yellow);
                 });
