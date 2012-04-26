@@ -4,10 +4,11 @@ var fs = require('fs'),
     readline = require('readline'),
     stringEx = require('stringex'),
     mkdirp = require('mkdirp'),
+    colors = require('colors'),
     conf = require('../config');
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
-rl.question('Enter page title : ', function(title) {
+rl.question('haroo> Enter page title : ', function(title) {
     var file = fs.readFileSync('_template/sample-page.markdown', 'utf8');
     var head = file.split('\n\n'),
 
@@ -33,7 +34,7 @@ rl.question('Enter page title : ', function(title) {
     } catch(e) {
     }
 
-    rl.question('Enter page category (e.g cate1, cate2, cate3 ) : ', function(categories) {
+    rl.question('haroo> Enter page category (e.g cate1, cate2, cate3 ) : ', function(categories) {
         if(categories.length) {
             categories = categories.split(',');
             categories = categories.map(function(category) {
@@ -43,7 +44,7 @@ rl.question('Enter page title : ', function(title) {
             head.categories = categories;
         }
         
-        rl.question('Enter page tag (e.g tag1, tag2, tag3) : ', function(tags) {
+        rl.question('haroo> Enter page tag (e.g tag1, tag2, tag3) : ', function(tags) {
             var path = conf.sourceDir +'/pages/'+ title;
 
             if(tags.length) {
@@ -64,7 +65,8 @@ rl.question('Enter page title : ', function(title) {
             mkdirp.sync(path +'/@img', 0755);
             fs.writeFileSync(path +'/index.markdown', header +'\n\ncontent here!', 'utf8');
             
-            console.log('write page -> ', path +'/index.markdown');
+            console.log('haroo> created -> %s/index.markdown'.yellow, path);
+            console.log('haroo> article\'s image path %s/@img'.yellow, path);
 
             rl.close();
             process.stdin.destroy();

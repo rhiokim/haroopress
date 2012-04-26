@@ -6,7 +6,7 @@ var exec = require('child_process').exec,
     colors = require('colors');
 
 //clear deploy directory
-console.log('>>clear to deploy directory¶'.yellow);
+console.log('haroo> clear to deploy directory¶'.yellow);
 exec('rm -rf '+ conf.deployDir +'/*', function(code, stdout, stderr) {
     if(!stderr) {
         mkdirp.sync(conf.deployDir);
@@ -14,7 +14,7 @@ exec('rm -rf '+ conf.deployDir +'/*', function(code, stdout, stderr) {
 });
 
 //clear public test directory
-console.log('>>clear to public directory'.yellow);
+console.log('haroo> clear to public directory'.yellow);
 exec('rm -rf '+ conf.publicDir, function(code, stdout, stderr) {
     if(!stderr) {
         mkdirp.sync(conf.publicDir);

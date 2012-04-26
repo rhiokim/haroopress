@@ -19,17 +19,16 @@ clear:
 	./bin/clear.js
 
 gen: clear 
-	./bin/gen
+	./bin/gen.js
 
 preview:
 	./bin/preview.js
-	#locally -w ${PUBLIC_DIR} -p 8000
 	
-github-page:
-	cd ./bin/;./setup-github-page
+gh-pages:
+	cd ./bin/;./setup.js
 
 deploy:
-	cd ./bin;./deploy-gh-pages
+	cd ./bin;./deploy.js
 
 new-post:
 	cd ./bin;./new-post
