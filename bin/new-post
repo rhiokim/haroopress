@@ -2,14 +2,15 @@
 
 var fs = require('fs'),
     readline = require('readline'),
-    uglify = require('uglify-js'),
     stringEx = require('stringex'),
+    mkdirp = require('mkdirp'),
     conf = require('../config');
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
 rl.question('Enter article title : ', function(title) {
-   var file = fs.readFileSync('_template/sample-post.markdown', 'utf8');
-   var head = file.split('\n\n'),
+    var file = fs.readFileSync('_template/sample-post.markdown', 'utf8');
+    var head = file.split('\n\n'),
+    title = title && title.trim();
 
     head = JSON.parse(head[0]);
     head.title = title;
@@ -33,21 +34,34 @@ rl.question('Enter article title : ', function(title) {
 
     rl.question('Enter article category (e.g cate1, cate2, cate3 ) : ', function(categories) {
         if(categories.length) {
-            head.categories = categories.split(',');
+            categories = categories.split(',');
+            categories = categories.map(function(category) {
+                return category.trim();
+            });
+
+            head.categories = categories;
         }
         
         rl.question('Enter article tag (e.g tag1, tag2, tag3) : ', function(tags) {
             if(tags.length) {
-                head.tags = tags.split(',');
+                tags = tags.split(',');
+                tags = tags.map(function(tag) {
+                    return tag.trim();
+                });
+
+                head.tags = tags;
             }
             head.date = new Date();
             head.published = head.date;
            
             //TODO: double quotation!!
             var header = JSON.stringify(head, null, 4);
-            fs.writeFileSync(conf.sourceDir +'/articles/'+ title +'.markdown', header +'\n\nwrite here!', 'utf8');
+            var path = conf.sourceDir +'/articles/'+ title;
+            mkdirp.sync(path, 0755);
+            mkdirp.sync(path +'/@img', 0755);
+            fs.writeFileSync(path +'/index.markdown', header +'\n\nwrite here!', 'utf8');
             
-            console.log('write post -> ', conf.sourceDir +'/articles/'+ title +'.markdown');
+            console.log('write post -> ', path +'/index.markdown');
 
             rl.close();
             process.stdin.destroy();
