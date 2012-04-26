@@ -14,13 +14,11 @@ switch(process.platform) {
 
         exec('locally -w '+ conf.publicDir +' -p 8081', function(code, stdout, stderr) {
             console.log(stdout.white);
-
-            if(!err) {
-           }
         });
+        
 
         console.log('open http://localhost:8081 ¶'.yellow);
-        exec('open http://localhost:8081', function(code, stdout, stdin) {});
+        exec('open http://localhost:8081', function(code, stdout, stderr) {});
          
     break;
     case 'win32' :
