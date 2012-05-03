@@ -42,7 +42,7 @@ conf.plugins = {
     },
     google: {
         display: false,
-        googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+        googleAnalyticsId: 'UA-31231507-1',  //google analytics tracking id, default false
         googlePlus: true,
         googlePlusSize: 'medium',
         gplus: {
