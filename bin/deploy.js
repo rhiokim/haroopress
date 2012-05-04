@@ -27,7 +27,7 @@ exec('cp -R '+ conf.publicDir +'/* '+ conf.deployDir, function(code, stdout, std
                 console.log('haroo> git push origin master --force¶'.yellow);
                 exec('git push origin master --force', function(code, stdout, stderr) {
                     console.log(stdout.white);   
-                    console.log('haroo> completed at %s'.yellow, conf.meta.siteUrl);
+                    console.log('haroo> completed %s'.yellow, conf.meta.siteUrl);
 
                     var i = rl.createInterface(process.stdin, process.stdout, null);
                     i.question('haroo>'.yellow +' open '+ conf.meta.siteUrl +' ? [y/n]', function(answer) {

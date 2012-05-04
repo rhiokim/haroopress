@@ -1,43 +1,39 @@
 var conf = {
     meta: {
-        version: '0.8.0',
+        version: '0.8.1',
         defaultTitle: 'haroopress',
         description: 'Static Page Blog engine based Node.js',
         siteUrl: 'http://haroopress.github.com',
         author: 'Rhio Kim',
-		keywords: [ 'node.js', 'javascript', 'html5' ]
+        keywords: [ 'node.js', 'javascript', 'html5' ]
     },
-    articles: process.cwd() +'/source/articles',
-    authors: process.cwd() +'/source/authors',
+    lang: 'en',
+    contentLength: 6, //\n\n
+    deployBranch: 'gh-pages',
+    CNAME: '',
 
-    sourceDir: __dirname + '/source',
+    sourceDir: __dirname + '/source/data',
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
-    themeDir: __dirname + '/source/themes',
-
-    lang: 'en',
-    contentLength: 6,
-    deployBranch: 'gh-pages',
-    CNAME: ''
+    themeDir: __dirname + '/source/themes'
 };
 
-/* theme */
 conf.theme = {
-    name: 'basic'
+    name: 'wood'
 };
 
 /* third party settings */
 conf.plugins = {
     github: {
-        display: false,
-        user: '[your github.com account]',
-        repoCount: 0,       //if 0 is all else display count
+        display: true,
+        user: 'haroopress',
+        repoCount: 10,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
-        display: false,
-        user: '[your twitter account',
+        display: true,
+        user: 'haroopress',
         tweetCount: 10,
         showReplies: false,
         followerButton: true,
@@ -46,22 +42,22 @@ conf.plugins = {
     },
     google: {
         display: false,
-        googleAnalyticsId: 'UA-30492002-1',  //google analytics tracking id, default false
+        googleAnalyticsId: 'UA-31231507-1',  //google analytics tracking id, default false
         googlePlus: true,
         googlePlusSize: 'medium',
         gplus: {
             display: false,
-            user: '[your google plus account'
+            user: '107034185858524700350'
         }
     },
     disqus: {
-        display: false,
-        shortName: '[disqus short name]',
+        display: true,
+        shortName: 'haroopress',
         showCommentCount: true
     },
     facebook: {
-        display: false,
-        user: '[your facebook account]',
+        display: true,
+        user: 'haroopress',
         showSiteLink: true,
         showLikeButton: true
     },
@@ -70,7 +66,7 @@ conf.plugins = {
         display: true
     },
     weather: {
-        display: false,
+        display: true,
         delay: 0,
         zipcode: 'KSXX0037'
     }

@@ -8,3 +8,4 @@ _deploy
 _public
 source/themes
 source/data
+config.js

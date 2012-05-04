@@ -100,21 +100,23 @@ function archives() {
 
 function archive() {
     var data = haroo.getMainData();
-    var archives = data.archives;
+    //var archives = data.archives;
+    var archives = data.dates.serialize;
     var res, id, archive, file, resources, output;
 
     log('haroo> export article.html ¶'.yellow);
 
-    for(id in archives) {
+    for(id = 0; id < archives.length; id++) {
+    //for(id in archives) {
         archive = archives[id];
         file = archive._file;
 
          //문서 상태가 draft 인 경우는 퍼블리싱 하지 않는다.
-        if(archive.head.status == 'draft') {
+        if(archive.head.status != 'public') {
             continue;
         }
 
-       output = path.resolve(conf.publicDir, 'post', file);
+        output = path.resolve(conf.publicDir, 'post', file);
         resources = path.resolve(conf.sourceDir, 'articles', file, '@img');
 
         mkdirp.sync(output, 0755);
@@ -215,7 +217,7 @@ function pages() {
         status = page.head.status;
 
         //문서 상태가 draft 인 경우는 퍼블리싱 하지 않는다.
-        if(status == 'draft') {
+        if(status != 'public') {
             continue;
         }
 

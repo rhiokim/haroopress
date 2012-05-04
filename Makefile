@@ -4,6 +4,8 @@ PUBLIC_DIR=./_public
 
 init: npm update build
 
+setup: config gh-pages
+
 npm:
 	npm install -g less
 	npm install -g uglify-js
@@ -24,6 +26,9 @@ gen: clear
 preview:
 	./bin/preview.js
 	
+config:
+	./bin/configuration.js
+
 gh-pages:
 	cd ./bin/;./setup.js
 
