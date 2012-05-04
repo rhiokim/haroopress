@@ -11,16 +11,15 @@ var metas = [
     { key: 'description', question: '<meta description="[description]"/>' },
     { key: 'siteUrl', question: 'Site Url (e.g. http://site.com)' },
     { key: 'author', question: 'Who are you? (matched source/data/authors/[author_name].markdown)' },
-    { key: 'keyword', question: '<meta name="keyword" content="'+ '[value]'.cyan +'" />'}
+    { key: 'keywords', question: '<meta name="keyword" content="'+ '[value]'.cyan +'" />'}
 ];
 
 var config = [
-    { key: 'lang', question: ''},
-    { key: 'contentLength', question: ''},
-    { key: 'CNAME', question: ''},
-    { key: 'sourceDir', question: ''},
-    { key: 'theme', question: ''},
-    { key: '', question: ''}
+    { key: 'lang', question: 'lang'},
+    { key: 'contentLength', question: 'contentLength'},
+    { key: 'CNAME', question: 'CNAME'},
+    { key: 'sourceDir', question: 'sourceDir'},
+    { key: 'theme', question: 'basic'}
 ];
 
 function setMeta(key, value) {
@@ -34,17 +33,19 @@ function setConf(key, value) {
 function printConfig() {
     var res;
 
-    delete conf.plugins;
     res = JSON.stringify(conf, null, 4);
+
     console.log(res);
+    return 'module.exports = '+ res;
 }
 
 function save() {
-    printConfig();
+    var str = printConfig();
 
     i.question('haroo> Save? [y/n] : '.yellow, function(answer) {
         if(answer == 'y') {
             //TODO file save
+            fs.writeFileSync('./config.js', str, 'utf8');
         } else {
         }
 
@@ -69,6 +70,9 @@ function queue(idx) {
     key = item.key;
 
     i.question(msg.yellow, function(answer) {
+        if (key == 'keywords') {
+            answer = answer.split(',');
+        }
         setMeta(key, answer);
         queue(++idx);
     });
