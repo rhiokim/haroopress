@@ -7,8 +7,8 @@ var fs = require('fs'),
 
 var i = rl.createInterface(process.stdin, process.stdout, null);
 var metas = [
-    { key: 'defaultTitle', question: '<title>?</title>' },
-    { key: 'description', question: '<meta description="?"/>' },
+    { key: 'defaultTitle', question: '<title>[defaultTitle]</title>' },
+    { key: 'description', question: '<meta description="[description]"/>' },
     { key: 'siteUrl', question: 'Site Url (e.g. http://site.com)' },
     { key: 'author', question: 'Who are you? (matched source/data/authors/[author_name].markdown)' },
     { key: 'keyword', question: '<meta name="keyword" content="'+ '[value]'.cyan +'" />'}

@@ -27,6 +27,7 @@ preview:
 	./bin/preview.js
 	
 config:
+	./bin/configuration.js
 
 gh-pages:
 	cd ./bin/;./setup.js
