@@ -25,41 +25,41 @@ conf.theme = {
 /* third party settings */
 conf.plugins = {
     github: {
-        display: true,
-        user: 'haroopress',
+        display: false,
+        user: '',
         repoCount: 10,       //if 0 is all else display count
         profileLink: true,
         skipForks: true
     },
     twitter: {
-        display: true,
-        user: 'haroopress',
+        display: false,
+        user: '',
         tweetCount: 10,
         showReplies: false,
-        followerButton: true,
+        followerButton: false,
         showFollowerCount: false,
-        tweetButton: true
+        tweetButton: false 
     },
     google: {
         display: false,
-        googleAnalyticsId: 'UA-31231507-1',  //google analytics tracking id, default false
-        googlePlus: true,
+        googleAnalyticsId: '',  //google analytics tracking id, default false
+        googlePlus: false,
         googlePlusSize: 'medium',
         gplus: {
             display: false,
-            user: '107034185858524700350'
+            user: ''
         }
     },
     disqus: {
-        display: true,
-        shortName: 'haroopress',
+        display: false,
+        shortName: '',
         showCommentCount: true
     },
     facebook: {
-        display: true,
-        user: 'haroopress',
-        showSiteLink: true,
-        showLikeButton: true
+        display: false, 
+        user: '',
+        showSiteLink: false,
+        showLikeButton: false 
     },
     delicious: {},
     contributors: {
