@@ -4,6 +4,7 @@ var fs = require('fs'),
     path = require('path'),
     mkdirp = require('mkdirp'),
     RSS = require('rss'),
+    colors = require('colors'),
     haroo = require('../lib/haroo'),
     renderer = require('../lib/renderer'),
     conf = require('../config'),
@@ -16,13 +17,13 @@ var cmmd = 'cp -R '+ sorc +' '+ dest;
 var theme = path.resolve(conf.themeDir, conf.theme.name );
 renderer.setViewDir(theme +'/views');
 
-function write(output, res, charset) {
-    fs.writeFileSync(output, res, charset || 'utf8');
-    log("----> "+output);
-}
-
 function log(message) {
     console.log(message);
+}
+
+function write(output, res, charset) {
+    fs.writeFileSync(output, res, charset || 'utf8');
+    log("haroo> ".yellow + output);
 }
 
 function rss() {
@@ -38,9 +39,7 @@ function rss() {
         image_url: conf.meta.siteUrl +'/public/img/favorite.png'
     });
 
-    log('=============================================================');
-    log('===================== export rss.xml ========================');
-    log('=============================================================');
+    log('haroo> export rss.xml ¶'.yellow);
 
     for(id in archives) {
         archive = archives[id];
@@ -66,9 +65,7 @@ function page404() {
 
     data.config.meta.pageTitle = '404 page not found | ';
 
-    log('=============================================================');
-    log('======================= export 404.html =====================')
-    log('=============================================================');
+    log('haroo> export 404.html ¶'.yellow);
 
     res = renderer.http('404', data);
     write(conf.publicDir +'/404.html', res);
@@ -82,9 +79,7 @@ function index() {
     res = renderer.render('main', data);
     write(conf.publicDir +'/index.html', res);
 
-    log('=============================================================');
-    log('===================== export index.html =====================')
-    log('=============================================================');
+    log('haroo> export index.html ¶'.yellow);
 
     res = renderer.render('main', data);
     write(conf.publicDir +'/index.html', res);
@@ -93,9 +88,7 @@ function index() {
 function archives() {
     var res, data = haroo.getMainData();
 
-    log('=============================================================');
-    log('==================== export archive list ====================')
-    log('=============================================================');
+    log('haroo> export archives.html ¶'.yellow);
 
     data.config.meta.pageTitle = 'Blog Archives | ';
 
@@ -107,16 +100,22 @@ function archives() {
 
 function archive() {
     var data = haroo.getMainData();
-    var archives = data.archives;
+    //var archives = data.archives;
+    var archives = data.dates.serialize;
     var res, id, archive, file, resources, output;
 
-    log('=============================================================');
-    log('===================== export articles =======================')
-    log('=============================================================');
+    log('haroo> export article.html ¶'.yellow);
 
-    for(id in archives) {
+    for(id = 0; id < archives.length; id++) {
+    //for(id in archives) {
         archive = archives[id];
         file = archive._file;
+
+         //문서 상태가 draft 인 경우는 퍼블리싱 하지 않는다.
+        if(archive.head.status != 'public') {
+            continue;
+        }
+
         output = path.resolve(conf.publicDir, 'post', file);
         resources = path.resolve(conf.sourceDir, 'articles', file, '@img');
 
@@ -138,9 +137,7 @@ function categories() {
 
 	data.config.meta.pageTitle = '';
 
-    log('=============================================================');
-    log('===================== export category =======================')
-    log('=============================================================');
+    log('haroo> export categories.html ¶'.yellow);
 
     output = path.resolve(conf.publicDir, 'category');
 
@@ -155,9 +152,7 @@ function cate() {
     var categories = data.categories;
     var res, id, cate, archive, file, output;
 
-    log('=============================================================');
-    log('===================== export category =======================')
-    log('=============================================================');
+    log('haroo> export category.html ¶'.yellow);
 
     for(id in categories) {
         cate = categories[id];
@@ -179,9 +174,7 @@ function authors() {
 
 	data.config.meta.pageTitle = '';
 
-    log('=============================================================');
-    log('===================== export authors ========================')
-    log('=============================================================');
+    log('haroo> export authors.html ¶'.yellow);
 
     output = path.resolve(conf.publicDir, 'authors');
     mkdirp.sync(output, 0755);
@@ -195,9 +188,7 @@ function author() {
     var authors = data.authors;
     var res, id, author, archive, file, output;
 
-    log('=============================================================');
-    log('===================== export author =========================')
-    log('=============================================================');
+    log('haroo> export author.html ¶'.yellow);
 
     for(id in authors) {
         author = authors[id];
@@ -218,9 +209,7 @@ function pages() {
     var pages = data.pages;
     var res, id, page, file, output, layout, resources, display, status;
 
-    log('=============================================================');
-    log('====================== export page ==========================')
-    log('=============================================================');
+    log('haroo> export pages.html ¶'.yellow);
 
     for(id in pages) {
         page = pages[id];
@@ -228,7 +217,7 @@ function pages() {
         status = page.head.status;
 
         //문서 상태가 draft 인 경우는 퍼블리싱 하지 않는다.
-        if(status == 'draft') {
+        if(status != 'public') {
             continue;
         }
 
@@ -252,7 +241,7 @@ function pages() {
 
 exec(cmmd, function(err, stdout, stdin) {
     if(!err) {
-        console.log(cmmd);
+        console.log('haroo> %s'.yellow, cmmd);
 
         rss();
         page404();
