@@ -36,9 +36,9 @@ deploy:
 	cd ./bin;./deploy.js
 
 new-post:
-	cd ./bin;./new-post
+	cd ./bin;./new-post.js
 
 new-page:
-	cd ./bin;./new-page
+	cd ./bin;./new-page.js
 
 .PHONY: init update build clear
