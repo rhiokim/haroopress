@@ -17,10 +17,10 @@ module.exports = {
     "contentLength": 6,
     "deployBranch": "gh-pages",
     "CNAME": "",
-    "sourceDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/source/data",
-    "publicDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/_public",
-    "deployDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/_deploy",
-    "themeDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/source/themes",
+    "sourceDir": __dirname +"/source/data",
+    "publicDir": __dirname +"/_public",
+    "deployDir": __dirname +"/_deploy",
+    "themeDir": __dirname +"/source/themes",
     "theme": {
         "name": "wood"
     },
