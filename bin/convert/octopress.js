@@ -8,6 +8,7 @@ var exec = require('child_process').exec,
     findit = require('findit'),
     colors = require('colors'),
     yaml = require('yaml'),
+    step = require('step'),
     conf = require('../../config');
 
 var files, rl,
@@ -25,14 +26,28 @@ function mergeHead(source) {
     var prop,
         model = require('../_template/sample-post');
 
+    model.status = 'public';
+    model.author = conf.meta.author;
+
     for(prop in source) {
         switch(prop) {
             case 'date':
                 model[prop] = new Date(source[prop]);
                 model.published = model[prop];
                 break;
+            case 'categories':
+                var type = typeof source[prop];
+
+                if(type == 'string') {
+                    model[prop] = [source[prop]];
+                } else if(type == 'undefined') {
+                    model[prop] = [];
+                } else {
+                    model[prop] = source[prop];
+                }
+                break;
             case 'layout':
-                model.advanced[prop] = source[prop];
+//                model.advanced[prop] = source[prop];
                 break;
             case 'comments':
                 model.acceptComment = source[prop];
@@ -68,6 +83,17 @@ function parseHead(str) {
     return header;
 }
 
+function parseBody(str) {
+    var res, codeType, codeBlock = /\s*lang:(\w+)/i;
+    res = codeBlock.exec(str);
+    
+    if(res) {
+        codeType = res[1];
+    }
+
+    console.log(res);
+}
+
 function convert(file) {
     var raw, header, body, post;
 
@@ -75,10 +101,55 @@ function convert(file) {
     raw = raw.split('---');
 
     header = parseHead(raw[1]);
+    //body = parseBody(raw[2]);
     post = header + '\n\n';
     post += raw[2];
 
     return post;
+}
+
+function complete(path) {
+    console.log('a')
+}
+function parse(file) {
+    var post, destDir, destName, sourcePath;
+
+    destDir = path.dirname(file);
+    destName = removeDate(path.basename(file, '.markdown'));
+
+    if(!destName) {
+        if(files.length) {
+            parse(files.shift());
+        }
+        return;
+    } 
+
+    sourcePath = path.join(sourceDir, destName);
+
+    // 디렉토리 생성
+    mkdirp.sync(sourcePath);
+    console.log('haroo> create directory at %s'.yellow, sourcePath);
+
+    mkdirp.sync(sourcePath +'/@img');
+    console.log('haroo> create image directory at %s'.yellow, sourcePath +'/@img');
+
+    // 파일복사 
+    console.log('haroo> copy to %s.markdown file'.yellow, destName);
+    exec('cp '+ file +' '+ sourcePath +'/index.markdown', function(err, stdout, stderr) {
+        post = convert(sourcePath +'/index.markdown');
+
+        console.log('haroo> jekyll convert to haroopress'.cyan);
+        fs.writeFileSync(sourcePath +'/index.markdown', post, 'utf8');
+
+        console.log('----------------------------------------------------------------');
+
+        if(files.length) {
+            parse(files.shift());
+        } else {
+            rl.close();
+            process.exit();
+        }
+    }); 
 }
 
 rl = readline.createInterface(process.stdin, process.stdout, null);
@@ -92,11 +163,9 @@ rl.question('Please! insert octopress article directory : ', function(destDir) {
         process.exit();
     }
 
-    var sourcePath, destDir, destName;
-
     files = findit.sync(destDir);
-
-    console.log('processing total %s files', files.length);
+    parse(files.shift());
+    return;
 
     files.forEach(function(file) {
         destDir = path.dirname(file);
@@ -108,22 +177,30 @@ rl.question('Please! insert octopress article directory : ', function(destDir) {
 
         sourcePath = path.join(sourceDir, destName);
 
-        if(path.existsSync(sourcePath)) {
-            
-        }
-
+        startParse(file, sourcePath, destName, complete);
+        return;
         // 디렉토리 생성
         mkdirp.sync(sourcePath);
         console.log('haroo> create directory at %s'.yellow, sourcePath);
-        // 파일 이동
-        exec('cp -R '+ file +' '+ sourcePath +'/index.markdown');
-        console.log('haroo> copy to %s.markdown file'.yellow, destName);
-        // 이미지 디렉토리 생성
+
         mkdirp.sync(sourcePath +'/@img');
         console.log('haroo> create image directory at %s'.yellow, sourcePath +'/@img');
-        console.log('---------------------------------------------------------------');
 
-        convert(sourcePath +'/index.markdown');
+        step(
+            function copyPost() {
+                // 파일복사 
+                console.log('haroo> copy to %s.markdown file'.yellow, destName);
+                exec('cp '+ file +' '+ sourcePath +'/index.markdown', this); 
+            },
+            function parsePost(err, stdout, stderr) {
+                post = convert(sourcePath +'/index.markdown');
+
+                console.log('haroo> jekyll convert to haroopress'.cyan);
+                fs.writeFileSync(sourcePath +'/index.markdown', post, 'utf8');
+            }
+        );
+
+        console.log('---------------------------------------------------------------');
     });
 
     console.log('completed total ', String(files.length).yellow, 'files');
