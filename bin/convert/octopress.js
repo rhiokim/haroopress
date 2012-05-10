@@ -83,15 +83,18 @@ function parseHead(str) {
     return header;
 }
 
-function parseBody(str) {
-    var res, codeType, codeBlock = /\s*lang:(\w+)/i;
-    res = codeBlock.exec(str);
-    
-    if(res) {
-        codeType = res[1];
-    }
+var Image = require('./octopress/image'),
+    Code = require('./octopress/code');
 
-    console.log(res);
+var image = new Image();
+var code = new Code();
+
+function parseBody(str) {
+    var res;
+    res = image.toMarkdown(str);
+    res = code.toMarkdown(res);
+
+    return res;
 }
 
 function convert(file) {
@@ -99,11 +102,13 @@ function convert(file) {
 
     raw = fs.readFileSync(file, 'utf8');
     raw = raw.split('---');
+    
+    raw.shift();
 
-    header = parseHead(raw[1]);
-    //body = parseBody(raw[2]);
+    header = parseHead(raw.shift());
+    body = parseBody(raw.join('---'));
     post = header + '\n\n';
-    post += raw[2];
+    post += body;
 
     return post;
 }
