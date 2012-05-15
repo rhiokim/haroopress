@@ -6,8 +6,7 @@ var exec = require('child_process').exec,
     conf = require('../config'),
     colors = require('colors'),
     gen = require('../lib/generator'),
-    PostParser = require('../lib/parse-article'),
-    AuthorParser = require('../lib/parse-author');
+    Post = require('./gen-post');
 
 var docroot = path.relative(process.cwd(), conf.publicDir);
 
@@ -40,10 +39,6 @@ function genArticle() {
     });
 }
 
-function getAuthorFile(id) {
-    return path.join(conf.sourceDir, 'authors') + '/'+ id +'.markdown';
-}
-
 watch.watchTree(watchDir, function(f, curr, prev) {
     if (typeof f == "object" && prev === null && curr === null) {
     } else if (prev === null) {
@@ -52,9 +47,8 @@ watch.watchTree(watchDir, function(f, curr, prev) {
         // f was removed
     } else {
         console.log('haroo> changed %s'.yellow, f.replace(conf.sourceDir, ''));
-        var article = PostParser.parse(f);
-        var author = AuthorParser.parse(getAuthorFile(article.head.author));
-        console.log(article, author);
+
+        Post.generate(f);
     }
 });
 console.log('haroo> watching source directory'.yellow);
