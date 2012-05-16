@@ -41,4 +41,7 @@ new-post:
 new-page:
 	cd ./bin;./new-page.js
 
+octopress:
+	cd ./bin/convert/;./octopress.js
+
 .PHONY: init update build clear

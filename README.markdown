@@ -77,6 +77,24 @@ $ make new-page
 
 [하루프레스 데이터 구조](https://github.com/rhiokim/haroopress/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8F%AC%EB%A7%B7)
 
+# Convertor
+하루프레스는 데이터 변환기를 유틸로 제공하여 다양한 블로그의 데이터를 하루프레스로 손쉽게 이전할 수 있습니다.
+현재는 변환 유틸의 구조를 설계하기 위해 [Octopress](http://octopress.org) 만을 제공하고 있으며 향후 Wordpress, Tumblr, Tistory, Blogger 등의 유명한 블로그 엔진의 데이터를 위한 변환 유틸도 구현할 계획에 있습니다.
+
+## Usage
+
+```
+$ make octopress
+
+Please! insert octopress article directory : `[/path/to/octopress/source/_post]`
+
+haroo> create directory at /path/to/haroopress/source/data/articles/[article-title]
+haroo> create image directory at /path/to/haroopress/source/data/articles/[article-title]/@img
+haroo> copy to [article-title].markdown file
+haroo> jekyll convert to haroopress
+----------------------------------------------------------------
+```
+
 # dependency 
 * ejs
 * mkdirp
