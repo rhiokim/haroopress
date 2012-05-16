@@ -2,11 +2,8 @@
 
 var exec = require('child_process').exec,
     path = require('path'),
-    watch = require('watch'),
     conf = require('../config'),
-    colors = require('colors'),
-    gen = require('../lib/generator'),
-    Post = require('./gen-post');
+    colors = require('colors');
 
 var docroot = path.relative(process.cwd(), conf.publicDir);
 
@@ -27,28 +24,3 @@ switch(process.platform) {
     case 'win32' :
     break;
 }
-
-/**
- * instantly preview
- */
-var watchDir = path.resolve(conf.sourceDir, 'articles');
-
-function genArticle() {
-    gen.clone(function() {
-        gen.archive();
-    });
-}
-
-watch.watchTree(watchDir, function(f, curr, prev) {
-    if (typeof f == "object" && prev === null && curr === null) {
-    } else if (prev === null) {
-        // f is a new file
-    } else if (curr.nlink === 0) {
-        // f was removed
-    } else {
-        console.log('haroo> changed %s'.yellow, f.replace(conf.sourceDir, ''));
-
-        Post.generate(f);
-    }
-});
-console.log('haroo> watching source directory'.yellow);
