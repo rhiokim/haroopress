@@ -5,13 +5,14 @@ var exec = require('child_process').exec,
     step = require('step'),
     colors = require('colors'),
     mkdirp = require('mkdirp'),
+    path = require('path'),
     conf = require('../config'),
     readline = require('readline');
 
 var rl;
 
-if (!fs.statSync(conf.deployDir).isDirectory()) {
-    mkdirp.sync(conf.deployDir)
+if(!path.existsSync(conf.deployDir)) {
+    mkdirp.sync(conf.deployDir);
 }
 
 process.chdir(conf.deployDir);
