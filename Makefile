@@ -2,9 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm update build config gh-pages
-
-setup: config gh-pages
+init: npm update build initialize config gh-pages
 
 npm:
 	npm install -g less
@@ -14,9 +12,17 @@ npm:
 update:
 	git submodule update --init --recursive
 
+initialize:
+	./bin/init.js
 build:
 	cd ./bin/;./build.js
-	
+
+setup:
+	./bin/setup.js
+
+gh-pages:
+	cd ./bin/;./gh-pages.js
+
 clear: 
 	./bin/clear.js
 
@@ -26,12 +32,6 @@ gen: clear
 preview:
 	./bin/preview.js
 	
-config:
-	./bin/setup.js
-
-gh-pages:
-	cd ./bin/;./gh-pages.js
-
 deploy:
 	cd ./bin;./deploy.js
 
