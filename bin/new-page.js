@@ -66,7 +66,7 @@ rl.question('haroo> Enter page title : ', function(title) {
             fs.writeFileSync(path +'/index.markdown', header +'\n\ncontent here!', 'utf8');
             
             console.log('haroo> created -> %s/index.markdown'.yellow, path);
-            console.log('haroo> article\'s image path %s/@img'.yellow, path);
+            console.log('haroo> page\'s image path %s/@img'.yellow, path);
 
             rl.close();
             process.stdin.destroy();

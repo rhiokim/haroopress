@@ -5,10 +5,6 @@ haroopress 는 node.js 기반으로 작성된 static 블로그 엔진입니다.
 
 문서 작성은 markdown 포맷만 지원하며 블로그 ui 는 twitter bootstrap 을 이용하였습니다.
 
-# screenshot
-
-![블로그 형태](/rhiokim/haroopress/blob/devel/intro.png?raw=true)
-
 # structure
 
 haroopress 는 정적 페이지 렌더링을 기본 구조로 하고 있기 때문에 사용자가 작은 설정하나를 고치더라도 전체 구조에 영향을 미칠 수 있습니다. 그래서 이 소스를 이용해 블로그를 운영하거나 디자인을 수정하거나 할 경우 다음의 구조를 잘 이해하길 권장한다.
@@ -43,11 +39,11 @@ $ make init
 # usage
 
 ```
-//github repository
+//set deployment repository
 $ make github-page
 
 //new article
-$ make new_post 'post title'
+$ make new_post
 
 //static page generating
 $ make gen
@@ -59,7 +55,7 @@ $ make preview
 $ make deploy
 
 //new page
-$ make new_page 'page title'
+$ make new-page
 ```
 
 # plugins
@@ -73,37 +69,29 @@ $ make new_page 'page title'
     - google plus
     - facebook like
 
-# article format 
+# Data Format
+하루프레스에서는 사용자가 생성하는 모든 내용(포스팅, 페이지, 프로필 등)은 모두 `markdown` 으로 작성되고, 하루프레스는 오직 자바스크립트로만 구현이 되어 있어 엔진에서 사용되거나 생성하는 모든 데이터는 `json` 포맷으로 이루어져있습니다. 
 
-```js
-{
-    "title": "JavaScript The Core",
-    "author": "Andrw Kim",
-    "date": "Fri Dec 02 2011 00:31:36 GMT+0900 (KST)",
-    "categories": [
-        //only one thing
-    ],
-    "tags": [
-        //support multiple thing
-    ],
-    "acceptComment": true,
-    "acceptTrackback": true,
-    "published": "Fri Feb 02 2012 00:31:36 GMT+0900 (KST)",
-    "modified": "Fri Feb 02 2012 00:32:36 GMT+0900 (KST)",
-    "status": "draft",
-    "advanced": {}
-}
-```
+그리고 일반적인 GUI 방식의 관리자 도구가 없기 때문에 하루프레스에서 다루는 매우 간단한 데이터 구조는 알아두면 좋습니다.
+해당 내용은 아래의 링크에서 좀더 자세히 참고하실 수 있습니다.
+
+[하루프레스 데이터 구조](https://github.com/rhiokim/haroopress/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8F%AC%EB%A7%B7)
 
 # dependency 
-* direc
 * ejs
-* markdown-blog
 * mkdirp
+* findit
 * moment
 * roboskirt
 * rss
 * step
+* watch
+* colors
+* stringex
+* yaml
+
+# screenshot
+
 
 # license
 Copyright (c) 2012 Rhio Kim

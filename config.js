@@ -17,10 +17,10 @@ module.exports = {
     "contentLength": 6,
     "deployBranch": "gh-pages",
     "CNAME": "",
-    "sourceDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/source/data",
-    "publicDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/_public",
-    "deployDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/_deploy",
-    "themeDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/source/themes",
+    "sourceDir": __dirname +"/source/data",
+    "publicDir": __dirname +"/_public",
+    "deployDir": __dirname +"/_deploy",
+    "themeDir": __dirname +"/source/themes",
     "theme": {
         "name": "wood"
     },
@@ -36,15 +36,15 @@ module.exports = {
             "display": true,
             "user": "haroopress",
             "tweetCount": 10,
-            "showReplies": true,
+            "showReplies": false,
             "followerButton": true,
-            "showFollowerCount": false,
-            "tweetButton": false
+            "showFollowerCount": true,
+            "tweetButton": true 
         },
         "google": {
             "display": true,
             "googleAnalyticsId": "UA-31231507-1",
-            "googlePlus": false,
+            "googlePlus": true,
             "googlePlusSize": "medium",
             "gplus": {
                 "display": false,
