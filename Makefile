@@ -1,48 +1,47 @@
 SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
+PUBLIC_DIR=./_public
 
-init:
+init: npm update build config gh-pages
+
+setup: config gh-pages
+
+npm:
 	npm install -g less
 	npm install -g uglify-js
-	git submodule update --init --recursive
-	rm -rf ./lib/bootstrap/bootstrap/
-	cd ./lib/bootstrap/;make bootstrap
-	cp -R ./lib/bootstrap/bootstrap/* ${SOURCE_DIR}
-	cd ./lib/jquery/;make
-	cp ./lib/jquery/dist/* ${SOURCE_DIR}/js
-	cp ./lib/requirejs/require.js ${SOURCE_DIR}/js
-	cp ./lib/requirejs/text.js ${SOURCE_DIR}/js
-	cp ./lib/toc/toc.js ${SOURCE_DIR}/js
-	mkdir _deploy
+	npm install -g locally
 
 update:
-	git submodule update --init
-	cd ./lib/google-code-prettify/;make
+	git submodule update --init --recursive
 
-copy:
-	cp ./lib/google-code-prettify/*.js ${SOURCE_DIR}/js
-	cp ./lib/google-code-prettify/*.css ${SOURCE_DIR}/css
+build:
+	cd ./bin/;./build.js
+	
+clear: 
+	./bin/clear.js
 
-dc:
-	rm -rf ${DEPLOY_DIR}/*
-
-gen:
-	cp -R ${SOURCE_DIR}/* ${DEPLOY_DIR}
-	cd ./bin;./haroo-index
+gen: clear 
+	./bin/gen.js
 
 preview:
-	node app.js
+	./bin/preview.js
+	
+config:
+	./bin/setup.js
 
-github-page:
-	cd ./bin/;./setup-github-page
+gh-pages:
+	cd ./bin/;./gh-pages.js
 
 deploy:
-	cd ./bin;./deploy-gh-pages
+	cd ./bin;./deploy.js
 
-new_post:
-	cd ./bin;./new-post
+new-post:
+	cd ./bin;./new-post.js
 
-new_page:
-	cd ./bin;./new-page
+new-page:
+	cd ./bin;./new-page.js
 
-.PHONY: init update copy
+octopress:
+	cd ./bin/convert/;./octopress.js
+
+.PHONY: init update build clear

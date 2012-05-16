@@ -1,51 +1,76 @@
 var conf = {
     meta: {
-        version: '0.2.1',
-        defaultTitle: 'Markdown Blog - HarooGul',
-        description: 'Markdown Blogging engine based Node.js',
-        siteUrl: 'http://haroog.dev:8000',
-        author: ''   //your name
+        version: '0.8.1',
+        defaultTitle: 'haroopress',
+        description: 'Static Page Blog engine based Node.js',
+        siteUrl: 'http://haroopress.github.com',
+        author: 'Rhio Kim',
+        keywords: [ 'node.js', 'javascript', 'html5' ]
     },
-    articles: process.cwd() +'/source/articles',
-    authors: process.cwd() +'/source/authors',
+    lang: 'en',
+    contentLength: 6, //\n\n
+    deployBranch: 'gh-pages',
+    CNAME: '',
 
-    rss: {
-        contentLength: 0
+    sourceDir: __dirname + '/source/data',
+    publicDir: __dirname + '/_public',
+    deployDir: __dirname + '/_deploy',
+    themeDir: __dirname + '/source/themes',
+
+    /* theme setting */
+    theme: {
+        name: 'basic'
     },
     
-    sourceDir: __dirname + '/source',
-    deployDir: __dirname + '/_deploy',
-
-    deployBranch: 'gh-pages',
-    CNAME: '' //your CNAME
-};
-
-
-/* third party settings */
-conf.plugins = {
-    github: {
-        user: "", //your github.com account
-        repoCount: 0,
-        profileLink: true,
-        skipForks: true
-    },
-    twitter: {
-        user: "", //your twitter account
-        tweetCount: 4,
-        showReplies: false,
-        followerButton: true,
-        showFollowerCount: false,
-        tweetButton: true
-    },
-    google: {},
-    disqus: {
-        shortName: "", //your disqus id
-        showCommentCount: false
-    },
-    facebook: {
-        showLikeButton: true 
-    },
-    delicious: {}
+    /* third party settings */
+    plugins: {
+        github: {
+            display: false,
+            user: '',
+            repoCount: 10,       //if 0 is all else display count
+            profileLink: true,
+            skipForks: true
+        },
+        twitter: {
+            display: false,
+            user: '',
+            tweetCount: 10,
+            showReplies: false,
+            followerButton: false,
+            showFollowerCount: false,
+            tweetButton: false 
+        },
+        google: {
+            display: false,
+            googleAnalyticsId: '',  //google analytics tracking id, default false
+            googlePlus: false,
+            googlePlusSize: 'medium',
+            gplus: {
+                display: false,
+                user: ''
+            }
+        },
+        disqus: {
+            display: false,
+            shortName: '',
+            showCommentCount: true
+        },
+        facebook: {
+            display: false, 
+            user: '',
+            showSiteLink: false,
+            showLikeButton: false 
+        },
+        delicious: {},
+        contributors: {
+            display: true
+        },
+        weather: {
+            display: false,
+            delay: 0,
+            zipcode: 'KSXX0037'
+        }
+    }
 };
 
 module.exports = conf;
