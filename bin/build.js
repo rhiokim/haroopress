@@ -13,7 +13,7 @@ var sourceCSS = path.resolve(sourceDir, 'css');
 console.log(sourceDir);
 
 function log(msg, color) {
-    msg = '>>'+ msg +'¶';
+    msg = 'haroo> '+ msg +'¶';
     console.log(msg.yellow);
 }
 

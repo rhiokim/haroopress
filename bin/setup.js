@@ -1,106 +1,80 @@
 #!/usr/bin/env node
 
-var exec = require('child_process').exec,
-    fs = require('fs'),
-    step = require('step'),
-    colors = require('colors'),
-    mkdirp = require('mkdirp'),
-    path = require('path'),
-    conf = require('../config'),
-    readline = require('readline');
+var fs = require('fs'),
+    rl = require('readline'),
+    conf = require('../_config'),
+    colors = require('colors');
 
-var rl;
+var i = rl.createInterface(process.stdin, process.stdout, null);
+var metas = [
+    { key: 'defaultTitle', question: 'Please! insert your blog title' },
+    { key: 'description', question: 'Please! insert your blog description' },
+    { key: 'siteUrl', question: 'Please! insert site url (e.g. http://site.com)' },
+    { key: 'author', question: 'Author Name? (should matched source/data/authors/[author_name].markdown)' },
+    { key: 'keywords', question: '<meta name="keyword" content="'+ '[value]'.cyan +'" />'}
+];
 
-if(!path.existsSync(conf.deployDir)) {
-    mkdirp.sync(conf.deployDir);
+var config = [
+    { key: 'lang', question: 'Character set'},
+    { key: 'contentLength', question: 'Shorten content block'}, 
+    { key: 'CNAME', question: 'CNAME (e.g. blog.site.com)'},
+    { key: 'sourceDir', question: 'Please! insert your blog data full-path (e.g. /path/to/haropress/source/data)'}
+];
+
+function setMeta(key, value) {
+    conf.meta[key] = value;
 }
 
-process.chdir(conf.deployDir);
+function setConf(key, value) {
+    conf[key] = value;
+}
 
-rl = readline.createInterface(process.stdin, process.stdout, null);
-rl.question("haroo> Enter the read/write url for your repository: ".yellow, function(repo) {
+function printConfig() {
+    var res;
 
-    var user = repo.match(/:([^\/]+)/)[1];
-    var branch = (repo.match(/\/[\w-]+.github.com/) == null) ? 'gh-pages' : 'master';
-    var project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
-    
-    console.log('haroo> git remote -v¶'.yellow);
-    exec('git remote -v', function(code, stdout, stderr) {
-        console.log(stdout);
-        if (stdout.match(/origin.+?haroopress.git/) != null) {
-            step(
-                function gitInit() {
-                    console.log('haroo> Start setting github pages branch ¶'.yellow);
-                    exec('git init', this);
-                },
-                function gitRename(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Completed git repository initialize ¶'.yellow);
-                    exec('git remote rename origin haroog', this);
-                },
-                function isMaster(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Repository remote\'s name origin -> haroog ¶'.yellow);
-                    if (branch == 'master') {
-                        console.log('haroo> Git remote add to origin ¶'.red);
-                        exec('git remote add origin '+ repo, this);
-                    }
-                },
-                function setGitConfig(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Added remote %s as origin ¶'.yellow, repo);
-                    exec('git config branch.master.remote origin', this);
-                },
-                function setBranch(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Set origin as default remote ¶'.yellow);
-                    exec('git branch -m master source', this);
-                },
-                function initHaroog(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Created inex.html ¶'.yellow);
-                    exec('echo "<!-- haroog init -->" > index.html', this);
-                },
-                function gitAdd(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> git add . ¶'.yellow);
-                    exec('git add .', this);
-                },
-                function createCommitter(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Copy temp commiter ¶'.yellow);
-                    exec('cp ../bin/git-commit .git-commit', this);
-                },
-                function gitCommit(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> git commit ¶'.yellow);
-                    exec('./.git-commit', this);
-                },
-                function removeCommiter(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> Remove temp commiter ¶'.yellow);
-                    exec('rm -rf .git-commit', this);
-                },
-                /*function gitBranch(err, stdout, stderr) {
-                    console.log('> git branch -m gh-pages')
-                    exec('git branch -m gh-pages', this);
-                },*/
-                function gitRemoteAdd(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> git remote add origin ¶'.yellow);
-                    if (branch != 'master') {
-                        console.log('haroo> Git remote add to origin ¶'.red);
-                        exec('git remote add origin '+ repo, this)
-                    }
-                },
-                function end(code, stdout, stderr) {
-                    console.log(stdout);
-                    console.log('haroo> completed'.cyan);
-                } 
-            );
+    res = JSON.stringify(conf, null, 4);
+
+    console.log(res);
+    return 'module.exports = '+ res;
+}
+
+function save() {
+    var str = printConfig();
+
+    i.question('haroo> Save? [y/n] : '.yellow, function(answer) {
+        if(answer == 'y') {
+            //TODO file save
+            fs.writeFileSync('./config.js', str, 'utf8');
+        } else {
         }
-    });
 
-    rl.close();
-    process.stdin.destroy();
-});
+        i.close();
+        process.stdin.destroy();
+        
+    });
+}
+
+function queue(idx) {
+    var msg, item;
+    
+    idx = idx || 0;
+    item = metas[idx];
+
+    if(!item) {
+        save(); 
+        return;
+    }
+
+    msg = 'haroo> '+ item.question +' :';
+    key = item.key;
+
+    i.question(msg.yellow, function(answer) {
+        if (key == 'keywords') {
+            answer = answer.replace(/ /g,'').split(',');
+        }
+        setMeta(key, answer);
+        queue(++idx);
+    });
+}
+
+queue();

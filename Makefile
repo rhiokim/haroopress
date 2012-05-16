@@ -2,7 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm update build
+init: npm update build config gh-pages
 
 setup: config gh-pages
 
@@ -27,10 +27,10 @@ preview:
 	./bin/preview.js
 	
 config:
-	./bin/configuration.js
+	./bin/setup.js
 
 gh-pages:
-	cd ./bin/;./setup.js
+	cd ./bin/;./gh-pages.js
 
 deploy:
 	cd ./bin;./deploy.js

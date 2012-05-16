@@ -15,60 +15,61 @@ var conf = {
     sourceDir: __dirname + '/source/data',
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
-    themeDir: __dirname + '/source/themes'
-};
+    themeDir: __dirname + '/source/themes',
 
-conf.theme = {
-    name: 'wood'
-};
-
-/* third party settings */
-conf.plugins = {
-    github: {
-        display: false,
-        user: '',
-        repoCount: 10,       //if 0 is all else display count
-        profileLink: true,
-        skipForks: true
+    /* theme setting */
+    theme: {
+        name: 'basic'
     },
-    twitter: {
-        display: false,
-        user: '',
-        tweetCount: 10,
-        showReplies: false,
-        followerButton: false,
-        showFollowerCount: false,
-        tweetButton: false 
-    },
-    google: {
-        display: false,
-        googleAnalyticsId: '',  //google analytics tracking id, default false
-        googlePlus: false,
-        googlePlusSize: 'medium',
-        gplus: {
+    
+    /* third party settings */
+    plugins: {
+        github: {
             display: false,
-            user: ''
+            user: '',
+            repoCount: 10,       //if 0 is all else display count
+            profileLink: true,
+            skipForks: true
+        },
+        twitter: {
+            display: false,
+            user: '',
+            tweetCount: 10,
+            showReplies: false,
+            followerButton: false,
+            showFollowerCount: false,
+            tweetButton: false 
+        },
+        google: {
+            display: false,
+            googleAnalyticsId: '',  //google analytics tracking id, default false
+            googlePlus: false,
+            googlePlusSize: 'medium',
+            gplus: {
+                display: false,
+                user: ''
+            }
+        },
+        disqus: {
+            display: false,
+            shortName: '',
+            showCommentCount: true
+        },
+        facebook: {
+            display: false, 
+            user: '',
+            showSiteLink: false,
+            showLikeButton: false 
+        },
+        delicious: {},
+        contributors: {
+            display: true
+        },
+        weather: {
+            display: false,
+            delay: 0,
+            zipcode: 'KSXX0037'
         }
-    },
-    disqus: {
-        display: false,
-        shortName: '',
-        showCommentCount: true
-    },
-    facebook: {
-        display: false, 
-        user: '',
-        showSiteLink: false,
-        showLikeButton: false 
-    },
-    delicious: {},
-    contributors: {
-        display: true
-    },
-    weather: {
-        display: true,
-        delay: 0,
-        zipcode: 'KSXX0037'
     }
 };
 
