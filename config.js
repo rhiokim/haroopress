@@ -26,9 +26,14 @@ module.exports = {
     "deployDir": "/Users/rhio/Works/my/haroopress/_deploy",
     "themeDir": "/Users/rhio/Works/my/haroopress/source/themes",
     "theme": {
-        "name": "basic"
+        "name": "wood-dark"
     },
     "plugins": {
+        "recents": {
+            "display": true,
+            "articleCount": 5,
+            "showNameTag": true
+        },
         "github": {
             "display": false,
             "user": "",
