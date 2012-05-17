@@ -2,7 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm initialize update build setup gh-pages
+init: npm update build setup gh-pages initialize
 
 npm:
 	npm install -g less
