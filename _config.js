@@ -24,6 +24,11 @@ var conf = {
     
     /* third party settings */
     plugins: {
+        recents: {
+            display: false,
+            articleCount: 5,
+            showNameTag: true
+        },
         github: {
             display: false,
             user: '',
