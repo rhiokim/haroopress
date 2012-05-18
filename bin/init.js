@@ -20,7 +20,7 @@ function init() {
             });
 
             //init your profile
-            exec('mv ./authors/yours.markdown '+ conf.meta.author +'.markdown', function(code, stdout, stderr) {
+            exec('mv ./authors/yours.markdown ./authors/'+ conf.meta.author +'.markdown', function(code, stdout, stderr) {
             });
         });
     });
