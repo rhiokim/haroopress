@@ -19,12 +19,13 @@ module.exports = {
     },
     "lang": "en",
     "contentLength": 6,
+    "pagenate": 3,
     "deployBranch": "gh-pages",
     "CNAME": "",
-    "sourceDir": "/Users/rhio/Works/my/haroopress/source/data",
-    "publicDir": "/Users/rhio/Works/my/haroopress/_public",
-    "deployDir": "/Users/rhio/Works/my/haroopress/_deploy",
-    "themeDir": "/Users/rhio/Works/my/haroopress/source/themes",
+    "sourceDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/source/data",
+    "publicDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/_public",
+    "deployDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/_deploy",
+    "themeDir": "/Users/kimyangwon/Develop/Ninja/Project/haroopress/source/themes",
     "theme": {
         "name": "wood-dark"
     },

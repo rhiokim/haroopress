@@ -9,6 +9,7 @@ var conf = {
     },
     lang: 'en',
     contentLength: 6, //\n\n
+    pagenate: 5,
     deployBranch: 'gh-pages',
     CNAME: '',
 
