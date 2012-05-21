@@ -14,7 +14,7 @@ npm:
 
 update:
 	@echo "========================================"
-	@echo "= setup npm dependency module"
+	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git submodule update --init --recursive
 
