@@ -8,14 +8,14 @@
     ],
     "acceptComment": true,
     "acceptTrackback": true,
-    "published": "1971-01-01T00:00:00.001Z",
+    "published": "2012-02-21T00:00:00.001Z",
     "status": "public",
-    "important": false,
+    "important": true,
     "advanced": {}
 }
 
 ### 환영합니다.
-* Welcome to Haroopress
+* Welcome
 * 歡迎
 * bienvenida
 * accueil
@@ -42,3 +42,4 @@
 * [변경 이력](https://github.com/rhiokim/haroopress/wiki/Change-History)
 
 ### Contributors
+* [@rhiokim](http://twitter.com/rhiokim)
