@@ -2,6 +2,7 @@
 
 var fs = require('fs'),
     rl = require('readline'),
+    path = require('path'),
     conf = require('../_config'),
     colors = require('colors');
 
@@ -39,7 +40,10 @@ function printConfig() {
 }
 
 function save() {
-    var str = printConfig();
+    var str = printConfig(),
+        pattern = new RegExp('"'+ path.resolve(__dirname, '..'), 'g');
+
+    str = str.replace(pattern, '__dirname +"');
 
     i.question('haroo> Save? [y/n] : '.yellow, function(answer) {
         if(answer == 'y') {

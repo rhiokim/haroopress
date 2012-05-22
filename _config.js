@@ -1,6 +1,6 @@
 var conf = {
     meta: {
-        version: '0.8.1',
+        version: '0.8.4',
         defaultTitle: 'haroopress',
         description: 'Static Page Blog engine based Node.js',
         siteUrl: 'http://haroopress.github.com',
@@ -8,7 +8,7 @@ var conf = {
         keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     lang: 'en',
-    contentLength: 6, //\n\n
+    contentLength: 3, //\n\n
     pagenate: 5,
     deployBranch: 'gh-pages',
     CNAME: '',
@@ -22,45 +22,50 @@ var conf = {
     theme: {
         name: 'basic'
     },
+
+    recents: {
+        display: true,
+        articleCount: 5,
+        showNameTag: true
+    },
+
+    /* google analytics */
+    analytics: {
+        display: false,
+        googleAnalyticsId: ''
+    },
     
     /* third party settings */
     plugins: {
-        recents: {
-            display: true,
-            articleCount: 5,
-            showNameTag: true
-        },
         github: {
             display: false,
             user: '',
             repoCount: 10,       //if 0 is all else display count
             skipForks: true
         },
+        tweets: {
+            display: false,
+            user: '',
+            tweetCount: 10
+        },
         twitter: {
             display: false,
             user: '',
-            tweetCount: 10,
-            tweetButton: false 
+            tweetButton: false
+        },
+        facebook: {
+            display: false,
+            user: '',
+            showLikeButton: false
         },
         google: {
             display: false,
-            googleAnalyticsId: '',  //google analytics tracking id, default false
-            googlePlus: false,
-            googlePlusSize: 'medium',
-            gplus: {
-                display: false,
-                user: ''
-            }
+            googlePlusSize: 'medium'
         },
         disqus: {
             display: false,
             shortName: '',
             showCommentCount: true
-        },
-        facebook: {
-            display: false, 
-            user: '',
-            showLikeButton: false 
         },
         delicious: {},
         contributors: {
