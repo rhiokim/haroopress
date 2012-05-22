@@ -8,13 +8,14 @@ npm:
 	@echo "========================================"
 	@echo "= setup npm dependency module"
 	@echo "========================================"
+	npm install -g express
 	npm install -g less
 	npm install -g uglify-js
 	npm install -g locally
 
 update:
 	@echo "========================================"
-	@echo "= setup npm dependency module"
+	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git submodule update --init --recursive
 

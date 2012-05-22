@@ -1,8 +1,8 @@
 module.exports = {
     "meta": {
-        "version": "0.8.1",
+        "version": "0.8.4",
         "defaultTitle": "하루프레스 > Haroopress Official Site",
-        "description": "하루프레스는 하루를 손쉽게 기록해 보자라는 뜻의 블로그 엔진으로, Node.js 와 EJS 템플릿 엔진으로 설계된 Github 에서 제공        하는 정적 페이지 서비스를 위한 블로그 엔진입니다.",
+        "description": "하루프레스는 하루를 손쉽게 기록해 보자라는 뜻의 블로그 엔진으로, Node.js 와 EJS 템플릿 엔진으로 설계된 Github 에서 제공하는 정적 페이지 서비스를 위한 블로그 엔진입니다.",
         "siteUrl": "http://haroopress.github.com",
         "author": "Rhio Kim",
         "keywords": [
@@ -18,65 +18,63 @@ module.exports = {
         ]
     },
     "lang": "en",
-    "contentLength": 6,
+    "contentLength": 3,
+    "pagenate": 5,
     "deployBranch": "gh-pages",
     "CNAME": "",
-    "sourceDir": "/Users/rhio/Works/my/haroopress/source/data",
-    "publicDir": "/Users/rhio/Works/my/haroopress/_public",
-    "deployDir": "/Users/rhio/Works/my/haroopress/_deploy",
-    "themeDir": "/Users/rhio/Works/my/haroopress/source/themes",
+    "sourceDir": __dirname +"/source/data",
+    "themeDir": __dirname +"/source/themes",
+    "publicDir": __dirname +"/_public",
+    "deployDir": __dirname +"/_deploy",
     "theme": {
-        "name": "wood-dark"
+        "name": "basic"
+    },
+    "recents": {
+        "display": true,
+        "articleCount": 5,
+        "showNameTag": true
+    },
+    "analytics": {
+        "display": true,
+        "googleAnalyticsId": "UA-31231507-1"
     },
     "plugins": {
-        "recents": {
-            "display": true,
-            "articleCount": 5,
-            "showNameTag": true
-        },
         "github": {
-            "display": false,
-            "user": "",
+            "display": true,
+            "user": "haroopress",
             "repoCount": 10,
-            "profileLink": true,
             "skipForks": true
         },
-        "twitter": {
+        "tweets": {
             "display": false,
             "user": "",
-            "tweetCount": 10,
-            "showReplies": false,
-            "followerButton": false,
-            "showFollowerCount": false,
-            "tweetButton": false
+            "tweetCount": 10
         },
-        "google": {
-            "display": false,
-            "googleAnalyticsId": "",
-            "googlePlus": false,
-            "googlePlusSize": "medium",
-            "gplus": {
-                "display": false,
-                "user": ""
-            }
-        },
-        "disqus": {
-            "display": false,
-            "shortName": "",
-            "showCommentCount": true
+        "twitter": {
+            "display": true,
+            "user": "haroopress",
+            "tweetButton": true
         },
         "facebook": {
-            "display": false,
+            "display": true,
             "user": "",
-            "showSiteLink": false,
-            "showLikeButton": false
+            "showLikeButton": true
+        },
+        "google": {
+            "display": true,
+            "googlePlusSize": "medium"
+        },
+        "disqus": {
+            "display": true,
+            "shortName": "haroopress",
+            "showCommentCount": true
         },
         "delicious": {},
         "contributors": {
             "display": true
         },
         "weather": {
-            "display": false,
+            "display": true,
             "delay": 0,
             "zipcode": "KSXX0037"
         }
