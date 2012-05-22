@@ -27,7 +27,7 @@ module.exports = {
     "deployDir": "/Users/rhio/Works/my/haroopress/_deploy",
     "themeDir": "/Users/rhio/Works/my/haroopress/source/themes",
     "theme": {
-        "name": "wood-dark"
+        "name": "basic"
     },
     "plugins": {
         "recents": {
@@ -39,16 +39,12 @@ module.exports = {
             "display": false,
             "user": "",
             "repoCount": 10,
-            "profileLink": true,
             "skipForks": true
         },
         "twitter": {
             "display": false,
             "user": "",
             "tweetCount": 10,
-            "showReplies": false,
-            "followerButton": false,
-            "showFollowerCount": false,
             "tweetButton": false
         },
         "google": {
@@ -69,7 +65,6 @@ module.exports = {
         "facebook": {
             "display": false,
             "user": "",
-            "showSiteLink": false,
             "showLikeButton": false
         },
         "delicious": {},

@@ -14,9 +14,9 @@ var conf = {
     CNAME: '',
 
     sourceDir: __dirname + '/source/data',
+    themeDir: __dirname + '/source/themes',
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
-    themeDir: __dirname + '/source/themes',
 
     /* theme setting */
     theme: {
@@ -26,7 +26,7 @@ var conf = {
     /* third party settings */
     plugins: {
         recents: {
-            display: false,
+            display: true,
             articleCount: 5,
             showNameTag: true
         },
@@ -34,16 +34,12 @@ var conf = {
             display: false,
             user: '',
             repoCount: 10,       //if 0 is all else display count
-            profileLink: true,
             skipForks: true
         },
         twitter: {
             display: false,
             user: '',
             tweetCount: 10,
-            showReplies: false,
-            followerButton: false,
-            showFollowerCount: false,
             tweetButton: false 
         },
         google: {
@@ -64,7 +60,6 @@ var conf = {
         facebook: {
             display: false, 
             user: '',
-            showSiteLink: false,
             showLikeButton: false 
         },
         delicious: {},
