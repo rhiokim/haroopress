@@ -1,0 +1,6 @@
+[하루프레스 공식 사이트](http://haroopress.github.com)
+[하루프레스 소스 저장소](http://github.com/rhiokim/haroopress/)
+[하루프레스 테마 저장소](http://github.com/haroopress/haroopress-theme)
+[하루프레스 개발자 블로그](http://rhio.tistory.com)
+[노드 한국 개발자 커뮤니티](http://nodejs.kr)
+[프론트 앤드 개발자 커뮤니티](http://frends.kr)
