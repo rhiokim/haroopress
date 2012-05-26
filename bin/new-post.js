@@ -8,7 +8,7 @@ var fs = require('fs'),
     conf = require('../config');
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
-rl.question('haroo> Enter article title : ', function(title) {
+rl.question('haroo> Input article title : ', function(title) {
     var file = fs.readFileSync('_template/sample-post.markdown', 'utf8');
     var head = file.split('\n\n'),
     title = title && title.trim();
@@ -33,7 +33,7 @@ rl.question('haroo> Enter article title : ', function(title) {
     } catch(e) {
     }
 
-    rl.question('haroo> Enter article category (e.g cate1, cate2, cate3 ) : ', function(categories) {
+    rl.question('haroo> Input article category : ', function(categories) {
         if(categories.length) {
             categories = categories.split(',');
             categories = categories.map(function(category) {
@@ -43,7 +43,7 @@ rl.question('haroo> Enter article title : ', function(title) {
             head.categories = categories;
         }
         
-        rl.question('haroo> Enter article tag (e.g tag1, tag2, tag3) : ', function(tags) {
+        rl.question('haroo> Input article tag (e.g tag1, tag2, tag3) : ', function(tags) {
             if(tags.length) {
                 tags = tags.split(',');
                 tags = tags.map(function(tag) {

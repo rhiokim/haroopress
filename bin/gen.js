@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var gen = require('../lib/generator');
+var gen = require('../lib/haroopress/generator');
 
 gen.clone(function() {
     gen.rss();
