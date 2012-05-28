@@ -18,7 +18,7 @@ module.exports = {
         ]
     },
     "lang": "en",
-    "contentLength": 3,
+    "contentLength": 5,
     "pagenate": 5,
     "deployBranch": "gh-pages",
     "CNAME": "",
