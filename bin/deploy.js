@@ -6,6 +6,8 @@ var exec = require('child_process').exec,
     rl = require('readline'),
     conf = require('../config');
 
+process.argv.splice(0,2);
+var deployMessage = process.argv.join(' ');
 process.chdir(conf.deployDir);
 
 //create CNAME file
@@ -21,7 +23,7 @@ exec('cp -R '+ conf.publicDir +'/* '+ conf.deployDir, function(code, stdout, std
         exec('git add -u', function(code, stdout, stderr) {
             console.log(stdout.white);
             console.log('haroo> git commit -m ¶'.yellow);
-            var message = 'Site updated at '+ new Date();
+            var message = deployMessagte || 'Site updated at '+ new Date();
             exec('git commit -m "'+ message +'"', function(code, stdout, stderr) {
                 console.log(stdout.white);
                 console.log('haroo> git push origin master --force¶'.yellow);

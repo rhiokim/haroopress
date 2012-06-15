@@ -65,7 +65,7 @@ deploy:
 	@echo "========================================"
 	@echo "= deploy to github"
 	@echo "========================================"
-	cd ./bin;./deploy.js
+	cd ./bin;./deploy.js ${msg}
 
 new-post:
 	cd ./bin;./new-post.js
