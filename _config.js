@@ -5,6 +5,7 @@ var conf = {
         description: 'Static Page Blog engine based Node.js',
         siteUrl: 'http://haroopress.github.com',
         author: 'Rhio Kim',
+        email: 'rhio.kim@gmail.com',
         keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     lang: 'en',
