@@ -20,6 +20,7 @@ module.exports = {
     "lang": "en",
     "contentLength": 5,
     "pagenate": 5,
+    "dateFormat": "MMM Do 'YY",
     "deployBranch": "gh-pages",
     "CNAME": "",
     "sourceDir": __dirname +"/source/data",
@@ -27,7 +28,7 @@ module.exports = {
     "publicDir": __dirname +"/_public",
     "deployDir": __dirname +"/_deploy",
     "theme": {
-        "name": "basic"
+        "name": "clean2"
     },
     "recents": {
         "display": true,
@@ -46,8 +47,8 @@ module.exports = {
             "skipForks": true
         },
         "tweets": {
-            "display": false,
-            "user": "",
+            "display": true,
+            "user": "haroopress",
             "tweetCount": 10
         },
         "twitter": {
