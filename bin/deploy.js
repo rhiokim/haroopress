@@ -6,8 +6,7 @@ var exec = require('child_process').exec,
     rl = require('readline'),
     conf = require('../config');
 
-process.argv.splice(0,2);
-var deployMessage = process.argv.join(' ');
+var deployMessage = process.argv[2];
 process.chdir(conf.deployDir);
 
 //create CNAME file
