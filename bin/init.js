@@ -16,11 +16,12 @@ function init() {
             process.chdir(conf.sourceDir);
 
             exec('git init', function(code, stdout, stderr) {
-                console.log('haroo> blog data initialized'.yellow);
+                console.log('haroo> site data initialized'.yellow);
             });
 
             //init your profile
             exec('mv ./authors/yours.markdown ./authors/'+ conf.meta.author +'.markdown', function(code, stdout, stderr) {
+                console.log('haroo> create your profile markdown');
             });
         });
     });

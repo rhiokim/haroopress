@@ -8,11 +8,12 @@ var fs = require('fs'),
 
 var i = rl.createInterface(process.stdin, process.stdout, null);
 var metas = [
-    { key: 'defaultTitle', question: 'Please! insert your blog title' },
-    { key: 'description', question: 'Please! insert your blog description' },
-    { key: 'siteUrl', question: 'Please! insert site url (e.g. http://site.com)' },
-    { key: 'author', question: 'Author Name? (should matched source/data/authors/[author_name].markdown)' },
-    { key: 'keywords', question: '<meta name="keyword" content="'+ '[value]'.cyan +'" />'}
+    { key: 'defaultTitle', question: 'Please! insert your site title' },
+    { key: 'description', question: 'Please! insert your site description' },
+    { key: 'siteUrl', question: 'Please! insert site url (e.g. "http://site.com")' },
+    { key: 'author', question: 'Please! insert you name (e.g "Rhio Kim")' },
+    { key: 'email', question: 'Please! insert you gravatar emaill address (e.g "rhiokim@gmail.com")' },
+    { key: 'keywords', question: 'Please! insert you site meta information (e.g "node.js, javascript, html5")' }
 ];
 
 var config = [
