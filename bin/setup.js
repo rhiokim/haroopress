@@ -35,7 +35,8 @@ function printConfig(key) {
     var res, key = key || 'meta';
 
     res = JSON.stringify(conf, null, 4);
-
+    console.log(conf.meta.siteUrl +' Meta Information');
+    console.log('-----------------------------------------------');
     console.log(JSON.stringify(conf[key], null, 4));
     return 'module.exports = '+ res;
 }
