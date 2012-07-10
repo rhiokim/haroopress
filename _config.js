@@ -71,7 +71,9 @@ var conf = {
         },
         delicious: {},
         contributors: {
-            display: true
+            display: true,
+            sort: 'DESC',
+            count: 5
         },
         weather: {
             display: false,

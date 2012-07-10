@@ -29,7 +29,7 @@ module.exports = {
     "publicDir": __dirname +"/_public",
     "deployDir": __dirname +"/_deploy",
     "theme": {
-        "name": "clean2"
+        "name": "basic"
     },
     "recents": {
         "display": true,
@@ -73,7 +73,9 @@ module.exports = {
         },
         "delicious": {},
         "contributors": {
-            "display": true
+            "display": true,
+            "sort": 'DESC',
+            "count": 5
         },
         "weather": {
             "display": true,
