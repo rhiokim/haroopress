@@ -74,7 +74,7 @@ module.exports = {
         "delicious": {},
         "contributors": {
             "display": true,
-            "sort": 'DESC',
+            "sort": 'ASC',
             "count": 5
         },
         "weather": {
