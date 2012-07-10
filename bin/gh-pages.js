@@ -20,10 +20,17 @@ process.chdir(conf.deployDir);
 rl = readline.createInterface(process.stdin, process.stdout, null);
 rl.question("haroo> Enter the read/write url for your repository: ".yellow, function(repo) {
 
-    var user = repo.match(/:([^\/]+)/)[1];
-    var branch = (repo.match(/\/[\w-]+.github.com/) == null) ? 'gh-pages' : 'master';
-    var project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
-    
+    var user, regx, branch, project;
+
+    if(repo.indexOf('https') >= 0) {
+        regx = /github.com\/([^\/]+)/;
+    } else {
+        regx = /:([^\/]+)/;
+    }
+    user = repo.match(regx)[1];
+    branch = (repo.match(/\/[\w-]+.github.com/) == null) ? 'gh-pages' : 'master';
+    project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
+
     console.log('haroo> git remote -v¶'.yellow);
     exec('git remote -v', function(code, stdout, stderr) {
         console.log(stdout);
