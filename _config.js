@@ -9,7 +9,7 @@ var conf = {
         keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     lang: 'en',
-    contentLength: 3, //\n\n
+    contentLength: 5, //\n\n
     pagenate: 5,
     dateFormate: 'mm:ssa, Do MMM YYYY',
     deployBranch: 'gh-pages',
