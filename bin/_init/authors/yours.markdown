@@ -1,6 +1,6 @@
 {
     "name": "What's your name?",
-    "blog": "Where your blog?",
+    "blog": "",
     "twitter": "",
     "github": "",
     "vimeo": "",

@@ -1,4 +1,55 @@
 
+n.n.n / 2012-07-11 
+==================
+
+  * worked #178
+  * fixed #183
+  * worked #182
+  * worked #182
+  * worked #182
+  * enhance log #176
+  * #176 issue close
+  * fixed bad type
+  * fixed bad typo
+  * #170 close
+  * #171 close
+  * #171 for test
+  * #165 close
+  * fixed haroopress core path
+  * haroo engine rename path
+  * Merge branch 'devel' of github.com:rhiokim/haroopress into devel
+  * Merge branch 'release/v0.8.4' into devel
+  * Merge branch 'release/v0.8.4' into devel
+  * update welcome article
+  * \#161 enhance make setup script
+  * #152 clear option
+  * update welcome article
+  * enhance interactive preview message
+  * Merge branch 'devel' of github.com:rhiokim/haroopress into release/v0.8.4
+  * #157 add interactive preview on browser
+  * Merge branch 'release/v0.8.4' of github.com:rhiokim/haroopress into release/v0.8.4
+  * add express npm module
+  * Merge branch 'devel' of github.com:rhiokim/haroopress into devel
+  * #147 error fixed export path
+  * #147 worked creating default user profile markdown
+  * #151 add pagenate at config.js
+  * #153 Category name toLowerCase
+  * update description make script
+  * Merge branch 'release/v0.8.3'
+  * Merge branch 'release/v0.8.3' into devel
+  * Merge branch 'devel' into release/v0.8.3
+  * #146 added make script description
+  * #140 worked recent articles plugin limit
+  * Merge branch 'feature/enhance-initialize-step' into devel
+  * change make-init procedure order
+  * remove source/data in git-index
+  * change order in make script
+  * fixed make script error
+  * fixed untracked _init dir
+  * error untracked _init dir
+  * #143 enhance initialize step
+  * Merge branch 'release/v0.8.2' into devel
+
 n.n.n / 2012-05-16 
 ==================
 

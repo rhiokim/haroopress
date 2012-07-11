@@ -8,11 +8,12 @@ var fs = require('fs'),
 
 var i = rl.createInterface(process.stdin, process.stdout, null);
 var metas = [
-    { key: 'defaultTitle', question: 'Please! insert your blog title' },
-    { key: 'description', question: 'Please! insert your blog description' },
-    { key: 'siteUrl', question: 'Please! insert site url (e.g. http://site.com)' },
-    { key: 'author', question: 'Author Name? (should matched source/data/authors/[author_name].markdown)' },
-    { key: 'keywords', question: '<meta name="keyword" content="'+ '[value]'.cyan +'" />'}
+    { key: 'defaultTitle', question: 'Insert your site title' },
+    { key: 'description', question: 'Insert your site description' },
+    { key: 'siteUrl', question: 'Insert site url (e.g. "http://site.com")' },
+    { key: 'author', question: 'Insert you name (e.g "Rhio Kim")' },
+    { key: 'email', question: 'Insert you gravatar emaill address (e.g "rhiokim@gmail.com")' },
+    { key: 'keywords', question: 'Insert you site meta information (e.g "node.js, javascript, html5")' }
 ];
 
 var config = [
@@ -30,12 +31,13 @@ function setConf(key, value) {
     conf[key] = value;
 }
 
-function printConfig() {
-    var res;
+function printConfig(key) {
+    var res, key = key || 'meta';
 
     res = JSON.stringify(conf, null, 4);
-
-    console.log(res);
+    console.log(conf.meta.siteUrl +' Meta Information');
+    console.log('-----------------------------------------------');
+    console.log(JSON.stringify(conf[key], null, 4));
     return 'module.exports = '+ res;
 }
 

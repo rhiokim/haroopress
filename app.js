@@ -1,7 +1,7 @@
 var fs = require('fs'),
     moment = require('moment'),
     express = require('express'),
-    haroo = require('./lib/haroo'),
+    haroo = require('./lib/haroopress/index'),
     config = require('./config'),
     routes = require('./source/routes'),
     path = require('path');

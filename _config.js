@@ -5,11 +5,13 @@ var conf = {
         description: 'Static Page Blog engine based Node.js',
         siteUrl: 'http://haroopress.github.com',
         author: 'Rhio Kim',
+        email: 'rhio.kim@gmail.com',
         keywords: [ 'node.js', 'javascript', 'html5' ]
     },
     lang: 'en',
-    contentLength: 3, //\n\n
+    contentLength: 5, //\n\n
     pagenate: 5,
+    dateFormate: 'mm:ssa, Do MMM YYYY',
     deployBranch: 'gh-pages',
     CNAME: '',
 
@@ -69,7 +71,9 @@ var conf = {
         },
         delicious: {},
         contributors: {
-            display: true
+            display: true,
+            sort: 'DESC',
+            count: 5
         },
         weather: {
             display: false,
