@@ -10,6 +10,29 @@ var docroot = path.relative(process.cwd(), conf.publicDir);
 
 var rl = readline.createInterface(process.stdin, process.stdout, null);
 
+/**
+ * process execute
+ *
+ * @param {Number} port
+ * @author nanhapark
+ */
+function StandAlone(port) {
+  var spawn = require('child_process').spawn,
+      web    = spawn('locally', ['-w', docroot, '-p', port]);
+
+  web.stdout.on('data', function (data) {
+    console.log('haroo> stdout: ' + data);
+  });
+
+  web.stderr.on('data', function (data) {
+    console.log('haroo> stderr: ' + data);
+  });
+
+  web.on('exit', function (code) {
+    console.log('haroo> child process exited with code ' + code);
+  });
+}
+
 switch(process.platform) {
     case 'darwin' :
         console.log('haroo> Start server at http://localhost:8081 ¶'.yellow);
@@ -32,6 +55,18 @@ switch(process.platform) {
             process.stdin.destroy();
         });
 
+    break;
+    case 'linux' :
+
+        console.log('haroo> Start server at http://localhost:[port] ¶'.yellow);
+        if (path.existsSync(docroot) == false) {
+          console.error('haroo> not found ' + docroot);
+          process.exit(1);
+        }
+
+        rl.question('haroo> Input port number : ', function(port) {
+          StandAlone(port);
+        });
     break;
     case 'win32' :
     break;
