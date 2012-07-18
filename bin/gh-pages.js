@@ -43,11 +43,11 @@ rl.question("haroo> Enter the read/write url for your repository: ".yellow, func
                 function gitRename(code, stdout, stderr) {
                     console.log(stdout);
                     console.log('haroo> Completed git repository initialize ¶'.yellow);
-                    exec('git remote rename origin haroog', this);
+                    exec('git remote rename origin haroopress', this);
                 },
                 function isMaster(code, stdout, stderr) {
                     console.log(stdout);
-                    console.log('haroo> Repository remote\'s name origin -> haroog ¶'.yellow);
+                    console.log('haroo> Repository remote\'s name origin -> haroopress ¶'.yellow);
                     if (branch == 'master') {
                         console.log('haroo> Git remote add to origin ¶'.red);
                         exec('git remote add origin '+ repo, this);
@@ -66,7 +66,7 @@ rl.question("haroo> Enter the read/write url for your repository: ".yellow, func
                 function initHaroog(code, stdout, stderr) {
                     console.log(stdout);
                     console.log('haroo> Created inex.html ¶'.yellow);
-                    exec('echo "<!-- haroog init -->" > index.html', this);
+                    exec('echo "<!-- haroopress init -->" > index.html', this);
                 },
                 function gitAdd(code, stdout, stderr) {
                     console.log(stdout);
