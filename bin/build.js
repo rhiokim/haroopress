@@ -30,78 +30,78 @@ function initBootstrap() {
     exec('rm -rf ../lib/bootstrap/bootstrap/', this);
 }
 
-function buildBootstrap(err, stdout, stdin) {
+function buildBootstrap(code, stdout, stdin) {
     log('build twitter bootstrap');
     process.chdir('../lib/bootstrap');
     exec('make bootstrap', this);
 }
 
-function copyBootstrap(err, stdout, stdin) {
+function copyBootstrap(code, stdout, stdin) {
     log2(stdout);
     log('built bootstrap file copy to '+ sourceDir);
     process.chdir(__dirname);
     exec('cp -R ../lib/bootstrap/bootstrap/* '+ sourceDir, this);
 }
 
-function buildjQuery(err, stdout, stdin) {
+function buildjQuery(code, stdout, stdin) {
     log2(stdout);
     log('build jQuery');
     process.chdir('../lib/jquery');
     exec('make', this);
 }
 
-function copyjQuery(err, stdout, stdin) {
+function copyjQuery(code, stdout, stdin) {
     log2(stdout);
     log('built jQuery files copy to '+ sourceDir);
     process.chdir(__dirname);
     exec('cp ../lib/jquery/dist/* '+ sourceJS, this);
 }
 
-function copyRequireJS(err, stdout, stdin) {
+function copyRequireJS(code, stdout, stdin) {
     log2(stdout);
     log('built requirejs core files copy to '+ sourceJS);
     exec('cp ../lib/requirejs/require.js '+ sourceJS, this);
 }
 
-function copyRequireJS2(err, stdout, stdin) {
+function copyRequireJS2(code, stdout, stdin) {
     log2(stdout);
     log('built requirejs text.js files copy to '+ sourceJS);
     exec('cp ../lib/requirejs/text.js '+ sourceJS, this);
 }
 
-function copyTOC(err, stdout, stdin) {
+function copyTOC(code, stdout, stdin) {
     log2(stdout);
     log('built toc files copy to '+ sourceJS);
     exec('cp ../lib/toc/toc.js '+ sourceJS, this);
 }
 
-function copyJSONP(err, stdout, stdin) {
+function copyJSONP(code, stdout, stdin) {
     log2(stdout);
     log('built jquery-jsonp files copy to '+ sourceJS);
     exec('cp ../lib/jquery-jsonp/src/jquery.jsonp.js '+ sourceJS, this);
 }
 
-function buildCodePretty(err, stdout, stdin) {
+function buildCodePretty(code, stdout, stdin) {
     log2(stdout);
     log('build google code prettify');
     process.chdir('../lib/google-code-prettify');
     exec('make', this);
 }
 
-function copyCodePrettyJS(err, stdout, stdin) {
+function copyCodePrettyJS(code, stdout, stdin) {
     log2(stdout);
     log('built prettifer js files copy to '+ sourceJS);
     process.chdir(__dirname);
     exec('cp ../lib/google-code-prettify/*.js '+ sourceJS, this);
 }
 
-function copyCodePrettyCSS(err, stdout, stdin) {
+function copyCodePrettyCSS(code, stdout, stdin) {
     log2(stdout);
     log('built prettifer css files copy to '+ sourceCSS);
     exec('cp ../lib/google-code-prettify/*.css '+ sourceCSS, this);
 }
 
-function copyMustache(err, stdout, stdin) {
+function copyMustache(code, stdout, stdin) {
     log2(stdout);
     log('Mustache files copy to '+ sourceJS);
     exec('cp ../lib/mustache/mustache.js '+ sourceJS, this);

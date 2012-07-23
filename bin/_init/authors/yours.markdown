@@ -1,5 +1,6 @@
 {
     "name": "What's your name?",
+    "company": "",
     "blog": "",
     "twitter": "",
     "github": "",

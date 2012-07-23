@@ -54,6 +54,7 @@ gen: clear
 	@echo "= generate to static page"
 	@echo "========================================"
 	./bin/gen.js
+	cp -R ./lib/shower ${PUBLIC_DIR}/slide/_asserts
 
 preview:
 	@echo "========================================"
