@@ -10,7 +10,8 @@
     "status": "public",
     "important": false,
     "advanced": {
-        "layout": "slide"
+        "layout": "slide",
+        "displayCover": true
     }
 }
 
