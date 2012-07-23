@@ -66,6 +66,11 @@ app.get('/archives', function(req, res) {
     res.render('archives', data);
 });
 
+
+app.get('/slides', function(req, res) {
+    res.render('slides', data);
+});
+
 app.get('/tags', function(req, res) {
     var tags = fs.readFileSync(__dirname +'/source/_tags.json', 'utf8');
     tags = JSON.parse(tags);
