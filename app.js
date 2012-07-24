@@ -68,7 +68,16 @@ app.get('/archives', function(req, res) {
 
 
 app.get('/slides', function(req, res) {
-    res.render('slides', data);
+    var _layout = data.layout;
+    data.layout = '../layout';
+    res.render('slide/list', data);
+    data.layout = _layout;
+});
+
+app.get('/slide/:title', function(req, res) {
+    data.slide = data.slides[req.params.title];
+    data.config.meta.pageTitle = data.slide.head.title +' | ';
+    res.render('slide/main', data);
 });
 
 app.get('/tags', function(req, res) {

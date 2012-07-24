@@ -13,7 +13,7 @@ module.exports = {
     "lang": "en",
     "contentLength": 5,
     "pagenate": 5,
-    "dateFormate": "mm:ssa, Do MMM YYYY",
+    "dateFormat": "mm:ssa, Do MMM YYYY",
     "deployBranch": "gh-pages",
     "CNAME": "",
     "sourceDir": __dirname +"/source/data",
