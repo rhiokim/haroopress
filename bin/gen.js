@@ -9,6 +9,7 @@ gen.clone(function() {
     gen.archives();
     gen.archive();
     gen.slide();
+    gen.slides();
     gen.categories();
     gen.cate();
     gen.authors();
