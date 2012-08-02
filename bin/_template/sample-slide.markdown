@@ -25,7 +25,7 @@ Slide Seperator is five hybhen
 
 ![cover](/slide/images/cover.png);
 
------
+=====
 
 ## Second Slide Title
 
