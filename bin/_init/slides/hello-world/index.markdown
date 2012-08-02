@@ -34,16 +34,17 @@ Slide Content Here
 ## Third Slide Title
 
 Slide Content Here
+Child slide Seperator is five '-'
 
 -----
 
-## Third's first child slide 
+## Third's first child slide (Not Support)
 
 Third's first Slide Content Here
 
 -----
 
-## Third's second child slide
+## Third's second child slide  (Not Support)
 
 Third's second Slide Content Here
 
