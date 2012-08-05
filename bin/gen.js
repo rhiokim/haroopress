@@ -8,6 +8,8 @@ gen.clone(function() {
     gen.index();
     gen.archives();
     gen.archive();
+    gen.slide();
+    gen.slides();
     gen.categories();
     gen.cate();
     gen.authors();
