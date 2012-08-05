@@ -3,10 +3,9 @@
 var exec = require('child_process').exec,
     path = require('path'),
     step = require('step'),
-    colors = require('colors'),
-    conf = require('../config');
+    colors = require('colors');
 
-var sourceDir = path.resolve(conf.themeDir, conf.theme.name, 'public');
+var sourceDir = path.resolve('../source/themes/basic', 'public');
 var sourceJS = path.resolve(sourceDir, 'js');
 var sourceCSS = path.resolve(sourceDir, 'css');
 
