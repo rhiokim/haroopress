@@ -2,7 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm update build setup gh-pages initialize
+init: npm update setup gh-pages initialize
 
 npm:
 	@echo "========================================"
