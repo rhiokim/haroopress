@@ -2,7 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm update build setup gh-pages initialize
+init: npm update setup gh-pages initialize
 
 npm:
 	@echo "========================================"
@@ -54,6 +54,7 @@ gen: clear
 	@echo "= generate to static page"
 	@echo "========================================"
 	./bin/gen.js
+	cp -R ./lib/shower ${PUBLIC_DIR}/slides/_asserts
 
 preview:
 	@echo "========================================"
@@ -72,6 +73,9 @@ new-post:
 
 new-page:
 	cd ./bin;./new-page.js
+
+new-slide:
+	cd ./bin;./new-slide.js
 
 octopress:
 	@echo "========================================"
