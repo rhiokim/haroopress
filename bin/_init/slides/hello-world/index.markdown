@@ -21,7 +21,7 @@ Slide Content Here
 
 Slide Seperator is five '='
 
-![cover](/slide/images/cover.png);
+![cover](./@img/cover.png);
 
 =====
 

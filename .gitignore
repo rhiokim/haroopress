@@ -7,3 +7,4 @@ atlassian-ide-plugin.xml
 _deploy
 _public
 source/data
+config.js
