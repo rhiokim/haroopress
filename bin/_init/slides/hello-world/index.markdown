@@ -26,8 +26,8 @@
 
 ## Easy write 
 
-* Only [markdown](http://daringfireball.net/projects/markdown/)
-* And JSON (meta information)
+* Only [Markdown](http://daringfireball.net/projects/markdown/)
+* And JSON (for meta information)
 
 =====
 
@@ -45,4 +45,5 @@
 
 ## Thanks
 
-Author [@rhiokim](http://twitter.com/@rhiokim)
+* Author [@rhiokim](http://twitter.com/@rhiokim)
+* Contact [rhio.kim@gmail](mailto:rhio.kim@gmail.com)
