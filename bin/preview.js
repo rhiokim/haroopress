@@ -6,32 +6,42 @@ var exec = require('child_process').exec,
     conf = require('../config'),
     colors = require('colors');
 
-var docroot = path.relative(process.cwd(), conf.publicDir);
-
 var rl = readline.createInterface(process.stdin, process.stdout, null);
+
+function destroyReadLine() {
+    rl.close();
+    process.stdin.destroy();
+}
 
 switch(process.platform) {
     case 'darwin' :
-        console.log('haroo> Start server at http://localhost:8081 ¶'.yellow);
+        console.log('haroo> Start server at http://localhost:%s ¶'.yellow, conf.defaultPort);
 
-        exec('locally -w '+ docroot +' -p 8081', function(code, stdout, stderr) {
+        exec('./node_modules/.bin/locally -w ./_public -p '+ conf.defaultPort, function(code, stdout, stderr) {
+            
+            if(stderr) {
+                destroyReadLine();
+                console.log(stderr.red);
+                return;
+            }
+
+            
         });
-        
-        rl.question('Show me the browser? [y/n] : ', function(answer) {
 
-            if(answer == 'y') {
-                var child = exec('Open http://localhost:8081', function(code, stdout, stderr) {
-                    console.log('haroo> open http://localhost:8081 ¶'.yellow);
+        rl.question('Show me the browser? [y/n] : ', function(answer) {
+            answer = answer.toLowerCase();
+
+            if(answer != 'n' || answer != 'no') {
+                var child = exec('Open http://localhost:'+ conf.defaultPort, function(code, stdout, stderr) {
                     child.kill();
                 });
             } else {
-                console.log('haroo> Ok!');
+                console.log('haroo> started web sever!');
             }
 
-            rl.close();
-            process.stdin.destroy();
+            destroyReadLine();
         });
-
+        
     break;
     case 'win32' :
     break;
