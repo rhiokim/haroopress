@@ -13,36 +13,58 @@ function destroyReadLine() {
     process.stdin.destroy();
 }
 
+/**
+ * process execute
+ *
+ * @param {Number} port
+ * @author nanhapark
+ */
+function preview(port) {
+  var spawn = require('child_process').spawn,
+      web    = spawn('./node_modules/.bin/locally', ['-w', './_public', '-p', port]);
+
+  web.stdout.on('data', function (data) {
+      openBrowser();
+    });
+
+  web.stderr.on('data', function (data) {
+      destroyReadLine();
+      console.log(data.red);
+    });
+
+  web.on('exit', function (code) {
+      destroyReadLine();
+      console.log('haroo> child process exited with code ' + code);
+    });
+}
+
+function openBrowser() {
+    rl.question('Show me the browser? [y/n] : ', function(answer) {
+        answer = answer.toLowerCase();
+
+        if(answer != 'n' || answer != 'no') {
+            var child = exec('Open http://localhost:'+ conf.defaultPort, function(code, stdout, stderr) {
+                child.kill();
+            });
+        } else {
+            console.log('haroo> started web sever!');
+        }
+
+        destroyReadLine();
+    });
+}
+
+
+console.log('haroo> Start server at http://localhost:%s ¶'.yellow, conf.defaultPort);
+
 switch(process.platform) {
     case 'darwin' :
-        console.log('haroo> Start server at http://localhost:%s ¶'.yellow, conf.defaultPort);
-
-        exec('./node_modules/.bin/locally -w ./_public -p '+ conf.defaultPort, function(code, stdout, stderr) {
-            
-            if(stderr) {
-                destroyReadLine();
-                console.log(stderr.red);
-                return;
-            }
-
-            
-        });
-
-        rl.question('Show me the browser? [y/n] : ', function(answer) {
-            answer = answer.toLowerCase();
-
-            if(answer != 'n' || answer != 'no') {
-                var child = exec('Open http://localhost:'+ conf.defaultPort, function(code, stdout, stderr) {
-                    child.kill();
-                });
-            } else {
-                console.log('haroo> started web sever!');
-            }
-
-            destroyReadLine();
-        });
-        
+        preview(conf.defaultPort);
+    break;
+    case 'linux' :
+        preview(conf.defaultPort);
     break;
     case 'win32' :
     break;
 }
+
