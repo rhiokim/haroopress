@@ -2,16 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm update setup gh-pages initialize
-
-npm:
-	@echo "========================================"
-	@echo "= setup npm dependency module"
-	@echo "========================================"
-	npm install -g express
-	npm install -g less
-	npm install -g uglify-js
-	npm install -g locally
+init: update setup gh-pages initialize
 
 update:
 	@echo "========================================"

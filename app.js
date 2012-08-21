@@ -11,7 +11,7 @@ var theme = path.resolve(config.themeDir, config.theme.name );
 var data = haroo.getMainData();
 data.config.meta.pageTitle  = '';
 
-var app = express.createServer();
+var app = express();
 app.configure(function() {
     app.set('views', theme +'/views');
     app.set('view engine', 'ejs');

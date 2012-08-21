@@ -15,51 +15,35 @@
     }
 }
 
-## First Slide
+## Haroopress 
 
-Slide Content Here
+* Easy write my story about 1day
+* No Server, No DataBase
 
-Slide Seperator is five '='
-
-![cover](./@img/cover.png);
-
-=====
-
-## Second Slide Title
-
-Slide Content Here
+![cover](./@img/cover.jpg);
 
 =====
 
-## Third Slide Title
+## Easy write 
 
-Slide Content Here
-Child slide Seperator is five '-'
-
------
-
-## Third's first child slide (Not Support)
-
-Third's first Slide Content Here
-
------
-
-## Third's second child slide  (Not Support)
-
-Third's second Slide Content Here
-
-```js
-var code = true;
-```
+* Only [Markdown](http://daringfireball.net/projects/markdown/)
+* And JSON (for meta information)
 
 =====
 
-## Forth Slide Title
+## No Server
 
-Forth Slide Content Here
+* Deploy to [Github.com's gh-pages](https://help.github.com/articles/what-are-github-pages)
+
+=====
+
+## No Database
+
+* Everything is static page
 
 =====
 
 ## Thanks
 
-Author [@rhiokim](http://twitter.com/@rhiokim)
+* Author [@rhiokim](http://twitter.com/@rhiokim)
+* Contact [rhio.kim@gmail](mailto:rhio.kim@gmail.com)

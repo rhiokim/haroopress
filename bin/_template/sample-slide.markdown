@@ -21,9 +21,9 @@
 
 Slide Content Here
 
-Slide Seperator is five hybhen
+Slide Seperator is five hypen (=)
 
-![cover](/slide/images/cover.png);
+![cover](../_asserts/pictures/cover.jpg)
 
 =====
 
@@ -32,3 +32,21 @@ Slide Seperator is five hybhen
 Slide Content Here
 
 
+=====
+
+## Third Slide Title
+
+* ul
+    - li
+    - li
+* ul
+    - li
+
+=====
+
+## Forth Slide Title
+
+```
+var foo = 'bar';
+//code here
+```
