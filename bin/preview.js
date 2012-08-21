@@ -6,6 +6,8 @@ var exec = require('child_process').exec,
     conf = require('../config'),
     colors = require('colors');
 
+var isExec = false;
+
 var rl = readline.createInterface(process.stdin, process.stdout, null);
 
 function destroyReadLine() {
@@ -39,6 +41,11 @@ function preview(port) {
 }
 
 function openBrowser() {
+    if(isExec) {
+        return;
+    }
+    isExec = true;
+
     rl.question('Show me the browser? [y/n] : ', function(answer) {
         answer = answer.toLowerCase();
 
