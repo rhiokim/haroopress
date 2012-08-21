@@ -55,6 +55,7 @@ gen: clear
 	@echo "========================================"
 	./bin/gen.js
 	cp -R ./lib/shower ${PUBLIC_DIR}/slides/_asserts
+	rm -rf ${PUBLIC_DIR}/slides/_asserts/.git*
 
 preview:
 	@echo "========================================"
