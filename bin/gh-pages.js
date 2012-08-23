@@ -18,7 +18,20 @@ if(!path.existsSync(conf.deployDir)) {
 process.chdir(conf.deployDir);
 
 rl = readline.createInterface(process.stdin, process.stdout, null);
-rl.question("haroo> Enter the read/write url for your repository: ".yellow, function(repo) {
+
+try {
+    var deployDir = conf.deployDir +'/.git';
+    var stat = fs.statSync(deployDir);
+
+    if(stat.isDirectory()) {
+        exec('rm -rf '+ deployDir, function(err, stdout, stderr) {});
+    }
+} catch(e) {}
+
+process.stdout.write('haroo> '+ 'Enter the read/write url for your repository '.yellow);
+process.stdout.write('"' +'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
+
+rl.question( ' > ', function(repo) {
 
     var user, regx, branch, project;
 

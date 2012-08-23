@@ -8,12 +8,12 @@ var fs = require('fs'),
 
 var i = rl.createInterface(process.stdin, process.stdout, null);
 var metas = [
-    { key: 'defaultTitle', question: 'Insert your site title' },
-    { key: 'description', question: 'Insert your site description' },
-    { key: 'siteUrl', question: 'Insert site url (e.g. "http://site.com")' },
-    { key: 'author', question: 'Insert you name (e.g "Rhio Kim")' },
-    { key: 'email', question: 'Insert you gravatar emaill address (e.g "rhiokim@gmail.com")' },
-    { key: 'keywords', question: 'Insert you site meta information (e.g "node.js, javascript, html5")' }
+    { key: 'defaultTitle', question: 'Insert your site title (*)', example: 'My Haoopress Blog' },
+    { key: 'description', question: 'Insert your site description (*)', example: 'My Development diary, I love node.js & javascript' },
+    { key: 'siteUrl', question: 'Insert site url (*)', example: 'http://www.myblog.com' },
+    { key: 'author', question: 'Insert you full name (*)', example: 'Rhio Kim (sync to source/data/authors/Rhio Kim.markdown)' },
+    { key: 'email', question: 'Insert you gravatar emaill address (*)', example: 'abc123@gmail.com' },
+    { key: 'keywords', question: 'Insert you site meta information (*)', example: 'javascript, css3, html5' }
 ];
 
 var config = [
@@ -71,10 +71,10 @@ function queue(idx) {
         return;
     }
 
-    msg = 'haroo> '+ item.question +' :';
     key = item.key;
-
-    i.question(msg.yellow, function(answer) {
+    
+    process.stdout.write('haroo> '+ item.question.yellow +' "'+ item.example.red +'"');
+    i.question(' > ', function(answer) {
         if (key == 'keywords') {
             answer = answer.replace(/ /g,'').split(',');
         }
