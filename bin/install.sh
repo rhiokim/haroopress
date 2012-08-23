@@ -9,14 +9,24 @@ TEMPRORY_FILE=/tmp/haroopress.tar.gz
 
 # haroopress
 echo "========================="
-echo "= haroopress installing =\n"
+echo "= haroopress installing ="
 echo "========================="
 
 if [ ! -d "$SITE_DIR" ]; then
     export SITE_DIR='haroopress'
 fi
 
+if [ "$prefix" ]; then
+    export SITE_DIR=$prefix
+fi
+
 curl -Lk https://github.com/rhiokim/haroopress/zipball/master -o $TEMPRORY_FILE
 
 unzip /tmp/haroopress.tar.gz -d "$OUTPUT_DIR"
 mv ./rhiokim-haroopress* $SITE_DIR
+
+# auto install
+if [ "$auto" = "yes" ]; then
+    cd $SITE_DIR
+    make init
+fi
