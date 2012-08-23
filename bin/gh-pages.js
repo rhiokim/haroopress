@@ -18,7 +18,20 @@ if(!path.existsSync(conf.deployDir)) {
 process.chdir(conf.deployDir);
 
 rl = readline.createInterface(process.stdin, process.stdout, null);
-rl.question("haroo> Enter the read/write url for your repository: ".yellow, function(repo) {
+
+try {
+    var deployDir = conf.deployDir +'/.git';
+    var stat = fs.statSync(deployDir);
+
+    if(stat.isDirectory()) {
+        exec('rm -rf '+ deployDir, function(err, stdout, stderr) {});
+    }
+} catch(e) {}
+
+process.stdout.write('haroo> '+ 'Enter the read/write url for your repository '.yellow);
+process.stdout.write('"' +'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
+
+rl.question( ' > ', function(repo) {
 
     var user, regx, branch, project;
 
@@ -43,11 +56,11 @@ rl.question("haroo> Enter the read/write url for your repository: ".yellow, func
                 function gitRename(code, stdout, stderr) {
                     console.log(stdout);
                     console.log('haroo> Completed git repository initialize ¶'.yellow);
-                    exec('git remote rename origin haroog', this);
+                    exec('git remote rename origin haroopress', this);
                 },
                 function isMaster(code, stdout, stderr) {
                     console.log(stdout);
-                    console.log('haroo> Repository remote\'s name origin -> haroog ¶'.yellow);
+                    console.log('haroo> Repository remote\'s name origin -> haroopress ¶'.yellow);
                     if (branch == 'master') {
                         console.log('haroo> Git remote add to origin ¶'.red);
                         exec('git remote add origin '+ repo, this);
@@ -66,7 +79,7 @@ rl.question("haroo> Enter the read/write url for your repository: ".yellow, func
                 function initHaroog(code, stdout, stderr) {
                     console.log(stdout);
                     console.log('haroo> Created inex.html ¶'.yellow);
-                    exec('echo "<!-- haroog init -->" > index.html', this);
+                    exec('echo "<!-- haroopress init -->" > index.html', this);
                 },
                 function gitAdd(code, stdout, stderr) {
                     console.log(stdout);

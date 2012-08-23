@@ -2,16 +2,7 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: npm update build setup gh-pages initialize
-
-npm:
-	@echo "========================================"
-	@echo "= setup npm dependency module"
-	@echo "========================================"
-	npm install -g express
-	npm install -g less
-	npm install -g uglify-js
-	npm install -g locally
+init: update setup gh-pages initialize
 
 update:
 	@echo "========================================"
@@ -54,6 +45,8 @@ gen: clear
 	@echo "= generate to static page"
 	@echo "========================================"
 	./bin/gen.js
+	cp -R ./lib/shower ${PUBLIC_DIR}/slides/@asserts
+	rm -rf ${PUBLIC_DIR}/slides/@asserts/.git*
 
 preview:
 	@echo "========================================"
@@ -72,6 +65,9 @@ new-post:
 
 new-page:
 	cd ./bin;./new-page.js
+
+new-slide:
+	cd ./bin;./new-slide.js
 
 octopress:
 	@echo "========================================"

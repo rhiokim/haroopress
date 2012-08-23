@@ -11,12 +11,14 @@ var theme = path.resolve(config.themeDir, config.theme.name );
 var data = haroo.getMainData();
 data.config.meta.pageTitle  = '';
 
-var app = express.createServer();
+var app = express();
 app.configure(function() {
     app.set('views', theme +'/views');
     app.set('view engine', 'ejs');
 
     app.use(express.static(theme +'/public'));
+    app.use('/_asserts', express.static(process.cwd()+'/lib/shower'));
+    //app.use('/slides', express.static(process.cwd()+'/source/data/slides'))
    
     //app.use(express.logger());
     app.use(express.cookieParser());
@@ -64,6 +66,20 @@ app.get('/authors/:name', function(req, res) {
 
 app.get('/archives', function(req, res) {
     res.render('archives', data);
+});
+
+
+app.get('/slides', function(req, res) {
+    var _layout = data.layout;
+    data.layout = '../layout';
+    res.render('slide/list', data);
+    data.layout = _layout;
+});
+
+app.get('/slides/:title', function(req, res) {
+    data.slide = data.slides[req.params.title];
+    data.config.meta.pageTitle = data.slide.head.title +' | ';
+    res.render('slide/main', data);
 });
 
 app.get('/tags', function(req, res) {

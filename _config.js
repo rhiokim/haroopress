@@ -19,6 +19,7 @@ var conf = {
     themeDir: __dirname + '/source/themes',
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
+    defaultPort: 8081,
 
     /* theme setting */
     theme: {

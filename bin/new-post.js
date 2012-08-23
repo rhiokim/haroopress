@@ -23,7 +23,7 @@ rl.question('haroo> Input article title : ', function(title) {
 
     //이미 작성된 아티클이 있는지 체크
     try {
-        var stat = fs.statSync(conf.sourceDir +'/articles/'+ title +'.markdown');
+        var stat = fs.statSync(conf.sourceDir +'/articles/'+ title +'/index.markdown');
         if (stat.isFile()) {
             console.log('existed article');
 
