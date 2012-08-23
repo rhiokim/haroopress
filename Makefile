@@ -45,8 +45,8 @@ gen: clear
 	@echo "= generate to static page"
 	@echo "========================================"
 	./bin/gen.js
-	cp -R ./lib/shower ${PUBLIC_DIR}/slides/_asserts
-	rm -rf ${PUBLIC_DIR}/slides/_asserts/.git*
+	cp -R ./lib/shower ${PUBLIC_DIR}/slides/@asserts
+	rm -rf ${PUBLIC_DIR}/slides/@asserts/.git*
 
 preview:
 	@echo "========================================"
