@@ -46,15 +46,15 @@ function openBrowser() {
     }
     isExec = true;
 
-    rl.question('Show me the browser? [y/n] : ', function(answer) {
+    rl.question('Do you want check on the browser? [y(es)/n] : ', function(answer) {
         answer = answer.toLowerCase();
 
-        if(answer != 'n' || answer != 'no') {
+        if(answer.match(/^y(es)?$/i)) {
             var child = exec('Open http://localhost:'+ conf.defaultPort, function(code, stdout, stderr) {
                 child.kill();
             });
         } else {
-            console.log('haroo> started web sever!');
+            console.log('haroo> You can check your site on the web browser.'.yellow, '( Stop server : ^C )'.underline);
         }
 
         destroyReadLine();
