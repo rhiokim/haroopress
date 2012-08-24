@@ -20,10 +20,7 @@ if [ "$prefix" ]; then
     export SITE_DIR=$prefix
 fi
 
-curl -Lk https://github.com/rhiokim/haroopress/zipball/master -o $TEMPRORY_FILE
-
-unzip /tmp/haroopress.tar.gz -d "$OUTPUT_DIR"
-mv ./rhiokim-haroopress* $SITE_DIR
+git clone git@github.com:rhiokim/haroopress.git $SITE_DIR
 
 # auto install
 if [ "$auto" = "yes" ]; then
