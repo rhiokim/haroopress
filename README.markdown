@@ -6,19 +6,10 @@
 
 # 설치와 셋업
 
-### fancy install
-```
-//현재 디렉토리에 하루프레스 설치
-$ curl https://raw.github.com/rhiokim/haroopress/master/bin/isntall.sh | sh
-
-//OUTPUT_DIR 에 하루프레스 다운로드 후 자동 설치
-$ curl https://raw.github.com/rhiokim/haroopress/master/bin/install.sh | prefix=OUTPUT_DIR auto=yes sh
-```
-
 ### source install
 ```
 //내부 서브 모듈까지 모두 초기화한다.
-$ git clone git@github.com:rhiokim/haroopress.git --recursive /path/to/haroopress
+$ git clone git@github.com:rhiokim/haroopress.git /path/to/haroopress
 
 //하루프레스 디렉토리로 이동한다.
 $ cd /path/to/haroopress
