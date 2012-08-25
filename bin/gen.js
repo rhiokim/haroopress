@@ -1,6 +1,19 @@
 #!/usr/bin/env node
 
-var gen = require('../lib/haroopress/generator');
+var colors = require('colors'),
+    gen = require('../lib/haroopress/generator');
+
+function showContentStatus() {
+    var count = gen.data.count;
+
+    console.log('=====================================');
+    console.log('==       content statistics        ==');
+    console.log('=====================================');
+    console.log('== article | publish(%s) | draft(%s) ==', String(count.archive.publish).red, String(count.archive.draft).red);
+    console.log('== page    | publish(%s) | draft(%s) ==', String(count.page.publish).red, String(count.page.draft).red);
+    console.log('== slide   | publish(%s) | draft(%s) ==', String(count.slide.publish).red, String(count.slide.draft).red);
+    console.log('=====================================');
+}
 
 gen.clone(function() {
     gen.rss();
@@ -15,4 +28,6 @@ gen.clone(function() {
     gen.authors();
     gen.author();
     gen.pages();
+
+    showContentStatus();
 });

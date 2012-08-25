@@ -2,7 +2,11 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: update setup gh-pages initialize
+init: update setup gh-pages initialize guide
+
+guide:
+	clear
+	cat ./lib/haroopess/QUICK.markdown
 
 update:
 	@echo "========================================"

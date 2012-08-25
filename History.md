@@ -1,5 +1,16 @@
 
-n.n.n / 2012-07-11 
+0.8.6 / 2012-08-25 
+==================
+
+  * #127, display content statistics
+  * change content status code public => publish
+  * #127, count contents
+  * move quick guide
+  * #207, write quick guide
+  * update install.sh
+  * enhance message preview interaction
+
+0.8.6-rc2 / 2012-07-11 
 ==================
 
   * worked #178

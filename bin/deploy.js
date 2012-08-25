@@ -10,7 +10,9 @@ var deployMessage = process.argv[2];
 process.chdir(conf.deployDir);
 
 //create CNAME file
-fs.writeFileSync('./CNAME', conf.CNAME, 'utf8');
+if(conf.CNAME.length > 4) {
+    fs.writeFileSync('./CNAME', conf.CNAME, 'utf8');
+}
 
 console.log('haroo> Resources copy to Deploy directory'.yellow);
 
