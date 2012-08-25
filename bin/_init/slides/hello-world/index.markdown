@@ -7,7 +7,7 @@
     "acceptComment": true,
     "acceptTrackback": true,
     "published": "2012-02-21T00:00:00.001Z",
-    "status": "public",
+    "status": "publish",
     "important": false,
     "advanced": {
         "layout": "slide",
