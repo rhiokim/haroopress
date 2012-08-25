@@ -1,6 +1,6 @@
 var conf = {
     meta: {
-        version: '0.8.4',
+        version: '0.8.6',
         defaultTitle: 'haroopress',
         description: 'Static Page Blog engine based Node.js',
         siteUrl: 'http://haroopress.github.com',
