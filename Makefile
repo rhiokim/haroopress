@@ -6,7 +6,8 @@ init: update setup gh-pages initialize guide
 
 guide:
 	clear
-	cat ./QUICK.markdown
+	cat ./lib/haroopess/QUICK.markdown
+
 update:
 	@echo "========================================"
 	@echo "= update & initialize git submodules"
