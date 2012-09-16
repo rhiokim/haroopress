@@ -1,6 +1,6 @@
 [submodule "lib/shower"]
 	path = lib/shower
-	url = https://github.com/rhiokim/shower.git
+	url = http://github.com/rhiokim/shower.git
 [submodule "source/themes"]
 	path = source/themes
 	url = http://github.com/haroopress/haroopress-themes.git
