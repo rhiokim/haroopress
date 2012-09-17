@@ -33,7 +33,7 @@ try {
     }
 } catch(e) {}
 
-console.log('haroo> %s', 'Enter the read/write url for your repository '.yellow);
+console.log('haroo> %s', 'Enter the read/write repository for your haroopress site '.yellow);
 console.log('"'+'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
 
 rl.question(' > ', function(repo) {

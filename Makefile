@@ -6,7 +6,7 @@ init: update setup gh-pages initialize guide
 
 guide:
 	clear
-	cat ./lib/haroopess/QUICK.markdown
+	cat ./lib/haroopress/QUICK.markdown
 
 update:
 	@echo "========================================"
