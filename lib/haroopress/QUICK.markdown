@@ -13,4 +13,4 @@ $ make new-slide // 새로운 웹 슬라이드 작성
 
 Copyright © haroopress / Contact rhio.kim@gmail.com
 Source http://github.com/rhiokim/haroopress
-
+Issue https://github.com/rhiokim/haroopress/issues
