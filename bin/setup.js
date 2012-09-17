@@ -52,7 +52,8 @@ function save() {
             //TODO file save
             fs.writeFileSync('./config.js', str, 'utf8');
         } else {
-            process.exit(0);
+            console.log('haroo> ','Please insert default (*) meta information for your haroopress site'.underline );
+            process.exit(1);
         }
 
         i.close();

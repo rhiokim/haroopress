@@ -6,8 +6,14 @@ var exec = require('child_process').exec,
     colors = require('colors'),
     mkdirp = require('mkdirp'),
     path = require('path'),
-    conf = require('../config'),
     readline = require('readline');
+
+try {
+    var conf = require("../config");
+} catch(e) {
+    console.log('Please execute "%s" in haroopress root directory', 'make init'.yellow);
+    process.exit(1);
+}
 
 var rl;
 
