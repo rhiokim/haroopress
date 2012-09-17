@@ -1,7 +1,25 @@
-# 하루프레스(haroopress) 
-하루프레스는 간단하게 말하면 **하루**의 기록을 남기기 위한 블로그입니다. 한글의 **하루**와 블로그 엔진으로 유명한 워드 프레스의 **프레스**의 단어가 합쳐진 합성어입니다.
+# 하루프레스란?
+하루프레스는 하루라는 순 우리말과 프레스라는 단어의 조합으로 **하루에 이야기**를 작성하여 **발행**하는 매우 간단한 블로그 엔진이라는 의미에서 **하루프레스** 라고 이름을 지었습니다.
 
-기술적으로는 루비의 jekyll 기반의 정적 페이지 블로그 엔진인 [Octopress](http://octopress.org)와 유사한 블로그 엔진으로 노드(node.js)를 기반으로 개발되어진 정적 페이지 블로그 엔진이다.
+그리고 기술적으로는 웹 서버와 데이터베이스가 필요 없는 정적 페이지 기반의 블로깅 엔진입니다. 정적 페이지 기반 블로그란 PHP 로 만들어진 워드 프레스와 같이 서버측에서 프로그램이 동작하는 것이 아닌 블로그를 구성하는 모든 페이지를 HTML 로 생성하는 프로그램을 말합니다. 
+
+하루프레스는 블로그를 위한 모든 콘텐츠를 정적 페이지(HTML)로 생성합니다.  그리고 이렇게 생성된 페이지들을 인터넷이 되지 않는 컴퓨터에서 볼 수도 있고 Github 의 정적 페이지 서비스를 이용해 퍼블리싱도 할 수 있습니다.
+
+그리고 HTML5, CSS3 을 이용한 테마와 플러그인도 존재하여 다양한 편리한 기능을 부가적으로 제공합니다.
+
+그리고 마지막으로 하루프레스의 가장 중요한 목표는 블로그가 필요한 사람들보다 글을 쓰는데 불필요한 서버 구성, 데이터 베이스 설치 등을 잊고 글 쓰는 곳에만 몰입할 수 있도록 하는데에 있습니다. 
+
+>하루프레스 소개 프리젠테이션 : [http://haroopress.github.com/about/](http://haroopress.github.com/about/)
+
+## 하루프레스 이북
+하루프레스 프로젝트와 병행하여 활용가이드 이북을 온라인으로 작성중에 있습니다. 
+
+* 하루프레스 활용가이드. [http://haroopress.github.com/book/](http://haroopress.github.com/book/)
+
+## 하루프레스 개발 다이어리
+개발 다이어리는 개발 과정에서 일어났던 모든 이야기들을 풀어 쓰기 위한 페이지입니다.
+
+* 하루프레스 개발 다이어리 [http://haroopress.github.com/diary/](http://haroopress.github.com/diary/)
 
 
 # 설치와 셋업
@@ -28,7 +46,7 @@ $ make init
 $ make github-page
 
 //새로운 기사를 작성한다.
-$ make new_post
+$ make new-post
 
 //정적 페이지를 생성한다.
 $ make gen
@@ -41,6 +59,9 @@ $ make deploy
 
 //새로운 페이지를 생성한다.
 $ make new-page
+
+//새로운 웹 슬라이드를 생성한다
+$ make new-slide
 ```
 
 # 플러그인(plugins)
@@ -64,6 +85,7 @@ $ make new-page
 
 # 데이터 변환(convertor)
 하루프레스는 데이터 변환기를 유틸로 제공하여 다양한 블로그의 데이터를 하루프레스로 손쉽게 이전할 수 있습니다.
+
 현재는 변환 유틸의 구조를 설계하기 위해 [Octopress](http://octopress.org) 만을 제공하고 있으며 향후 Wordpress, Tumblr, Tistory, Blogger 등의 유명한 블로그 엔진의 데이터를 위한 변환 유틸도 구현할 계획에 있습니다.
 
 ## 변환도구 사용법(usage)
@@ -81,19 +103,25 @@ haroo> jekyll convert to haroopress
 ```
 
 # 의존성 모듈(dependency modules)
-* ejs
-* mkdirp
-* findit
-* moment
-* roboskirt
-* rss
-* step
-* watch
-* colors
-* stringex
-* yaml
+하루프레스는 다음과 같은 모듈을 통해서 개발되어졌습니다.
 
-# 화면(screenshot)
+#### 하루프레스 초기화 및 빌드
+* express.js: [http://expressjs.com/](http://expressjs.com/)
+* locally: [https://github.com/rhiokim/locally](https://github.com/rhiokim/locally)
+
+##### 하루프레스 코어 엔진
+* colors: [http://search.npmjs.org/#/colors](http://search.npmjs.org/#/colors)
+* ejs: [http://search.npmjs.org/#/ejs](http://search.npmjs.org/#/ejs)
+* findit: [http://search.npmjs.org/#/findit](http://search.npmjs.org/#/findit)
+* mkdirp: [http://search.npmjs.org/#/mkdirp](http://search.npmjs.org/#/mkdirp)
+* moment: [http://search.npmjs.org/#/moment](http://search.npmjs.org/#/moment)
+* robotskirt: [http://search.npmjs.org/#/robotskirt](http://search.npmjs.org/#/robotskirt)
+* rss: [http://github.com/dylang/node-rss](http://github.com/dylang/node-rss)
+* step: [http://search.npmjs.org/#/step](http://search.npmjs.org/#/step)
+* string: [http://stringjs.com/](http://stringjs.com/)
+* stringex: [http://search.npmjs.org/#/stringex](http://search.npmjs.org/#/stringex)
+* watch: [https://github.com/mikeal/watch](https://github.com/mikeal/watch)
+* yaml: [http://search.npmjs.org/#/yaml](http://search.npmjs.org/#/yaml)
 
 
 # 라이센스(license)
