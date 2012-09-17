@@ -33,10 +33,10 @@ try {
     }
 } catch(e) {}
 
-process.stdout.write('haroo> '+ 'Enter the read/write url for your repository '.yellow);
-process.stdout.write('"' +'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
+console.log('haroo> %s', 'Enter the read/write url for your repository '.yellow);
+console.log('"'+'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
 
-rl.question( ' > ', function(repo) {
+rl.question(' > ', function(repo) {
 
     var user, regx, branch, project;
 
