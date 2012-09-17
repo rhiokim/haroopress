@@ -5,7 +5,6 @@ var exec = require('child_process').exec,
     step = require('step'),
     colors = require('colors'),
     mkdirp = require('mkdirp'),
-    path = require('path'),
     readline = require('readline');
 
 try {
@@ -17,7 +16,7 @@ try {
 
 var rl;
 
-if(!path.existsSync(conf.deployDir)) {
+if(fs.existsSync(conf.deployDir)) {
     mkdirp.sync(conf.deployDir);
 }
 
