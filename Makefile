@@ -20,19 +20,13 @@ initialize:
 	@echo "========================================"
 	./bin/init.js
 
-build:
-	@echo "========================================"
-	@echo "= build submodules"
-	@echo "========================================"
-	cd ./bin/;./build.js
-
 setup:
 	@echo "========================================"
 	@echo "= configurate haroopress"
 	@echo "========================================"
 	./bin/setup.js
 
-gh-pages:
+gh-pages: clear
 	@echo "========================================"
 	@echo "= setup repository for deployment"
 	@echo "========================================"
