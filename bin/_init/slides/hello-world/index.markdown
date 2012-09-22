@@ -10,7 +10,8 @@
     "status": "publish",
     "important": false,
     "advanced": {
-        "layout": "slide"
+        "layout": "slide",
+        "displayCover": true
     }
 }
 
@@ -29,7 +30,7 @@
 * Only [Markdown](http://daringfireball.net/projects/markdown/)
 * And JSON (for meta information)
 
-=====isCover
+=====
 
 ## No Server
 
@@ -41,9 +42,11 @@
 
 * Everything is static page
 
-=====
+=====isCover
 
 ## Thanks
 
 * Author [@rhiokim](http://twitter.com/@rhiokim)
 * Contact [rhio.kim@gmail](mailto:rhio.kim@gmail.com)
+
+![cover](./@img/cover1.png);
