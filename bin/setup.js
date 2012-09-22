@@ -52,6 +52,8 @@ function save() {
             //TODO file save
             fs.writeFileSync('./config.js', str, 'utf8');
         } else {
+            console.log('haroo> ','Please insert default (*) meta information for your haroopress site'.underline );
+            process.exit(1);
         }
 
         i.close();
@@ -73,7 +75,7 @@ function queue(idx) {
 
     key = item.key;
     
-    process.stdout.write('haroo> '+ item.question.yellow +' "'+ item.example.red +'"');
+    console.log('haroo> %s "%s"',item.question.yellow, item.example.red);
     i.question(' > ', function(answer) {
         if (key == 'keywords') {
             answer = answer.replace(/ /g,'').split(',');

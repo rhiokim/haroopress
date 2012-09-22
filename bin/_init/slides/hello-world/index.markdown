@@ -15,6 +15,7 @@
     }
 }
 
+=====isCover
 ## Haroopress 
 
 * Easy write my story about 1day
@@ -41,9 +42,11 @@
 
 * Everything is static page
 
-=====
+=====isCover
 
 ## Thanks
 
 * Author [@rhiokim](http://twitter.com/@rhiokim)
 * Contact [rhio.kim@gmail](mailto:rhio.kim@gmail.com)
+
+![cover](./@img/cover1.png);

@@ -6,7 +6,7 @@ init: update setup gh-pages initialize guide
 
 guide:
 	clear
-	cat ./lib/haroopess/QUICK.markdown
+	cat ./lib/haroopress/QUICK.markdown
 
 update:
 	@echo "========================================"
@@ -14,17 +14,11 @@ update:
 	@echo "========================================"
 	git submodule update --init --recursive
 
-initialize:
+initialize: 
 	@echo "========================================"
 	@echo "= create default data set"
 	@echo "========================================"
 	./bin/init.js
-
-build:
-	@echo "========================================"
-	@echo "= build submodules"
-	@echo "========================================"
-	cd ./bin/;./build.js
 
 setup:
 	@echo "========================================"
@@ -32,7 +26,7 @@ setup:
 	@echo "========================================"
 	./bin/setup.js
 
-gh-pages:
+gh-pages: clear
 	@echo "========================================"
 	@echo "= setup repository for deployment"
 	@echo "========================================"
@@ -52,13 +46,13 @@ gen: clear
 	cp -R ./lib/shower ${PUBLIC_DIR}/slides/@asserts
 	rm -rf ${PUBLIC_DIR}/slides/@asserts/.git*
 
-preview:
+preview: gen
 	@echo "========================================"
 	@echo "= preview static page"
 	@echo "========================================"
 	./bin/preview.js
 	
-deploy:
+deploy: gen
 	@echo "========================================"
 	@echo "= deploy to github"
 	@echo "========================================"

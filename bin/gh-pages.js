@@ -5,13 +5,18 @@ var exec = require('child_process').exec,
     step = require('step'),
     colors = require('colors'),
     mkdirp = require('mkdirp'),
-    path = require('path'),
-    conf = require('../config'),
     readline = require('readline');
+
+try {
+    var conf = require("../config");
+} catch(e) {
+    console.log('Please execute "%s" in haroopress root directory', 'make init'.yellow);
+    process.exit(1);
+}
 
 var rl;
 
-if(!path.existsSync(conf.deployDir)) {
+if(fs.existsSync(conf.deployDir)) {
     mkdirp.sync(conf.deployDir);
 }
 
@@ -28,10 +33,10 @@ try {
     }
 } catch(e) {}
 
-process.stdout.write('haroo> '+ 'Enter the read/write url for your repository '.yellow);
-process.stdout.write('"' +'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
+console.log('haroo> %s', 'Enter the read/write repository for your haroopress site '.yellow);
+console.log('"'+'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
 
-rl.question( ' > ', function(repo) {
+rl.question(' > ', function(repo) {
 
     var user, regx, branch, project;
 

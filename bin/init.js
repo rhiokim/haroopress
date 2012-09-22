@@ -3,7 +3,6 @@
 var fs = require('fs'),
     exec = require('child_process').exec,
     mkdirp = require('mkdirp'),
-    path = require('path'),
     colors = require('colors'),
     conf = require('../config');
 
@@ -31,16 +30,12 @@ function init() {
             profile = profile.join('\n\n');
 
             fs.writeFile('./authors/'+ conf.meta.author +'.markdown', profile, 'utf8', function() {
-                //init your profile
                 exec('rm -rf ./authors/yours.markdown', function(code, stdout, stderr) {});
-                //exec('cp ./authors/yours.markdown ./authors/'+ conf.meta.author +'.markdown', function(code, stdout, stderr) {
-                //    console.log('haroo> create your profile markdown');
-                //});
             });
         });
     });
 }
 
-if(!path.existsSync(conf.sourceDir)) {
+if(!fs.existsSync(conf.sourceDir)) {
     init();
 }
