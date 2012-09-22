@@ -31,7 +31,6 @@
 ### Haroopress?
 * [하루프레스?](http://haroopress.com/about/)
 * [하루프레스 웹 프리젠테이션](http://haroopress.com/slides/)
-
 * [하루프레스 eBook](http://haroopress.com/book/)
 * [하루프레스 개발 다이어리](http://haroopress.com/diary)
 
