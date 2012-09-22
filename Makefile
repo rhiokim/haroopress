@@ -14,7 +14,7 @@ update:
 	@echo "========================================"
 	git submodule update --init --recursive
 
-initialize:
+initialize: clear
 	@echo "========================================"
 	@echo "= create default data set"
 	@echo "========================================"
@@ -46,13 +46,13 @@ gen: clear
 	cp -R ./lib/shower ${PUBLIC_DIR}/slides/@asserts
 	rm -rf ${PUBLIC_DIR}/slides/@asserts/.git*
 
-preview:
+preview: gen
 	@echo "========================================"
 	@echo "= preview static page"
 	@echo "========================================"
 	./bin/preview.js
 	
-deploy:
+deploy: gen
 	@echo "========================================"
 	@echo "= deploy to github"
 	@echo "========================================"
