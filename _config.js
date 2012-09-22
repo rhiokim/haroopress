@@ -1,12 +1,12 @@
 var conf = {
     meta: {
-        version: '0.8.6',
+        version: '0.8.7',
         defaultTitle: 'haroopress',
-        description: 'Static Page Blog engine based Node.js',
-        siteUrl: 'http://haroopress.github.com',
-        author: 'Rhio Kim',
-        email: 'rhio.kim@gmail.com',
-        keywords: [ 'node.js', 'javascript', 'html5' ]
+        description: 'Static Page Blog engine based Node.js, haroopress, 하루프레스',
+        siteUrl: 'http://haroopress.com',
+        author: 'haroopress',
+        email: 'rhio.kim+haroopress@gmail.com',
+        keywords: [ 'haroopress', 'blog' ]
     },
     lang: 'en',
     contentLength: 5, //\n\n
