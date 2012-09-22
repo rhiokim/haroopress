@@ -10,11 +10,11 @@
     "status": "publish",
     "important": false,
     "advanced": {
-        "layout": "slide",
-        "displayCover": true
+        "layout": "slide"
     }
 }
 
+=====isCover
 ## Haroopress 
 
 * Easy write my story about 1day
@@ -29,7 +29,7 @@
 * Only [Markdown](http://daringfireball.net/projects/markdown/)
 * And JSON (for meta information)
 
-=====
+=====isCover
 
 ## No Server
 
