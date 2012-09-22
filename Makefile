@@ -14,7 +14,7 @@ update:
 	@echo "========================================"
 	git submodule update --init --recursive
 
-initialize: clear
+initialize: 
 	@echo "========================================"
 	@echo "= create default data set"
 	@echo "========================================"
