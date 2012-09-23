@@ -45,6 +45,8 @@ gen: clear
 	./bin/gen.js
 	cp -R ./lib/shower ${PUBLIC_DIR}/slides/@asserts
 	rm -rf ${PUBLIC_DIR}/slides/@asserts/.git*
+	cp -R ./lib/hljs/highlight.pack.js ${PUBLIC_DIR}/js
+	cp -R ./lib/hljs/styles ${PUBLIC_DIR}/css/code
 
 preview: gen
 	@echo "========================================"
