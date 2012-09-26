@@ -26,7 +26,7 @@ function mergeHead(source) {
     var prop,
         model = require('../_template/sample-post');
 
-    model.status = 'public';
+    model.status = 'publish';
     model.author = conf.meta.author;
 
     for(prop in source) {
