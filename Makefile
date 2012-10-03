@@ -46,7 +46,7 @@ gen: clear
 	mkdir -p ${PUBLIC_DIR}/slides/@asserts/themes
 	cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts/themes
 	mkdir -p ${PUBLIC_DIR}/css/code
-	cp -R ./lib/highlight.js/src/styles ${PUBLIC_DIR}/css/code
+	cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
 
 preview: gen
 	@echo "========================================"
