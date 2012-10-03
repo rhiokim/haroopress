@@ -43,8 +43,9 @@ gen: clear
 	@echo "= generate to static page"
 	@echo "========================================"
 	./bin/gen.js
-	mkdir -p ${PUBLIC_DIR}/slides/@asserts/themes
-	cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts/themes
+	mkdir -p ${PUBLIC_DIR}/slides/@asserts
+	cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts
+	cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
 	mkdir -p ${PUBLIC_DIR}/css/code
 	cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
 
