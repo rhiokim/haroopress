@@ -43,10 +43,18 @@ gen: clear
 	@echo "= generate to static page"
 	@echo "========================================"
 	./bin/gen.js
+<<<<<<< HEAD
 	cp -R ./lib/shower ${PUBLIC_DIR}/slides/@asserts
 	rm -rf ${PUBLIC_DIR}/slides/@asserts/.git*
 	cp -R ./lib/hljs/highlight.pack.js ${PUBLIC_DIR}/js
 	cp -R ./lib/hljs/styles ${PUBLIC_DIR}/css/code
+=======
+	mkdir -p ${PUBLIC_DIR}/slides/@asserts
+	cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts
+	cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
+	mkdir -p ${PUBLIC_DIR}/css/code
+	cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
+>>>>>>> feature/fenced-code-block
 
 preview: gen
 	@echo "========================================"

@@ -5,5 +5,10 @@
 	path = source/themes
 	url = http://github.com/haroopress/haroopress-themes.git
 [submodule "lib/highlight.js"]
+<<<<<<< HEAD
         path = lib/highlight.js
         url = git@github.com:isagalaev/highlight.js.git
+=======
+	path = lib/highlight.js
+	url = git@github.com:isagalaev/highlight.js.git
+>>>>>>> feature/fenced-code-block
