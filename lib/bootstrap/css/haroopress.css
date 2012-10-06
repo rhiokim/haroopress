@@ -14,6 +14,37 @@
     font-family: AppleSDGothicNeo-Medium;
 }
 
+.markdown {
+    margin-top: 20px;
+}
+.markdown p {
+    line-height: 1.7em;
+}
+
+.markdown .pull-left {
+    margin-right: 10px;
+}
+
+.markdown .pull-right {
+    margin-left: 10px;
+}
+
+.markdown h1 {
+    margin-top: 30px;
+}
+
+.markdown h2 {
+    margin-top: 28px;
+}
+
+.markdown h3 {
+    margin-top: 14px;
+}
+.markdown blockquote p {
+    font-size: 1em;
+    font-style: italic;
+}
+
 /**
  * categories
  */
@@ -69,3 +100,6 @@
     margin-top: -23px;
     background-image: url(/img/bookmark-ribbon-iPad.png);
 }
+
+
+/* main page */
