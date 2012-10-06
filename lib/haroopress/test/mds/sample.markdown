@@ -16,3 +16,13 @@
 ```js
 var a = 1;
 ```
+
+## triple emphasis
+
+***info ㅋㅋㅋ***
+
+***ㅎㅎㅎ***
+
+***success ㄷㄷㄷ***
+
+***error 강조***
