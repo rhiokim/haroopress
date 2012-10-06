@@ -1,3 +1,7 @@
+/**
+ * Please! Do not modify.
+ * It's default file for haroopress configuration
+ */
 var conf = {
     meta: {
         version: '0.8.7',
