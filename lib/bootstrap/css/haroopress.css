@@ -1,0 +1,71 @@
+/**
+ * layout
+ */
+.page-main, .page-archive, .page-archives,
+.page-author, .page-authors, .page-category,
+.page-categories, .page-slides, .page-page {
+    margin-top: 70px;
+}
+
+/**
+ * article body
+ */
+*, p {
+    font-family: AppleSDGothicNeo-Medium;
+}
+
+/**
+ * categories
+ */
+.page-categories {}
+.page-categories hr{
+    margin: 6px 0;
+}
+.page-categories img{
+    width: 40px;
+}
+
+/**
+ * category
+ */
+
+/**
+ * contributor
+ */
+.contributors {}
+.contributors img {
+    width: 48px;
+    height: 48px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.contributors h6 {
+    margin-bottom: 5px;
+}
+.contributors strong {
+    font-size: 1.4em;
+}
+.contributors hr {
+    margin: 6px 0;
+}
+.contributors p {
+    margin: 6px 0 0 6px;
+    display: inline-block;
+}
+.contributors a {
+    font-size: 1.1em;
+}
+
+/* bookmark icon */
+
+.bookmark {
+    width: 38px;
+    height: 68px;
+    margin-top: -23px;
+    background-image: url(/img/bookmark-ribbon-iPad.png);
+}
