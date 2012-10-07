@@ -1,0 +1,34 @@
+ul.share {
+    margin-left: 20px;
+}
+ul.share li {
+    width: 157px;
+    height: 40px;
+    padding: 66px 0 0 14px;
+    margin: 10px 0 0 0;
+}
+
+ul.share li.twitter {
+    background: url(/img/share-twitter.png);
+}
+ul.share li.facebook {
+    background: url(/img/share-facebook.png);
+}
+ul.share li.google {
+    background: url(/img/share-googleplus.png);
+}
+ul.share li.facebook .fb-like {
+    margin-left: 3px;
+}
+ul.share li.google #___plusone_0 {
+    margin-left: 3px !important;
+}
+
+
+
+/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
+@media (min-width: 980px) {
+  .subnav-fixed {
+    top: 0;
+  }
+}
