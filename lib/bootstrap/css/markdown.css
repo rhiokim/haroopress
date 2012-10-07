@@ -187,3 +187,7 @@
 .markdown-wrapper img {
   max-width: 100%;
 }
+
+.markdown-wrapper em.alert {
+  display: block;
+}
