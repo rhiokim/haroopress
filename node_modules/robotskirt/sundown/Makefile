@@ -19,11 +19,22 @@ DEPDIR=depends
 # "Machine-dependant" options
 #MFLAGS=-fPIC
 
-CFLAGS=-c -g -O3 -Wall -Werror -Isrc -Ihtml $(MFLAGS)
-LDFLAGS=-g -O3 -Wall -Werror $(MFLAGS)
+CFLAGS=-c -g -O3 -fPIC -Wall -Werror -Wsign-compare -Isrc -Ihtml
+LDFLAGS=-g -O3 -Wall -Werror 
 CC=gcc
 
-all:		libsundown.so sundown smartypants
+
+SUNDOWN_SRC=\
+	src/markdown.o \
+	src/stack.o \
+	src/buffer.o \
+	src/autolink.o \
+	html/html.o \
+	html/html_smartypants.o \
+	html/houdini_html_e.o \
+	html/houdini_href_e.o
+
+all:		libsundown.so sundown smartypants html_blocks
 
 .PHONY:		all clean
 
@@ -32,16 +43,23 @@ all:		libsundown.so sundown smartypants
 libsundown.so:	libsundown.so.1
 	ln -f -s $^ $@
 
-libsundown.so.1: src/markdown.o src/array.o src/buffer.o src/autolink.o html/html.o html/html_smartypants.o
+libsundown.so.1: $(SUNDOWN_SRC)
 	$(CC) $(LDFLAGS) -shared -Wl $^ -o $@
 
 # executables
 
-sundown:	examples/sundown.o src/markdown.o src/array.o src/autolink.o src/buffer.o html/html.o html/html_smartypants.o
+sundown:	examples/sundown.o $(SUNDOWN_SRC)
 	$(CC) $(LDFLAGS) $^ -o $@
 
-smartypants: examples/smartypants.o src/buffer.o html/html_smartypants.o
+smartypants: examples/smartypants.o $(SUNDOWN_SRC)
 	$(CC) $(LDFLAGS) $^ -o $@
+
+# perfect hashing
+html_blocks: src/html_blocks.h
+
+src/html_blocks.h: html_block_names.txt
+	gperf -N find_block_tag -H hash_block_tag -C -c -E --ignore-case $^ > $@
+
 
 # housekeeping
 clean:

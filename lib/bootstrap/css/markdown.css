@@ -1,0 +1,193 @@
+/*
+ * NOTE:
+ * - The use of browser-specific styles (-moz-, -webkit-) should be avoided.
+ *   If used, they may not render correctly for people reading the email in
+ *   a different browser than the one from which the email was sent.
+ */
+
+/* This is the overall wrapper, it should be treated as the `body` section. */
+.markdown-wrapper {
+  margin-top: 20px;
+  /*font-size: 1em;*/
+  /*font-family: Helvetica, arial, freesans, clean, sans-serif;*/
+  /*color: #222;*/
+  /*background-color: #fff;*/
+  /*border: none;*/
+  /*line-height: 1.2;*/
+}
+
+
+.markdown-wrapper pre, 
+.markdown-wrapper code {
+  /*padding: 0;*/
+}
+
+.markdown-wrapper code {
+}
+
+.markdown-wrapper pre {
+  padding: 0;
+}
+
+.markdown-wrapper pre code {
+  font-family: Consolas, Inconsolata, Courier, monospace;
+/*  font-size: 1.2em;
+  padding: 0.75em;*/
+}
+
+.markdown-wrapper pre * {
+  font-family: Consolas, Inconsolata, Courier, monospace;
+}
+
+.markdown-wrapper ul, 
+.markdown-wrapper ol {
+  padding-left: 2em;
+}
+
+.markdown-wrapper p, 
+.markdown-wrapper blockquote, 
+.markdown-wrapper ul, 
+.markdown-wrapper ol, 
+.markdown-wrapper dl, 
+.markdown-wrapper li, 
+.markdown-wrapper table, 
+.markdown-wrapper pre {
+  margin: 1em 0;
+}
+
+.markdown-wrapper dl {
+  padding: 0;
+}
+
+.markdown-wrapper dl dt {
+  font-size: 1em;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 1em 0 0.4em;
+}
+
+.markdown-wrapper dl dd {
+  margin: 0 0 1em;
+  padding: 0 1em;
+}
+
+.markdown-wrapper blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 1em;
+  color: #777;
+}
+
+.markdown-wrapper blockquote, q {
+  quotes: none;
+}
+
+.markdown-wrapper blockquote::before, 
+.markdown-wrapper blockquote::after, 
+.markdown-wrapper q::before, 
+.markdown-wrapper q::after {
+  content: none;
+}
+
+.markdown-wrapper a:link, 
+.markdown-wrapper a:visited {
+  /*color: #33e;*/
+  /*text-decoration: none;*/
+}
+
+.markdown-wrapper a:hover {
+  /*color: #00f;*/
+  /*text-shadow: 1px 1px 2px #ccf;*/
+  /*text-decoration: underline;*/
+}
+
+.markdown-wrapper h1, 
+.markdown-wrapper h2, 
+.markdown-wrapper h3, 
+.markdown-wrapper h4, 
+.markdown-wrapper h5, 
+.markdown-wrapper h6 {
+  margin: 1.3em 0 1em;
+  padding: 0;
+  font-weight: bold;
+  /*color: black;*/
+  cursor: text;
+  position: relative;
+}
+
+.markdown-wrapper h1 {
+  font-size: 2em;
+}
+
+.markdown-wrapper h2 {
+  font-size: 1.7em;
+  border-bottom: 1px solid #CCC;
+}
+
+.markdown-wrapper h3 {
+  font-size: 1.5em;
+}
+
+.markdown-wrapper h4 {
+  font-size: 1.2em;
+}
+
+.markdown-wrapper h5 {
+  font-size: 1em;
+}
+
+.markdown-wrapper h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-wrapper .shadow {
+  box-shadow:0 5px 15px #000;
+}
+
+.markdown-wrapper table {
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 100%;
+  font: inherit;
+  border: 0;
+}
+
+.markdown-wrapper tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.markdown-wrapper table tr {
+  border: 0;
+  border-top: 1px solid #CCC;
+  /*background-color: white;*/
+  margin: 0;
+  padding: 0;
+}
+
+.markdown-wrapper table tr:nth-child(2n) {
+  /*background-color: #F8F8F8;*/
+}
+
+.markdown-wrapper table tr th, 
+.markdown-wrapper table tr td {
+  border: 1px solid #CCC;
+  text-align: left;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+.markdown-wrapper table tr th {
+ font-weight: bold;
+}
+
+.markdown-wrapper img {
+  max-width: 100%;
+}
+
+.markdown-wrapper em.alert {
+  display: block;
+}

@@ -20,6 +20,8 @@ var conf = {
     publicDir: __dirname + '/_public',
     deployDir: __dirname + '/_deploy',
     defaultPort: 8081,
+    defaultSlideStyle: 'basic',
+    defaultCodeStyle: 'default',
 
     /* theme setting */
     theme: {

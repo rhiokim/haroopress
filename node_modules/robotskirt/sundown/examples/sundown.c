@@ -31,10 +31,12 @@ int
 main(int argc, char **argv)
 {
 	struct buf *ib, *ob;
-	size_t ret;
+	int ret;
 	FILE *in = stdin;
-	struct mkd_renderer renderer;
-	size_t i, iterations = 1;
+
+	struct sd_callbacks callbacks;
+	struct html_renderopt options;
+	struct sd_markdown *markdown;
 
 	/* opening the file if given from the command line */
 	if (argc > 1) {
@@ -59,22 +61,20 @@ main(int argc, char **argv)
 	/* performing markdown parsing */
 	ob = bufnew(OUTPUT_UNIT);
 
-	for (i = 0; i < iterations; ++i) {
-		ob->size = 0;
+	sdhtml_renderer(&callbacks, &options, 0);
+	markdown = sd_markdown_new(0, 16, &callbacks, &options);
 
-		sdhtml_renderer(&renderer, 0);
-		sd_markdown(ob, ib, &renderer, ~0);
-		sdhtml_free_renderer(&renderer);
-	}
+	sd_markdown_render(ob, ib->data, ib->size, markdown);
+	sd_markdown_free(markdown);
 
 	/* writing the result to stdout */
-	fwrite(ob->data, 1, ob->size, stdout);
+	ret = fwrite(ob->data, 1, ob->size, stdout);
 
 	/* cleanup */
 	bufrelease(ib);
 	bufrelease(ob);
 
-	return 0;
+	return (ret < 0) ? -1 : 0;
 }
 
 /* vim: set filetype=c: */
