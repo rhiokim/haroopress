@@ -8,12 +8,6 @@
 /* This is the overall wrapper, it should be treated as the `body` section. */
 .markdown-wrapper {
   margin-top: 20px;
-  /*font-size: 1em;*/
-  /*font-family: Helvetica, arial, freesans, clean, sans-serif;*/
-  /*color: #222;*/
-  /*background-color: #fff;*/
-  /*border: none;*/
-  /*line-height: 1.2;*/
 }
 
 
@@ -31,8 +25,6 @@
 
 .markdown-wrapper pre code {
   font-family: Consolas, Inconsolata, Courier, monospace;
-/*  font-size: 1.2em;
-  padding: 0.75em;*/
 }
 
 .markdown-wrapper pre * {
@@ -141,6 +133,10 @@
   color: #777;
 }
 
+.markdown-wrapper blockquote p {
+  font-size: 1em;
+}
+
 .markdown-wrapper .shadow {
   box-shadow:0 5px 15px #000;
 }
@@ -188,6 +184,14 @@
   max-width: 100%;
 }
 
+.markdown-wrapper em.label {
+  font-style: normal;
+  font-size: .9em;
+  padding: 4px 7px 2px;
+  white-space: normal;
+  line-height: 23px;
+}
+
 .markdown-wrapper em.alert {
   display: block;
   font-style: normal;
@@ -230,7 +234,8 @@
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
-.markdown-wrapper em.alert-error {
+.markdown-wrapper em.alert-error,
+.markdown-wrapper em.alert-warn {
   color: #ffffff;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
   background-color: #faa732;

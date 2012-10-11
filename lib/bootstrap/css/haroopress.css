@@ -2,6 +2,9 @@
     font-family: AppleSDGothicNeo-Medium;
 }
 
+iframe {
+    border: 0;
+}
 /**
  * layout
  */
