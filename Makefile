@@ -13,6 +13,7 @@ update:
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git submodule update --init --recursive
+	python ./lib/highlight.js/tools/build.py
 
 initialize: 
 	@echo "========================================"
@@ -48,6 +49,7 @@ gen: clear
 	cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
 	mkdir -p ${PUBLIC_DIR}/css/code
 	cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
+	cp -R ./lib/highlight.js/build/* ${PUBLIC_DIR}/js
 	cp -R ./lib/bootstrap/* ${PUBLIC_DIR}
 
 preview: gen
