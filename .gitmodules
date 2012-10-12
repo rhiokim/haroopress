@@ -5,5 +5,5 @@
 	path = source/themes
 	url = http://github.com/haroopress/haroopress-themes.git
 [submodule "lib/highlight.js"]
-    path = lib/highlight.js
-    url = git@github.com:isagalaev/highlight.js.git
+	path = lib/highlight.js
+	url = http://github.com/isagalaev/highlight.js.git
