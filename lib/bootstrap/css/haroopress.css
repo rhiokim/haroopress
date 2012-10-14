@@ -1,0 +1,204 @@
+*, p {
+    font-family: AppleSDGothicNeo-Medium;
+}
+
+iframe {
+    border: 0;
+}
+/**
+ * layout
+ */
+.page-main, .page-archive, .page-archives,
+.page-author, .page-authors, .page-category,
+.page-categories, .page-slides, .page-page {
+    margin-top: 70px;
+}
+
+/**
+ * categories
+ */
+.page-categories {}
+.page-categories hr{
+    margin: 6px 0;
+}
+.page-categories img{
+    width: 40px;
+}
+
+/**
+ * category
+ */
+
+/**
+ * contributor
+ */
+.contributors {}
+.contributors img {
+    width: 48px;
+    height: 48px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.contributors h6 {
+    margin-bottom: 5px;
+}
+.contributors strong {
+    font-size: 1.4em;
+}
+.contributors hr {
+    margin: 6px 0;
+}
+.contributors p {
+    margin: 6px 0 0 6px;
+    display: inline-block;
+}
+.contributors a {
+    font-size: 1.1em;
+}
+
+/* bookmark icon */
+
+.bookmark {
+    width: 38px;
+    height: 68px;
+    margin-top: -23px;
+    background-image: url(/img/bookmark-ribbon-iPad.png);
+}
+
+/**
+ * 페이지 스타일
+ */
+ul.share {
+    margin-left: 20px;
+}
+ul.share li {
+    width: 157px;
+    height: 40px;
+    padding: 66px 0 0 14px;
+    margin: 10px 0 0 0;
+}
+
+ul.share li.twitter {
+    background: url(/img/share-twitter.png);
+}
+ul.share li.facebook {
+    background: url(/img/share-facebook.png);
+}
+ul.share li.google {
+    background: url(/img/share-googleplus.png);
+}
+ul.share li.facebook .fb-like {
+    margin-left: 3px;
+}
+ul.share li.google #___plusone_0 {
+    margin-left: 3px !important;
+}
+
+
+/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
+@media (min-width: 980px) {
+  .subnav-fixed {
+    top: 0;
+  }
+}
+
+
+/**
+ * 아티클 목록
+ */
+.page-archives .comment {
+    overflow: hidden;
+    padding: 0 0 1em;
+    border-bottom: 1px solid #ddd;
+    margin: 0 0 1em;
+    *zoom: 1;
+    margin:  18px 0 18px 0;
+}
+
+.page-archives .comment-img {
+    float: left;
+    margin-right: 33px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.page-archives .comment-img img {
+    display: block;
+}
+
+.page-archives .comment-body {
+    overflow: hidden;
+}
+
+.page-archives .comment .text {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.page-archives .comment .text p:last-child {
+    margin: 0;
+}
+
+.page-archives .comment .attribution {
+    margin: 0.5em 0 0;
+    color: #666;
+}
+
+/* Decoration */
+
+.page-archives .comments,
+.page-archives .comment {
+    position: relative;
+}
+
+.page-archives .comments:before,
+.page-archives .comment:before,
+.page-archives .comment .text:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 65px;
+}
+
+.page-archives .comments:before {
+    width: 3px;
+    top: -20px;
+    bottom: -20px;
+    background: rgba(0,0,0,0.1);
+}
+
+.page-archives .comment:before {
+    width: 9px;
+    height: 9px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    margin: 16px 0 0 -6px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+    background: #ccc;
+}
+
+.page-archives .comment:hover:before {
+    background: orange;
+}
+
+.page-archives .comment .text:before {
+    top: 18px;
+    left: 78px;
+    width: 9px;
+    height: 9px;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}​
