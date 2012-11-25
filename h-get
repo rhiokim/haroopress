@@ -1,0 +1,171 @@
+#!/bin/bash
+__PWD="$PWD"
+__version="0.9"   #TODO: to be automatic
+__author='Rhiokim <rhio.kim@gmail.com>'
+__process_header="Haroopress $__version  $__author"
+__pid=$$
+__instance="haroopress[$__pid]"
+__LOCKFILE="${PWD}/.h-get.lock"
+
+declare -t __arguments_length=$#
+__HCMD=$1
+
+trap "{ __cleanup; }" SIGINT SIGTERM SIGHUP SIGQUIT
+
+# for secure processing, multiple process is not allowed.
+[ -f $__LOCKFILE ] && echo "another h-get process is running. quit" && exit 0
+touch $__LOCKFILE
+
+__cleanup () 
+{
+  echo ${__instance} -- got an Interrupt.
+  __remove_lock
+  exit 0
+}
+
+__remove_lock ()
+{
+  rm -f $__LOCKFILE
+}
+
+# showing copyright first of all
+echo $__process_header
+echo
+
+__usage ()
+{
+  echo    "./h-get [<cmd>]"
+  echo    "   cmd:"
+  echo    "     help"
+  echo    "     init"
+  echo    "     setup"
+  echo    "     clear"
+  echo    "     gh-pages"
+  echo
+  __guide
+}
+
+__guide ()
+{
+	cat ${__PWD}/lib/haroopress/QUICK.markdown
+}
+
+__initialize ()
+{
+	if [ -e "${__PWD}/.init.done" ]; then
+   		echo "   -- init process is already done"
+		return
+	fi
+	echo  "    --------------- initilize"
+	cd $__PWD; ./bin/init.js
+	touch ${__PWD}/.init.done
+}
+
+__init_update_git_submodules ()
+{
+	if [ -e "${__PWD}/.init-git-submodules.done" ]; then
+   		echo "   -- git submodule update is already done"
+		return
+	fi
+	echo  "    --------------- update: git submodules"
+	cd $__PWD; git submodule update --init --recursive
+	touch ${__PWD}/.init-git-submodules.done
+}
+
+__init_install_locally ()
+{
+	if [ -e "${__PWD}/.init-install-locally.done" ]; then
+   		echo "   -- locally installation is already done"
+		return
+	fi
+	echo  "    --------------- update: locally"
+	cd $__PWD; cd ./node_modules/locally/; npm install
+	touch ${__PWD}/.init-install-locally.done
+}
+
+__init_install_python_modules ()
+{
+	if [ -e "${__PWD}/.init-install-python-modules.done" ]; then
+   		echo "   -- python modules installation is already done"
+		return
+	fi
+	echo  "    --------------- update: python modules"
+	cd $__PWD; python ./lib/highlight.js/tools/build.py
+	touch ${__PWD}/.init-install-python-modules.done
+}
+
+__setup ()
+{
+	if [ -e "${__PWD}/.setup.done" ]; then
+   		echo "   -- setup procedure is already done"
+		return
+	fi
+	cd $__PWD; ./bin/setup.js
+	touch ${__PWD}/.setup.done
+}
+
+__clear ()
+{
+	echo  "    --------------- clear"
+  $__PWD/bin/clear.js
+}
+
+__gh_pages ()
+{
+	if [ -e "${__PWD}/.gh-pages.done" ]; then
+   		echo "   -- gh-pages process is already done"
+		return
+	fi
+	echo  "    --------------- gh-pages"
+	cd $__PWD; python ./lib/highlight.js/tools/build.py
+	__clear
+  	cd $__PWD/bin; ./gh-pages.js
+	touch ${__PWD}/.gh-pages.done
+}
+
+
+__main ()
+{
+  if [ $__arguments_length -le 0 ]; then
+    __usage
+	return;
+  fi
+
+  if [[ "$__HCMD" == "guide" ]] || [[ "$__HCMD" == "help" ]]; then
+	__guide
+	return
+  fi
+
+  if [[ "$__HCMD" == "setup" ]]; then
+	__setup
+	return;
+  fi
+
+  if [[ "$__HCMD" == "clear" ]]; then
+	__clear
+	return;
+  fi
+
+  if [[ "$__HCMD" == "gh-pages" ]]; then
+	__gh_pages
+	return;
+  fi
+
+  if [[ "$__HCMD" == "new-post" ]] || [[ "$__HCMD" == "a-post" ]]; then
+	cd $__PWD/bin/; ./new-post.js
+	return;
+  fi
+
+  if [[ "$__HCMD" == "init" ]]; then
+	__init_update_git_submodules
+	__init_install_locally
+	__init_install_python_modules
+	__setup
+	__gh_pages
+	__initialize
+	return;
+  fi
+}
+
+__main
+__remove_lock; exit 0
