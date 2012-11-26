@@ -7,6 +7,11 @@ __pid=$$
 __instance="haroopress[$__pid]"
 __LOCKFILE="${PWD}/.h-get.lock"
 
+# prefix(__) is removed for compatibility 
+SOURCE_DIR="${PWD}/source/public"
+DEPLOY_DIR="${PWD}/_deploy"
+PUBLIC_DIR="${PWD}/_public"
+
 declare -t __arguments_length=$#
 __HCMD=$1
 
@@ -37,12 +42,16 @@ __usage ()
   echo    "./h-get [<cmd>]"
   echo    "   cmd:"
   echo    "     help"
-  echo    "     init"
-  echo    "     setup"
+  echo    "     gen                     -- generate static page"
+  echo    "     preivew                 -- preview a post"
+  echo    "     new-post  | a-post      -- writing a new post"
+  echo    "     new-page  | a-page      -- writing a new page"
+  echo    "     new-slide | a-page      -- writing a new slide"
+  echo    "     init                    -- setup Haroopress"
   echo    "     clear"
-  echo    "     gh-pages"
-  echo
+  echo    "------------------------------------------------------"
   __guide
+  echo
 }
 
 __guide ()
@@ -107,7 +116,7 @@ __setup ()
 __clear ()
 {
 	echo  "    --------------- clear"
-  $__PWD/bin/clear.js
+	cd $__PWD; ./bin/clear.js
 }
 
 __gh_pages ()
@@ -117,12 +126,54 @@ __gh_pages ()
 		return
 	fi
 	echo  "    --------------- gh-pages"
-	cd $__PWD; python ./lib/highlight.js/tools/build.py
 	__clear
   	cd $__PWD/bin; ./gh-pages.js
 	touch ${__PWD}/.gh-pages.done
 }
 
+__assert ()
+{
+	__expr__="$*"
+	`${__expr__} > /dev/null 2>&1`
+	if [ $? -ne 0 ]; then
+		echo "assert failed: $__expr__"
+		__remove_lock; exit 0
+	fi
+}
+
+__chk_pre_requisites ()
+{
+	__assert node -v
+	__assert python --version
+	__assert node -v
+	__assert git --version
+}
+
+__gen ()
+{
+	echo  "    --------------- gen"
+	__clear
+    cd $__PWD; ./bin/gen.js
+    mkdir -p ${PUBLIC_DIR}/slides/@asserts
+    cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts
+    cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
+    mkdir -p ${PUBLIC_DIR}/css/code
+    cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
+    cp -R ./lib/highlight.js/build/* ${PUBLIC_DIR}/js
+    cp -R ./lib/bootstrap/* ${PUBLIC_DIR}	
+}
+
+__preview ()
+{
+	echo  "    --------------- preview"
+	cd $__PWD; ./bin/preview.js	
+}
+
+__deploy ()
+{
+	echo  "    --------------- deploy"
+	cd $__PWD/bin; ./deploy.js "${msg}"	# where is comes from ?
+}
 
 __main ()
 {
@@ -137,6 +188,7 @@ __main ()
   fi
 
   if [[ "$__HCMD" == "setup" ]]; then
+	__chk_pre_requisites
 	__setup
 	return;
   fi
@@ -147,16 +199,38 @@ __main ()
   fi
 
   if [[ "$__HCMD" == "gh-pages" ]]; then
+	__chk_pre_requisites
 	__gh_pages
 	return;
   fi
 
   if [[ "$__HCMD" == "new-post" ]] || [[ "$__HCMD" == "a-post" ]]; then
+	__chk_pre_requisites
 	cd $__PWD/bin/; ./new-post.js
 	return;
   fi
 
+  if [[ "$__HCMD" == "new-page" ]] || [[ "$__HCMD" == "a-page" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/; ./new-page.js
+	return;
+  fi
+
+  if [[ "$__HCMD" == "new-slide" ]] || [[ "$__HCMD" == "a-slide" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/; ./new-slide.js
+	return;
+  fi
+
+  if [[ "$__HCMD" == "octopress" ]] || [[ "$__HCMD" == "convert" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/convert; ./octopress.js
+	return;
+  fi
+
+
   if [[ "$__HCMD" == "init" ]]; then
+	__chk_pre_requisites
 	__init_update_git_submodules
 	__init_install_locally
 	__init_install_python_modules
@@ -165,7 +239,34 @@ __main ()
 	__initialize
 	return;
   fi
+
+  if [[ "$__HCMD" == "check" ]]; then
+	__chk_pre_requisites
+	echo "  [check done] -- you're good to go"
+  fi
+
+  if [[ "$__HCMD" == "gen" ]]; then
+	__chk_pre_requisites
+	__gen
+	return
+  fi
+
+  if [[ "$__HCMD" == "preview" ]]; then
+	__chk_pre_requisites
+	__gen
+	__preview
+	return
+  fi
+
+  if [[ "$__HCMD" == "deploy" ]]; then
+	__chk_pre_requisites
+	__gen
+	__deploy
+	return
+  fi
+
 }
 
-__main
+
+__main "$*"
 __remove_lock; exit 0
