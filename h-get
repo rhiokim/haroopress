@@ -1,0 +1,272 @@
+#!/bin/bash
+__PWD="$PWD"
+__version="0.9"   #TODO: to be automatic
+__author='Rhiokim <rhio.kim@gmail.com>'
+__process_header="Haroopress $__version  $__author"
+__pid=$$
+__instance="haroopress[$__pid]"
+__LOCKFILE="${PWD}/.h-get.lock"
+
+# prefix(__) is removed for compatibility 
+SOURCE_DIR="${PWD}/source/public"
+DEPLOY_DIR="${PWD}/_deploy"
+PUBLIC_DIR="${PWD}/_public"
+
+declare -t __arguments_length=$#
+__HCMD=$1
+
+trap "{ __cleanup; }" SIGINT SIGTERM SIGHUP SIGQUIT
+
+# for secure processing, multiple process is not allowed.
+[ -f $__LOCKFILE ] && echo "another h-get process is running. quit" && exit 0
+touch $__LOCKFILE
+
+__cleanup () 
+{
+  echo ${__instance} -- got an Interrupt.
+  __remove_lock
+  exit 0
+}
+
+__remove_lock ()
+{
+  rm -f $__LOCKFILE
+}
+
+# showing copyright first of all
+echo $__process_header
+echo
+
+__usage ()
+{
+  echo    "./h-get [<cmd>]"
+  echo    "   cmd:"
+  echo    "     help"
+  echo    "     gen                     -- generate static page"
+  echo    "     preivew                 -- preview a post"
+  echo    "     new-post  | a-post      -- writing a new post"
+  echo    "     new-page  | a-page      -- writing a new page"
+  echo    "     new-slide | a-page      -- writing a new slide"
+  echo    "     init      | install     -- setup Haroopress"
+  echo    "     clear"
+  echo    "------------------------------------------------------"
+  __guide
+  echo
+}
+
+__guide ()
+{
+	cat ${__PWD}/lib/haroopress/QUICK.markdown
+}
+
+__initialize ()
+{
+	if [ -e "${__PWD}/.init.done" ]; then
+   		echo "   -- init process is already done"
+		return
+	fi
+	echo  "    --------------- initilize"
+	cd $__PWD; ./bin/init.js
+	touch ${__PWD}/.init.done
+}
+
+__init_update_git_submodules ()
+{
+	if [ -e "${__PWD}/.init-git-submodules.done" ]; then
+   		echo "   -- git submodule update is already done"
+		return
+	fi
+	echo  "    --------------- update: git submodules"
+	cd $__PWD; git submodule update --init --recursive
+	touch ${__PWD}/.init-git-submodules.done
+}
+
+__init_install_locally ()
+{
+	if [ -e "${__PWD}/.init-install-locally.done" ]; then
+   		echo "   -- locally installation is already done"
+		return
+	fi
+	echo  "    --------------- update: locally"
+	cd $__PWD; cd ./node_modules/locally/; npm install
+	touch ${__PWD}/.init-install-locally.done
+}
+
+__init_install_python_modules ()
+{
+	if [ -e "${__PWD}/.init-install-python-modules.done" ]; then
+   		echo "   -- python modules installation is already done"
+		return
+	fi
+	echo  "    --------------- update: python modules"
+	cd $__PWD; python ./lib/highlight.js/tools/build.py
+	touch ${__PWD}/.init-install-python-modules.done
+}
+
+__setup ()
+{
+	if [ -e "${__PWD}/.setup.done" ]; then
+   		echo "   -- setup procedure is already done"
+		return
+	fi
+	cd $__PWD; ./bin/setup.js
+	touch ${__PWD}/.setup.done
+}
+
+__clear ()
+{
+	echo  "    --------------- clear"
+	cd $__PWD; ./bin/clear.js
+}
+
+__gh_pages ()
+{
+	if [ -e "${__PWD}/.gh-pages.done" ]; then
+   		echo "   -- gh-pages process is already done"
+		return
+	fi
+	echo  "    --------------- gh-pages"
+	__clear
+  	cd $__PWD/bin; ./gh-pages.js
+	touch ${__PWD}/.gh-pages.done
+}
+
+__assert ()
+{
+	__expr__="$*"
+	`${__expr__} > /dev/null 2>&1`
+	if [ $? -ne 0 ]; then
+		echo "assert failed: $__expr__"
+		__remove_lock; exit 0
+	fi
+}
+
+__chk_pre_requisites ()
+{
+	__assert node -v
+	__assert python --version
+	__assert node -v
+	__assert git --version
+}
+
+__gen ()
+{
+	echo  "    --------------- gen"
+	__clear
+    cd $__PWD; ./bin/gen.js
+    mkdir -p ${PUBLIC_DIR}/slides/@asserts
+    cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts
+    cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
+    mkdir -p ${PUBLIC_DIR}/css/code
+    cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
+    cp -R ./lib/highlight.js/build/* ${PUBLIC_DIR}/js
+    cp -R ./lib/bootstrap/* ${PUBLIC_DIR}	
+}
+
+__preview ()
+{
+	echo  "    --------------- preview"
+	cd $__PWD; ./bin/preview.js	
+}
+
+__deploy ()
+{
+	echo  "    --------------- deploy"
+	cd $__PWD/bin; ./deploy.js "${msg}"	# where is comes from ?
+}
+
+__main ()
+{
+  if [ $__arguments_length -le 0 ]; then
+    __usage
+	return;
+  fi
+
+  if [[ "$__HCMD" == "guide" ]] || [[ "$__HCMD" == "help" ]]; then
+	__guide
+	return
+  fi
+
+  if [[ "$__HCMD" == "setup" ]]; then
+	__chk_pre_requisites
+	__setup
+	return;
+  fi
+
+  if [[ "$__HCMD" == "clear" ]]; then
+	__clear
+	return;
+  fi
+
+  if [[ "$__HCMD" == "gh-pages" ]]; then
+	__chk_pre_requisites
+	__gh_pages
+	return;
+  fi
+
+  if [[ "$__HCMD" == "new-post" ]] || [[ "$__HCMD" == "a-post" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/; ./new-post.js
+	return;
+  fi
+
+  if [[ "$__HCMD" == "new-page" ]] || [[ "$__HCMD" == "a-page" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/; ./new-page.js
+	return;
+  fi
+
+  if [[ "$__HCMD" == "new-slide" ]] || [[ "$__HCMD" == "a-slide" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/; ./new-slide.js
+	return;
+  fi
+
+  if [[ "$__HCMD" == "octopress" ]] || [[ "$__HCMD" == "convert" ]]; then
+	__chk_pre_requisites
+	cd $__PWD/bin/convert; ./octopress.js
+	return;
+  fi
+
+
+  if [[ "$__HCMD" == "init" ]] || [[ "$__HCMD" == "install" ]]; then
+	__chk_pre_requisites
+	__init_update_git_submodules
+	__init_install_locally
+	__init_install_python_modules
+	__setup
+	__gh_pages
+	__initialize
+	return;
+  fi
+
+  if [[ "$__HCMD" == "check" ]]; then
+	__chk_pre_requisites
+	echo "  [check done] -- you're good to go"
+  fi
+
+  if [[ "$__HCMD" == "gen" ]]; then
+	__chk_pre_requisites
+	__gen
+	return
+  fi
+
+  if [[ "$__HCMD" == "preview" ]]; then
+	__chk_pre_requisites
+	__gen
+	__preview
+	return
+  fi
+
+  if [[ "$__HCMD" == "deploy" ]]; then
+	__chk_pre_requisites
+	__gen
+	__deploy
+	return
+  fi
+
+}
+
+
+__main "$*"
+__remove_lock; exit 0

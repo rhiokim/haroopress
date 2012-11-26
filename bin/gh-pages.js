@@ -52,7 +52,7 @@ rl.question(' > ', function(repo) {
     console.log('haroo> git remote -v¶'.yellow);
     exec('git remote -v', function(code, stdout, stderr) {
         console.log(stdout);
-        if (stdout.match(/origin.+?rhiokim\/haroopress/) != null) {
+        if (stdout.match(/origin.+?\/haroopress/) != null) {
             step(
                 function gitInit() {
                     console.log('haroo> Start setting github pages branch ¶'.yellow);
