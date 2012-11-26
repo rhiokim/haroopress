@@ -13,7 +13,7 @@ update:
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	npm install -g node-gyp
-	cd ./node_modules/robotskirt;node-gyp reinstall
+	cd ./node_modules/robotskirt;node-gyp rebuild
 	git submodule update --init --recursive
 	cd ./node_modules/locally/;npm install
 	python ./lib/highlight.js/tools/build.py
