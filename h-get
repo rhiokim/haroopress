@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 __PWD="$PWD"
 __version="0.9"   #TODO: to be automatic
 __author='Rhiokim <rhio.kim@gmail.com>'
@@ -12,7 +12,8 @@ SOURCE_DIR="${PWD}/source/public"
 DEPLOY_DIR="${PWD}/_deploy"
 PUBLIC_DIR="${PWD}/_public"
 
-declare -t __arguments_length=$#
+declare -i __arguments_length=$#
+declare -i __pre_requisite_not_found=0
 __HCMD=$1
 
 trap "{ __cleanup; }" SIGINT SIGTERM SIGHUP SIGQUIT
@@ -20,6 +21,7 @@ trap "{ __cleanup; }" SIGINT SIGTERM SIGHUP SIGQUIT
 # for secure processing, multiple process is not allowed.
 [ -f $__LOCKFILE ] && echo "another h-get process is running. quit" && exit 0
 touch $__LOCKFILE
+
 
 __cleanup () 
 {
@@ -54,6 +56,18 @@ __usage ()
   echo
 }
 
+__log ()
+{
+	echo  "    --------------- $*"
+}
+
+__stop ()
+{
+	if [ "$*" != "0" ]; then
+		__log "[ STOP! ]"
+		__remove_lock; exit 0
+	fi
+}
 __guide ()
 {
 	cat ${__PWD}/lib/haroopress/QUICK.markdown
@@ -62,23 +76,27 @@ __guide ()
 __initialize ()
 {
 	if [ -e "${__PWD}/.init.done" ]; then
-   		echo "   -- init process is already done"
+		echo "   -- init process is already done"
 		return
 	fi
-	echo  "    --------------- initilize"
+	__log "start: initilizing"
 	cd $__PWD; ./bin/init.js
+	__stop $?
 	touch ${__PWD}/.init.done
+	__log "end: initilizing"
 }
 
 __init_update_git_submodules ()
 {
 	if [ -e "${__PWD}/.init-git-submodules.done" ]; then
-   		echo "   -- git submodule update is already done"
+		echo "   -- git submodule update is already done"
 		return
 	fi
-	echo  "    --------------- update: git submodules"
+	__log "start: updating git submodules"
 	cd $__PWD; git submodule update --init --recursive
+	__stop $?
 	touch ${__PWD}/.init-git-submodules.done
+	__log "end: updating git submodules"
 }
 
 __init_install_locally ()
@@ -87,9 +105,11 @@ __init_install_locally ()
    		echo "   -- locally installation is already done"
 		return
 	fi
-	echo  "    --------------- update: locally"
+	__log "start: updating locally"
 	cd $__PWD; cd ./node_modules/locally/; npm install
+	__stop $?
 	touch ${__PWD}/.init-install-locally.done
+	__log "end: updating locally"
 }
 
 __init_install_python_modules ()
@@ -98,10 +118,27 @@ __init_install_python_modules ()
    		echo "   -- python modules installation is already done"
 		return
 	fi
-	echo  "    --------------- update: python modules"
+	__log "start: updating python modules"
 	cd $__PWD; python ./lib/highlight.js/tools/build.py
+	__stop $?
 	touch ${__PWD}/.init-install-python-modules.done
+	__log "end: updating python modules"
 }
+
+__rebuild_node_modules ()
+{
+	if [ -e "${__PWD}/.init-rebuild-node-modules.done" ]; then
+   		echo "   -- updating node modules is already done"
+		return
+	fi
+	__log "start: updating node modules"
+	cd $__PWD/node_modules/robotskirt/
+	node-gyp rebuild
+	__stop $?
+	touch ${__PWD}/.init-rebuild-node-modules.done
+	__log "end: updating node modules"
+}
+
 
 __setup ()
 {
@@ -110,12 +147,13 @@ __setup ()
 		return
 	fi
 	cd $__PWD; ./bin/setup.js
+	__stop $?
 	touch ${__PWD}/.setup.done
 }
 
 __clear ()
 {
-	echo  "    --------------- clear"
+	__log "clear"
 	cd $__PWD; ./bin/clear.js
 }
 
@@ -125,10 +163,12 @@ __gh_pages ()
    		echo "   -- gh-pages process is already done"
 		return
 	fi
-	echo  "    --------------- gh-pages"
+	__log "start: gh-pages"
 	__clear
   	cd $__PWD/bin; ./gh-pages.js
+	__stop $?
 	touch ${__PWD}/.gh-pages.done
+	__log "end: gh-pages"
 }
 
 __assert ()
@@ -136,22 +176,58 @@ __assert ()
 	__expr__="$*"
 	`${__expr__} > /dev/null 2>&1`
 	if [ $? -ne 0 ]; then
-		echo "assert failed: $__expr__"
-		__remove_lock; exit 0
+		__pre_requisite_not_found=$(( __pre_requisite_not_found + 1))
+		return 1
 	fi
+	return 0
+}
+
+__guide_install_nodejs ()
+{
+	__log "[ NodeJS ] missing"
+}
+
+__guide_install_nodegyp ()
+{
+	__log "[ node-gyp ] missing"
+}
+
+__guide_install_python ()
+{
+	__log "[ python ] missing"
+}
+
+__guide_install_java ()
+{
+	__log "[ java ] missing"
+}
+
+__guide_install_git ()
+{
+	__log "[ git ] missing"
 }
 
 __chk_pre_requisites ()
 {
-	__assert node -v
-	__assert python --version
-	__assert node -v
-	__assert git --version
+	__assert node -v || __guide_install_nodejs
+	__assert node-gyp -v || __guide_install_nodegyp
+	__assert python --version || __guide_install_python
+	__assert java -version || __guide_install_java
+	__assert git --version || __guide_install_git
+
+	if [ $__pre_requisite_not_found -gt 0 ]; then
+		echo
+		echo "[STOP] You need to install $__pre_requisite_not_found package(s) first! (See INSTALL.pre-requisites)"
+		echo
+		__remove_lock; exit 0
+	fi
+
+	#TODO: robotskirt gyp module, PGP key for pushing at github
 }
 
 __gen ()
 {
-	echo  "    --------------- gen"
+	__log "start: gen"
 	__clear
     cd $__PWD; ./bin/gen.js
     mkdir -p ${PUBLIC_DIR}/slides/@asserts
@@ -161,18 +237,21 @@ __gen ()
     cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
     cp -R ./lib/highlight.js/build/* ${PUBLIC_DIR}/js
     cp -R ./lib/bootstrap/* ${PUBLIC_DIR}	
+	__log "end: gen"
 }
 
 __preview ()
 {
-	echo  "    --------------- preview"
+	__log "start: preview"
 	cd $__PWD; ./bin/preview.js	
+	__log "end: preview"
 }
 
 __deploy ()
 {
-	echo  "    --------------- deploy"
+	__log "start: deploy"
 	cd $__PWD/bin; ./deploy.js "${msg}"	# where is comes from ?
+	__log "end: deploy"
 }
 
 __main ()
@@ -234,6 +313,7 @@ __main ()
 	__init_update_git_submodules
 	__init_install_locally
 	__init_install_python_modules
+	__rebuild_node_modules
 	__setup
 	__gh_pages
 	__initialize
@@ -242,7 +322,8 @@ __main ()
 
   if [[ "$__HCMD" == "check" ]]; then
 	__chk_pre_requisites
-	echo "  [check done] -- you're good to go"
+	echo "  [ OK ] -- You're good to go"
+	echo
   fi
 
   if [[ "$__HCMD" == "gen" ]]; then
@@ -266,7 +347,6 @@ __main ()
   fi
 
 }
-
 
 __main "$*"
 __remove_lock; exit 0
