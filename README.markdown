@@ -9,17 +9,17 @@
 
 그리고 마지막으로 하루프레스의 가장 중요한 목표는 블로그가 필요한 사람들보다 글을 쓰는데 불필요한 서버 구성, 데이터 베이스 설치 등을 잊고 글 쓰는 곳에만 몰입할 수 있도록 하는데에 있습니다. 
 
->하루프레스 소개 프리젠테이션 : [http://haroopress.github.com/about/](http://haroopress.github.com/about/)
+>하루프레스 소개 프리젠테이션 : [http://haroopress.com/about/](http://haroopress.com/about/)
 
 ## 하루프레스 이북
 하루프레스 프로젝트와 병행하여 활용가이드 이북을 온라인으로 작성중에 있습니다. 
 
-* 하루프레스 활용가이드. [http://haroopress.github.com/book/](http://haroopress.github.com/book/)
+* 하루프레스 활용가이드. [http://haroopress.com/book/](http://haroopress.com/book/)
 
 ## 하루프레스 개발 다이어리
 개발 다이어리는 개발 과정에서 일어났던 모든 이야기들을 풀어 쓰기 위한 페이지입니다.
 
-* 하루프레스 개발 다이어리 [http://haroopress.github.com/diary/](http://haroopress.github.com/diary/)
+* 하루프레스 개발 다이어리 [http://haroopress.com/diary/](http://haroopress.com/diary/)
 
 
 # 설치와 셋업
@@ -27,7 +27,7 @@
 ### source install
 ```
 //내부 서브 모듈까지 모두 초기화한다.
-$ git clone git@github.com:rhiokim/haroopress.git /path/to/haroopress
+$ git clone https://github.com/rhiokim/haroopress.git /path/to/haroopress
 
 //하루프레스 디렉토리로 이동한다.
 $ cd /path/to/haroopress
@@ -43,7 +43,7 @@ $ make init
 
 ```
 //배포할 github 저장소를 설정한다.
-$ make github-page
+$ make gh-pages
 
 //새로운 기사를 작성한다.
 $ make new-post
@@ -81,7 +81,7 @@ $ make new-slide
 그리고 일반적인 GUI 방식의 관리자 도구가 없기 때문에 하루프레스에서 다루는 매우 간단한 데이터 구조는 알아두면 좋습니다.
 해당 내용은 아래의 링크에서 좀더 자세히 참고하실 수 있습니다.
 
-[하루프레스 데이터 구조](https://github.com/rhiokim/haroopress/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%8F%AC%EB%A7%B7)
+[하루프레스 데이터 구조](http://haroopress.com/post/haroopress-default-data-format/)
 
 # 데이터 변환(convertor)
 하루프레스는 데이터 변환기를 유틸로 제공하여 다양한 블로그의 데이터를 하루프레스로 손쉽게 이전할 수 있습니다.
