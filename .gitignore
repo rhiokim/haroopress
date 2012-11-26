@@ -9,4 +9,6 @@ _public
 source/data
 config.js
 *.done
-.h-get.lock
+
+# npm module
+node_modules/robotskirt/build
