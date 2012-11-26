@@ -9,3 +9,4 @@ _public
 source/data
 config.js
 *.done
+.h-get.lock
