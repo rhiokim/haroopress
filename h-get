@@ -47,7 +47,7 @@ __usage ()
   echo    "     new-post  | a-post      -- writing a new post"
   echo    "     new-page  | a-page      -- writing a new page"
   echo    "     new-slide | a-page      -- writing a new slide"
-  echo    "     init                    -- setup Haroopress"
+  echo    "     init      | install     -- setup Haroopress"
   echo    "     clear"
   echo    "------------------------------------------------------"
   __guide
@@ -229,7 +229,7 @@ __main ()
   fi
 
 
-  if [[ "$__HCMD" == "init" ]]; then
+  if [[ "$__HCMD" == "init" ]] || [[ "$__HCMD" == "install" ]]; then
 	__chk_pre_requisites
 	__init_update_git_submodules
 	__init_install_locally
