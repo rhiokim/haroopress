@@ -8,3 +8,5 @@ _deploy
 _public
 source/data
 config.js
+*.done
+.h-get.lock
