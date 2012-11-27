@@ -11,4 +11,4 @@ config.js
 *.done
 
 # npm module
-robotskirt/build
+node_modules/robotskirt/build
