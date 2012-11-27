@@ -207,6 +207,11 @@ __guide_install_git ()
 	__log "[ git ] missing"
 }
 
+__guide_install_gpp ()
+{
+	__log "[ g++ ] missing"
+}
+
 __chk_pre_requisites ()
 {
 	__assert node -v || __guide_install_nodejs
@@ -214,6 +219,7 @@ __chk_pre_requisites ()
 	__assert python --version || __guide_install_python
 	__assert java -version || __guide_install_java
 	__assert git --version || __guide_install_git
+	__assert g++ -v || __guide_install_gpp
 
 	if [ $__pre_requisite_not_found -gt 0 ]; then
 		echo
