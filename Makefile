@@ -2,24 +2,27 @@ SOURCE_DIR=./source/public
 DEPLOY_DIR=./_deploy
 PUBLIC_DIR=./_public
 
-init: update setup gh-pages initialize guide
+init: initialize setup gh-pages init-data guide
 
 guide:
 	clear
 	cat ./lib/haroopress/QUICK.markdown
+
+initialize:
+	npm install -g node-gyp
+	git submodule update --init --recursive
+	cd ./node_modules/locally/;npm install
+	python ./lib/highlight.js/tools/build.py
 
 update:
 	@echo "========================================"
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git pull origin master
-	npm install -g node-gyp
 	cd ./node_modules/robotskirt;node-gyp rebuild
-	git submodule update --init --recursive
-	cd ./node_modules/locally/;npm install
-	python ./lib/highlight.js/tools/build.py
+	git submodule update
 
-initialize: 
+init-data: 
 	@echo "========================================"
 	@echo "= create default data set"
 	@echo "========================================"
