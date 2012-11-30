@@ -5,6 +5,11 @@
 iframe {
     border: 0;
 }
+
+#disqus_thread {
+    margin-top: 20px;
+}
+
 /**
  * layout
  */
@@ -97,14 +102,6 @@ ul.share li.facebook .fb-like {
 }
 ul.share li.google #___plusone_0 {
     margin-left: 3px !important;
-}
-
-
-/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
-@media (min-width: 980px) {
-  .subnav-fixed {
-    top: 0;
-  }
 }
 
 
@@ -202,3 +199,11 @@ ul.share li.google #___plusone_0 {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
 }​
+
+
+/* Fixed subnav on scroll, but only for 980px and up (sorry IE!) */
+@media (min-width: 980px) {
+  .subnav-fixed {
+    top: 0;
+  }
+}
