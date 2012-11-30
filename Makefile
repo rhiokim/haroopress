@@ -20,8 +20,6 @@ update:
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git pull origin master
-	cd ./node_modules/robotskirt;node-gyp rebuild
-	git submodule update
 
 init-data: 
 	@echo "========================================"
