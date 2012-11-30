@@ -12,6 +12,7 @@ update:
 	@echo "========================================"
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
+	git pull origin master
 	npm install -g node-gyp
 	cd ./node_modules/robotskirt;node-gyp rebuild
 	git submodule update --init --recursive
