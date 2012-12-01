@@ -131,7 +131,7 @@ StringEx.prototype.collapse = function collapse(string, character) {
   var start = new RegExp('^' + character + '*');
   var end = new RegExp(character + '*$');
 
-  temp = string.replace(start, '').replace(end, '');
+  var temp = string.replace(start, '').replace(end, '');
   return utils.squeeze(temp, character);
 };
 

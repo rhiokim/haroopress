@@ -7,20 +7,23 @@ var Unidecoder = function() {};
 Unidecoder.prototype.decode = function decode(string) {
   var temp = string;
   var replacements = [];
-  for (i = 0; i < temp.length; i++) {
-    c = temp[i];
+  for (var i = 0; i < temp.length; i++) {
+    var c = temp[i];
     if (c.match(/([^\x00-\x7f])/)) {
-      codepoint = c.charCodeAt(0);
-      codegroup = this.getCodeGroup(codepoint);
+      var codepoint = c.charCodeAt(0);
+      var codegroup = this.getCodeGroup(codepoint);
       replacements.push({ character: c, codepoint: codepoint, codegroup: codegroup });
     }
   }
 
   utils.each(replacements, function(replacement) {
     try {
-      contents = fs.readFileSync(__dirname + '/unidecoder_data/' + replacement.codegroup + '.yml', 'utf8');
+      var contents = fs.readFileSync(__dirname + '/unidecoder_data/' + replacement.codegroup + '.yml', 'utf8');
       var doc = yaml.load(contents);
-      transliterated = doc[replacement.codepoint & 255];
+      var transliterated = doc[replacement.codepoint & 255];
+      if (typeof transliterated !== 'string') {
+        transliterated = '';
+      }
       temp = temp.replace(new RegExp(replacement.character, 'g'), transliterated);
     } catch (ex) { /* Ignore this character */ }
   });
