@@ -26,3 +26,7 @@ var a = 1;
 ***success ㄷㄷㄷ***
 
 ***error 강조***
+
+## alert box
+
+[alert:warning 우리나라 좋은나라]
