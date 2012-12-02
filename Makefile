@@ -13,7 +13,6 @@ initialize:
 	git submodule update --init --recursive
 	cd ./node_modules/robotskirt;node-gyp rebuild
 	cd ./node_modules/locally/;npm install
-	python ./lib/highlight.js/tools/build.py
 
 update:
 	@echo "========================================"
@@ -53,9 +52,6 @@ gen: clear
 	mkdir -p ${PUBLIC_DIR}/slides/@asserts
 	cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts
 	cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
-	mkdir -p ${PUBLIC_DIR}/css/code
-	cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
-	cp -R ./lib/highlight.js/build/* ${PUBLIC_DIR}/js
 	cp -R ./lib/bootstrap/* ${PUBLIC_DIR}
 
 preview: gen
