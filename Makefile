@@ -19,6 +19,7 @@ update:
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git pull origin master
+	cd ./source/themes;git pull origin master
 
 init-data: 
 	@echo "========================================"
