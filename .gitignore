@@ -8,6 +8,7 @@ _deploy
 _public
 source/data
 config.js
+lib/Makefile
 *.done
 
 # npm module
