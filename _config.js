@@ -4,7 +4,7 @@
  */
 var conf = {
     meta: {
-        version: '0.9.1',
+        version: '0.9.2',
         defaultTitle: 'haroopress',
         description: 'Static Page Blog engine based Node.js, haroopress, 하루프레스',
         siteUrl: 'http://haroopress.com',
