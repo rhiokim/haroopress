@@ -19,6 +19,7 @@ update:
 	@echo "= update & initialize git submodules"
 	@echo "========================================"
 	git pull origin master
+	cd ./source/themes;git pull origin master
 
 init-data: 
 	@echo "========================================"
@@ -52,9 +53,6 @@ gen: clear
 	mkdir -p ${PUBLIC_DIR}/slides/@asserts
 	cp -R ./lib/shower/themes ${PUBLIC_DIR}/slides/@asserts
 	cp -R ./lib/shower/scripts ${PUBLIC_DIR}/slides/@asserts
-	mkdir -p ${PUBLIC_DIR}/css/code
-	cp -R ./lib/highlight.js/src/styles/* ${PUBLIC_DIR}/css/code
-	cp -R ./lib/highlight.js/build/* ${PUBLIC_DIR}/js
 	cp -R ./lib/bootstrap/* ${PUBLIC_DIR}
 
 preview: gen

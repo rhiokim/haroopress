@@ -185,11 +185,16 @@ __assert ()
 __guide_install_nodejs ()
 {
 	__log "[ NodeJS ] missing"
+	__log "Ubuntu: sudo apt-get install nodejs nodejs-dev"
+	__log "Mac OS: brew install nodejs"
+	echo
 }
 
 __guide_install_nodegyp ()
 {
 	__log "[ node-gyp ] missing"
+	__log "Ubuntu \& Mac OS: npm install node-gyp -g"
+	echo
 }
 
 __guide_install_python ()
@@ -205,7 +210,19 @@ __guide_install_java ()
 __guide_install_git ()
 {
 	__log "[ git ] missing"
+	__log "Ubuntu: sudo apt-get install git-core"
+	__log "Mac OS: brew install git"
+	echo
 }
+
+__guide_install_gpp ()
+{
+	__log "[ g++ or gcc ] missing"
+	__log "Ubuntu: sudo apt-get install build-essentail"
+	__log "Mac OS: Install XCode and commandline tools"
+	echo
+}
+
 
 __chk_pre_requisites ()
 {
@@ -214,6 +231,8 @@ __chk_pre_requisites ()
 	__assert python --version || __guide_install_python
 	__assert java -version || __guide_install_java
 	__assert git --version || __guide_install_git
+	__assert g++ -v || __guide_install_gpp
+	__assert gcc -v || __guide_install_gpp
 
 	if [ $__pre_requisite_not_found -gt 0 ]; then
 		echo
