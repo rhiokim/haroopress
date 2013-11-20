@@ -2,9 +2,11 @@ var moment = require("../../moment");
 
 exports.lang = {
     "library getter" : function (test) {
-        test.expect(4);
+        var r;
+        test.expect(8);
 
-        moment.lang('en');
+        r = moment.lang('en');
+        test.equal(r, 'en', 'Lang should return en by default');
         test.equal(moment.lang(), 'en', 'Lang should return en by default');
 
         moment.lang('fr');
@@ -16,6 +18,40 @@ exports.lang = {
         moment.lang('en');
         test.equal(moment.lang(), 'en', 'Lang should reset');
 
+        moment.lang('does-not-exist');
+        test.equal(moment.lang(), 'en', 'Lang should reset');
+
+        moment.lang('EN');
+        test.equal(moment.lang(), 'en', 'Normalize language key case');
+
+        moment.lang('EN_gb');
+        test.equal(moment.lang(), 'en-gb', 'Normalize language key underscore');
+
+        test.done();
+    },
+
+    "library getter array of langs" : function (test) {
+        test.equal(moment.lang(['non-existent', 'fr', 'also-non-existent']), 'fr', "passing an array uses the first valid language");
+        test.equal(moment.lang(['es', 'fr', 'also-non-existent']), 'es', "passing an array uses the first valid language");
+        test.done();
+    },
+
+    "library getter language substrings" : function (test) {
+        test.equal(moment.lang('fr-crap'), 'fr', "use substrings");
+        test.equal(moment.lang('fr-does-not-exist'), 'fr', "uses deep substrings");
+        test.equal(moment.lang('fr-CA-does-not-exist'), 'fr-ca', "uses deepest substring");
+        test.done();
+    },
+
+    "library getter language array and substrings" : function (test) {
+        test.equal(moment.lang(['en-CH', 'fr']), 'en', "prefer root languages to shallower ones");
+        test.equal(moment.lang(['en-gb-leeds', 'en-CA']), 'en-gb', "prefer root languages to shallower ones");
+        test.equal(moment.lang(['en-fake', 'en-CA']), 'en-ca', "prefer alternatives with shared roots");
+        test.equal(moment.lang(['en-fake', 'en-fake2', 'en-ca']), 'en-ca', "prefer alternatives with shared roots");
+        test.equals(moment.lang(['fake-CA', 'fake-MX', 'fr']), 'fr', "always find something if possible");
+        test.equals(moment.lang(['fake-CA', 'fake-MX', 'fr']), 'fr', "always find something if possible");
+        test.equals(moment.lang(['fake-CA', 'fake-MX', 'fr-fake-fake-fake']), 'fr', "always find something if possible");
+        test.equals(moment.lang(['en', 'en-CA']), 'en', "prefer earlier if it works");
         test.done();
     },
 
@@ -45,7 +81,7 @@ exports.lang = {
                 L : "-[L]-",
                 LL : "-[LL]-",
                 LLL : "-[LLL]-",
-                LLLL : "-[LLLL]-",
+                LLLL : "-[LLLL]-"
             },
             calendar : {
                 sameDay : '[sameDay] LT',
@@ -72,9 +108,11 @@ exports.lang = {
         test.expect(3);
         moment.lang('en');
 
-        test.equal(moment.langData().months[0], 'January', 'no arguments returns global');
-        test.equal(moment.langData('zh-cn').months[0], '一月', 'a string returns the language based on key');
-        test.equal(moment.langData(moment().lang('es')).months[0], 'Enero', "if you pass in a moment it uses the moment's language");
+        var jan = moment([2000, 0]);
+
+        test.equal(moment.langData().months(jan), 'January', 'no arguments returns global');
+        test.equal(moment.langData('zh-cn').months(jan), '一月', 'a string returns the language based on key');
+        test.equal(moment.langData(moment().lang('es')).months(jan), 'enero', "if you pass in a moment it uses the moment's language");
 
         test.done();
     },
@@ -84,8 +122,28 @@ exports.lang = {
         moment.lang('en');
 
         test.equal(moment([2012, 5, 6]).format('MMMM'), 'June', 'Normally default to global');
-        test.equal(moment([2012, 5, 6]).lang('es').format('MMMM'), 'Junio', 'Use the instance specific language');
+        test.equal(moment([2012, 5, 6]).lang('es').format('MMMM'), 'junio', 'Use the instance specific language');
         test.equal(moment([2012, 5, 6]).format('MMMM'), 'June', 'Using an instance specific language does not affect other moments');
+
+        test.done();
+    },
+
+    "instance lang method with array" : function (test) {
+        var m = moment().lang(['non-existent', 'fr', 'also-non-existent']);
+        test.equal(m.lang()._abbr, 'fr', "passing an array uses the first valid language");
+        m = moment().lang(['es', 'fr', 'also-non-existent']);
+        test.equal(m.lang()._abbr, 'es', "passing an array uses the first valid language");
+        test.done();
+    },
+
+    "instance getter language substrings" : function (test) {
+        var m = moment();
+
+        m.lang('fr-crap');
+        test.equal(m.lang()._abbr, 'fr', "use substrings");
+
+        m.lang('fr-does-not-exist');
+        test.equal(m.lang()._abbr, 'fr', "uses deep substrings");
 
         test.done();
     },
@@ -94,9 +152,9 @@ exports.lang = {
         test.expect(3);
         moment.lang('en');
 
-        test.equal(moment([2012, 5, 6]).lang('es').add({days: 1}).format('MMMM'), 'Junio', 'With addition');
-        test.equal(moment([2012, 5, 6]).lang('es').day(0).format('MMMM'), 'Junio', 'With day getter');
-        test.equal(moment([2012, 5, 6]).lang('es').eod().format('MMMM'), 'Junio', 'With eod');
+        test.equal(moment([2012, 5, 6]).lang('es').add({days: 1}).format('MMMM'), 'junio', 'With addition');
+        test.equal(moment([2012, 5, 6]).lang('es').day(0).format('MMMM'), 'junio', 'With day getter');
+        test.equal(moment([2012, 5, 6]).lang('es').endOf('day').format('MMMM'), 'junio', 'With endOf');
 
         test.done();
     },
@@ -109,8 +167,8 @@ exports.lang = {
             b = a.clone(),
             c = moment(a);
 
-        test.equal(b.format('MMMM'), 'Junio', 'using moment.fn.clone()');
-        test.equal(b.format('MMMM'), 'Junio', 'using moment()');
+        test.equal(b.format('MMMM'), 'junio', 'using moment.fn.clone()');
+        test.equal(b.format('MMMM'), 'junio', 'using moment()');
 
         test.done();
     },
@@ -163,7 +221,7 @@ exports.lang = {
             return 'default';
         }
 
-        moment.lang('made-up', {
+        moment.lang('made-up-2', {
             months : fakeReplace,
             monthsShort : fakeReplace,
             weekdays : fakeReplace,
@@ -178,53 +236,74 @@ exports.lang = {
         test.done();
     },
 
-    // the following tests should be removed after the 2.0.0 release as they will be deprecated
-    "lang accessors on the global object should exist < 2.0.0" : function (test) {
-        moment.lang('en');
+    "changing parts of a language config" : function (test) {
+        test.expect(2);
 
-        var a = 'months|monthsShort|monthsParse|weekdays|weekdaysShort|weekdaysMin|longDateFormat|calendar|relativeTime|ordinal|meridiem'.split('|');
-        var i;
+        moment.lang('partial-lang', {
+            months : 'a b c d e f g h i j k l'.split(' ')
+        });
 
-        test.expect(a.length);
+        test.equal(moment([2011, 0, 1]).format('MMMM'), 'a', 'should be able to set language values when creating the language');
 
-        for (i = 0; i < a.length; i++) {
-            test.ok(moment[a[i]], "moment." + a[i] + " should exist");
-        }
+        moment.lang('partial-lang', {
+            monthsShort : 'A B C D E F G H I J K L'.split(' ')
+        });
 
-        test.done();
-    },
-
-    // the following tests should be removed after the 2.0.0 release as they will be deprecated
-    "lang accessors on the global object should change < 2.0.0" : function (test) {
-        moment.lang('en');
-
-        var a = 'months|monthsShort|weekdays|weekdaysShort|weekdaysMin|longDateFormat|calendar|relativeTime|ordinal'.split('|');
-        var i;
-        var en = {};
-
-        test.expect(a.length);
-
-        for (i = 0; i < a.length; i++) {
-            en[a[i]] = moment[a[i]];
-        }
-
-        moment.lang('fr');
-
-        for (i = 0; i < a.length; i++) {
-            test.notDeepEqual(en[a[i]], moment[a[i]], "the " + a[i] + " lang data should change on the global object");
-        }
+        test.equal(moment([2011, 0, 1]).format('MMMM MMM'), 'a A', 'should be able to set language values after creating the language');
 
         test.done();
     },
 
-    "manip lang accessors on the global object < 2.0.0" : function (test) {
+    "start/endOf week feature for first-day-is-monday langs" : function (test) {
+        test.expect(2);
+
+        moment.lang('monday-lang', {
+            week : {
+                dow : 1 // Monday is the first day of the week
+            }
+        });
+
+        moment.lang('monday-lang');
+        test.equal(moment([2013, 0, 1]).startOf('week').day(), 1, 'for lang monday-lang first day of the week should be monday');
+        test.equal(moment([2013, 0, 1]).endOf('week').day(), 0, 'for lang monday-lang last day of the week should be sunday');
+
+        test.done();
+    },
+
+    "meridiem parsing" : function (test) {
+        test.expect(2);
+
+        moment.lang('meridiem-parsing', {
+            meridiemParse : /[bd]/i,
+            isPM : function (input) {
+                return input === 'b';
+            }
+        });
+
+        moment.lang('meridiem-parsing');
+        test.equal(moment('2012-01-01 3b', 'YYYY-MM-DD ha').hour(), 15, 'Custom parsing of meridiem should work');
+        test.equal(moment('2012-01-01 3d', 'YYYY-MM-DD ha').hour(), 3, 'Custom parsing of meridiem should work');
+
+        test.done();
+    },
+
+    "invalid date formatting" : function (test) {
+        moment.lang('has-invalid', {
+            invalidDate: 'KHAAAAAAAAAAAN!'
+        });
+
+        test.equal(moment.invalid().format(), "KHAAAAAAAAAAAN!");
+        test.equal(moment.invalid().format('YYYY-MM-DD'), "KHAAAAAAAAAAAN!");
+
+        test.done();
+    },
+
+    "return lang name" : function (test) {
         test.expect(1);
-        moment.lang('en');
 
-        moment.months = ["test"];
-        test.equal(moment([2011, 0]).format('MMMM'), "test", "Should be able to manipulate the objects on the global object");
+        var registered = moment.lang('return-this', {});
 
-        moment.lang('en');
+        test.equal(registered, 'return-this', 'returns the language configured');
 
         test.done();
     }

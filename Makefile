@@ -20,6 +20,8 @@ update:
 	@echo "========================================"
 	git pull origin master
 	cd ./source/themes;git pull origin master
+	npm update
+	cd ./node_modules/robotskirt;node-gyp rebuild
 
 init-data: 
 	@echo "========================================"

@@ -1,10 +1,20 @@
 var moment = require("../../moment");
 
 exports.utc = {
-    "utc and local" : function(test) {
+    setUp : function (cb) {
+        moment.lang('en');
+        cb();
+    },
+
+    tearDown : function (cb) {
+        moment.lang('en');
+        cb();
+    },
+
+    "utc and local" : function (test) {
         test.expect(7);
 
-        var m = moment(Date.UTC(2011, 1, 2, 3, 4, 5, 6));
+        var m = moment(Date.UTC(2011, 1, 2, 3, 4, 5, 6)), zone, expected;
         m.utc();
         // utc
         test.equal(m.date(), 2, "the day should be correct for utc");
@@ -20,19 +30,23 @@ exports.utc = {
             test.equal(m.date(), 2, "the date should be correct for local");
             test.equal(m.day(), 3, "the day should be correct for local");
         }
-        var zone = Math.ceil(m.zone() / 60);
-        var expected = (24 + 3 - zone) % 24;
+        zone = Math.ceil(m.zone() / 60);
+        expected = (24 + 3 - zone) % 24;
         test.equal(m.hours(), expected, "the hours (" + m.hours() + ") should be correct for local");
         test.equal(moment().utc().zone(), 0, "timezone in utc should always be zero");
         test.done();
     },
 
-    "creating with utc" : function(test) {
+    "creating with utc" : function (test) {
         test.expect(7);
 
-        test.equal(moment.utc().valueOf(), moment().valueOf(), "Calling moment.utc() should default to the current time");
+        var diff = moment.utc().valueOf() - moment().valueOf(), m;
+        diff = Math.abs(diff);
+        // we check the diff rather than equality because sometimes they are off by a millisecond
 
-        var m = moment.utc([2011, 1, 2, 3, 4, 5, 6]);
+        test.ok(diff < 5, "Calling moment.utc() should default to the current time");
+
+        m = moment.utc([2011, 1, 2, 3, 4, 5, 6]);
         test.equal(m.date(), 2, "the day should be correct for utc array");
         test.equal(m.hours(), 3, "the hours should be correct for utc array");
 
@@ -47,7 +61,7 @@ exports.utc = {
         test.done();
     },
 
-    "creating with utc without timezone" : function(test) {
+    "creating with utc without timezone" : function (test) {
         test.expect(4);
 
         var m = moment.utc("2012-01-02T08:20:00");
@@ -57,6 +71,32 @@ exports.utc = {
         m = moment.utc("2012-01-02T08:20:00+09:00");
         test.equal(m.date(), 1, "the day should be correct for utc parse with timezone");
         test.equal(m.hours(), 23, "the hours should be correct for utc parse with timezone");
+
+        test.done();
+    },
+
+    "cloning with utc" : function (test) {
+        test.expect(4);
+
+        var m = moment.utc("2012-01-02T08:20:00");
+        test.equal(moment.utc(m)._isUTC, true, "the local zone should be converted to UTC");
+        test.equal(moment.utc(m.clone().utc())._isUTC, true, "the local zone should stay in UTC");
+
+        m.zone(120);
+        test.equal(moment.utc(m)._isUTC, true, "the explicit zone should stay in UTC");
+        test.equal(moment.utc(m).zone(), 0, "the explicit zone should have an offset of 0");
+
+        test.done();
+    },
+
+    "weekday with utc" : function (test) {
+        test.expect(1);
+
+        test.equal(
+            moment('2013-09-15T00:00:00Z').utc().weekday(), // first minute of the day
+            moment('2013-09-15T23:59:00Z').utc().weekday(), // last minute of the day
+            "a UTC-moment's .weekday() should not be affected by the local timezone"
+        );
 
         test.done();
     }
