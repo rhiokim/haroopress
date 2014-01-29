@@ -12,7 +12,7 @@ var metas = [
     { key: 'description', question: 'Insert your site description (*)', example: 'My Development diary, I love node.js & javascript' },
     { key: 'siteUrl', question: 'Insert site url (*)', example: 'http://www.myblog.com' },
     { key: 'author', question: 'Insert you full name (*)', example: 'Rhio Kim (sync to source/data/authors/Rhio Kim.markdown)' },
-    { key: 'email', question: 'Insert you gravatar emaill address (*)', example: 'abc123@gmail.com' },
+    { key: 'email', question: 'Insert you gravatar email address (*)', example: 'abc123@gmail.com' },
     { key: 'keywords', question: 'Insert you site meta information (*)', example: 'javascript, css3, html5' }
 ];
 
