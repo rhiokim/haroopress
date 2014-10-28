@@ -34,7 +34,7 @@ try {
 } catch(e) {}
 
 console.log('haroo> %s', 'Enter the read/write repository for your haroopress site '.yellow);
-console.log('"'+'git@github.com:[github-id]/[github-id].github.com.git'.red +'"');
+console.log('"'+'https://github.com/[github-id]/[github-id].github.io.git'.red +'"');
 
 rl.question(' > ', function(repo) {
 
@@ -46,7 +46,7 @@ rl.question(' > ', function(repo) {
         regx = /:([^\/]+)/;
     }
     user = repo.match(regx)[1];
-    branch = (repo.match(/\/[\w-]+.github.com/) == null) ? 'gh-pages' : 'master';
+    branch = (repo.match(/\/[\w-]+.github.io/) == null) ? 'gh-pages' : 'master';
     project = (branch == 'gh-pages') ? repo.match(/\/([^\.]+)/)[1] : '';
 
     console.log('haroo> git remote -v¶'.yellow);
